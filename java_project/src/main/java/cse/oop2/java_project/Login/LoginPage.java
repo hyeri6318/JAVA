@@ -5,18 +5,31 @@
  */
 package cse.oop2.java_project.Login;
 
+import java.awt.List;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Stream;
+import javax.swing.JOptionPane;
 
 /**
  *
- * @author pc
+ * @author 정민수
+ * 21.11.10 학사 담당자 파일 오픈 후 입력된 ID,PW와 비교하여 로그인 가능하게 만듦
+ * 21.11.11 switch-case를 통해 ID 첫번째 글자를 통해 알맞은 파일을 오픈하여 로그인 가능하게 하기
+ * 
  */
+
 public class LoginPage extends javax.swing.JFrame {
 
     /**
@@ -137,8 +150,60 @@ public class LoginPage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BUTT_LOGINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_LOGINActionPerformed
-       
         
+        try {
+            String str; // 메모장 안에 있는 데이터를 읽어와 저장
+            String[] array = null;
+            //메모장 절대 경로
+            String URL = "C:\\Users\\pc\\Desktop\\project\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\bachelor_manager.txt";
+            BufferedReader is = new BufferedReader(new FileReader(URL));
+            
+            //파일 객체 생성
+            Path path = Paths.get(URL);
+            // 캐릭터셋 지정
+            Charset cs = StandardCharsets.UTF_8;
+            // 파일 내용을 담을 리스트
+            ArrayList<String> list_bachelor_manager = new ArrayList<String>();                        
+            list_bachelor_manager = (ArrayList<String>) Files.readAllLines(path, cs);
+            // 모든 파일 내용 읽어와서 저장
+            ArrayList<String> list = new ArrayList<String>(); // 임시 저장
+            ArrayList<String> id_list = new ArrayList<String>(); // id_list
+            ArrayList<String> pw_list = new ArrayList<String>(); // pw_list
+            
+            for(String i : list_bachelor_manager) {
+                array = i.split("\n");
+                list.add(array[0]);                
+            }
+            
+            for(String i : list) {
+                String[] temp = i.split("/");
+                id_list.add(temp[0]);
+                pw_list.add(temp[1]);
+            }
+            
+            for(String i : id_list) {
+                System.out.println(i);
+            }
+            for(String j : pw_list) {
+                System.out.println(j);
+            }
+            
+            int ch = 0; // 로그인이 되었는지 안되었는지 확인하는 변수
+            for(int i = 0; i < id_list.size(); i++) {
+                if(ID_INPUT.getText().equals(id_list.get(i)) && PW_INPUT.getText().equals(pw_list.get(i))) {
+                    JOptionPane.showMessageDialog(null, "로그인이 되었습니다!!");
+                    ch = -1; // 로그인 되었을 때 함수
+                }
+            }          
+            if(ch == 0) {
+                JOptionPane.showMessageDialog(null, "로그인에 실패하셨습니다!!");
+                ID_INPUT.setText(null);
+                PW_INPUT.setText(null);
+            }            
+            
+        } catch (IOException E10) {
+            E10.printStackTrace();
+        }
     }//GEN-LAST:event_BUTT_LOGINActionPerformed
 
     private void ID_INPUTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ID_INPUTActionPerformed
