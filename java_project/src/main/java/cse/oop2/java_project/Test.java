@@ -16,7 +16,7 @@ public class Test {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        System.out.println("윤채민 Git 연결 테스트입니다");
+        System.out.println("이혜리 Git 연결 테스트입니다");
     }
     
 }
