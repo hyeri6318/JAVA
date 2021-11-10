@@ -155,7 +155,7 @@ public class LoginPage extends javax.swing.JFrame {
             String str; // 메모장 안에 있는 데이터를 읽어와 저장
             String[] array = null;
             //메모장 절대 경로
-            String URL = "C:\\Users\\pc\\Desktop\\project\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\bachelor_manager.txt";
+            String URL = "C:\\Users\\pc\\Desktop\\java\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\bachelor_manager.txt";
             BufferedReader is = new BufferedReader(new FileReader(URL));
             
             //파일 객체 생성
