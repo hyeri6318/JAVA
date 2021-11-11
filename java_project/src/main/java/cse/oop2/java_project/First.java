@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package cse.oop2.java_project;
-import cse.oop2.java_project.Login.LoginPage;
+import cse.oop2.java_project.login.LoginPage;
 import java.io.File;
 import java.io.IOException;
 import javax.swing.JOptionPane;
@@ -92,6 +92,7 @@ public class First extends javax.swing.JFrame {
     private void BUTT_STARTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_STARTActionPerformed
         // TODO add your handling code here:
         // 버튼을 누르면 로그인 페이지로 이동
+        // 시작 전 파일 절대 경로 설정해주기
         // 파일 처리 방식을 사용하기 위해 시작 전 info에 txt 파일을 생성
         File student = new File("C:\\Users\\pc\\Desktop\\java\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\student.txt");
         File professor = new File("C:\\Users\\pc\\Desktop\\java\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\professor.txt");

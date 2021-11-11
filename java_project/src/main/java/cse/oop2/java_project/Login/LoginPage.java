@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cse.oop2.java_project.Login;
+package cse.oop2.java_project.login;
+
+import cse.oop2.java_project.bachelor.BachelorManagerStart;
 
 import java.awt.List;
 import java.io.BufferedReader;
@@ -17,19 +19,14 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.stream.Stream;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author 정민수
- * 21.11.10 학사 담당자 파일 오픈 후 입력된 ID,PW와 비교하여 로그인 가능하게 만듦
- * 21.11.11 switch-case를 통해 ID 첫번째 글자를 통해 알맞은 파일을 오픈하여 로그인 가능하게 하기
- * 
+ * @author 정민수 21.11.10 학사 담당자 파일 오픈 후 입력된 ID,PW와 비교하여 로그인 가능하게 만듦 21.11.11
+ * switch-case를 통해 ID 첫번째 글자를 통해 알맞은 파일을 오픈하여 로그인 가능하게 하기
+ *
  */
-
 public class LoginPage extends javax.swing.JFrame {
 
     /**
@@ -148,61 +145,93 @@ public class LoginPage extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    private void LoginCompare(String url) {
 
-    private void BUTT_LOGINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_LOGINActionPerformed
-        
         try {
+            //메모장 절대 경로
+            String URL = url;
+
             String str; // 메모장 안에 있는 데이터를 읽어와 저장
             String[] array = null;
-            //메모장 절대 경로
-            String URL = "C:\\Users\\pc\\Desktop\\java\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\bachelor_manager.txt";
+
             BufferedReader is = new BufferedReader(new FileReader(URL));
-            
+
             //파일 객체 생성
             Path path = Paths.get(URL);
             // 캐릭터셋 지정
             Charset cs = StandardCharsets.UTF_8;
             // 파일 내용을 담을 리스트
-            ArrayList<String> list_bachelor_manager = new ArrayList<String>();                        
-            list_bachelor_manager = (ArrayList<String>) Files.readAllLines(path, cs);
+            ArrayList<String> list = new ArrayList<String>();
+            list = (ArrayList<String>) Files.readAllLines(path, cs);
             // 모든 파일 내용 읽어와서 저장
-            ArrayList<String> list = new ArrayList<String>(); // 임시 저장
+            ArrayList<String> list_temp = new ArrayList<String>(); // 임시 저장
             ArrayList<String> id_list = new ArrayList<String>(); // id_list
             ArrayList<String> pw_list = new ArrayList<String>(); // pw_list
-            
-            for(String i : list_bachelor_manager) {
+
+            for (String i : list) {
                 array = i.split("\n");
-                list.add(array[0]);                
+                list_temp.add(array[0]);
             }
-            
-            for(String i : list) {
+
+            for (String i : list_temp) {
                 String[] temp = i.split("/");
                 id_list.add(temp[0]);
                 pw_list.add(temp[1]);
             }
-            
-            for(String i : id_list) {
+
+            for (String i : id_list) {
                 System.out.println(i);
             }
-            for(String j : pw_list) {
+            for (String j : pw_list) {
                 System.out.println(j);
             }
-            
+
             int ch = 0; // 로그인이 되었는지 안되었는지 확인하는 변수
-            for(int i = 0; i < id_list.size(); i++) {
-                if(ID_INPUT.getText().equals(id_list.get(i)) && PW_INPUT.getText().equals(pw_list.get(i))) {
+            for (int i = 0; i < id_list.size(); i++) {
+                if (ID_INPUT.getText().equals(id_list.get(i)) && PW_INPUT.getText().equals(pw_list.get(i))) {
                     JOptionPane.showMessageDialog(null, "로그인이 되었습니다!!");
                     ch = -1; // 로그인 되었을 때 함수
                 }
-            }          
-            if(ch == 0) {
+            }
+            if (ch == 0) {
                 JOptionPane.showMessageDialog(null, "로그인에 실패하셨습니다!!");
                 ID_INPUT.setText(null);
                 PW_INPUT.setText(null);
-            }            
-            
+            }
+
         } catch (IOException E10) {
             E10.printStackTrace();
+        }
+    }
+
+    private void BUTT_LOGINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_LOGINActionPerformed
+        String URL = null;
+
+        char first = ID_INPUT.getText().charAt(0);
+        switch (first) {
+            case 83: // ID 첫 글자 S == 학생
+                //메모장 절대 경로
+                URL = "C:\\Users\\pc\\Desktop\\java\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\student.txt";
+                LoginCompare(URL);
+                break;
+            case 80: // ID 첫 글자 P == 교수
+                //메모장 절대 경로
+                URL = "C:\\Users\\pc\\Desktop\\java\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\professor.txt";
+                LoginCompare(URL);
+                break;
+            case 72: // ID 첫 글자 H == 학사 담당자
+                //메모장 절대 경로
+                URL = "C:\\Users\\pc\\Desktop\\java\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\bachelor_manager.txt";
+                LoginCompare(URL);
+                BachelorManagerStart start = new BachelorManagerStart();
+                start.setVisible(true);
+                dispose();
+                break;
+            case 71: // ID 첫 글자 G == 수업 담당자
+                //메모장 절대 경로
+                URL = "C:\\Users\\pc\\Desktop\\java\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\class_manager.txt";
+                LoginCompare(URL);
+                break;
         }
     }//GEN-LAST:event_BUTT_LOGINActionPerformed
 
