@@ -145,7 +145,7 @@ public class LoginPage extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    private void LoginCompare(String url) {
+    private boolean LoginCompare(String url) {
 
         try {
             //메모장 절대 경로
@@ -191,6 +191,8 @@ public class LoginPage extends javax.swing.JFrame {
                 if (ID_INPUT.getText().equals(id_list.get(i)) && PW_INPUT.getText().equals(pw_list.get(i))) {
                     JOptionPane.showMessageDialog(null, "로그인이 되었습니다!!");
                     ch = -1; // 로그인 되었을 때 함수
+                    is.close();
+                    return true;
                 }
             }
             if (ch == 0) {
@@ -198,15 +200,16 @@ public class LoginPage extends javax.swing.JFrame {
                 ID_INPUT.setText(null);
                 PW_INPUT.setText(null);
             }
-
+            is.close();
         } catch (IOException E10) {
             E10.printStackTrace();
         }
+        return false;
     }
 
     private void BUTT_LOGINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_LOGINActionPerformed
         String URL = null;
-
+        boolean check = false; // 로그인 실패 유무를 확인하기 위함
         char first = ID_INPUT.getText().charAt(0);
         switch (first) {
             case 83: // ID 첫 글자 S == 학생
@@ -222,11 +225,15 @@ public class LoginPage extends javax.swing.JFrame {
             case 72: // ID 첫 글자 H == 학사 담당자
                 //메모장 절대 경로
                 URL = "C:\\Users\\pc\\Desktop\\java\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\bachelor_manager.txt";
-                LoginCompare(URL);
-                BachelorManagerStart start = new BachelorManagerStart();
-                start.setVisible(true);
-                dispose();
-                break;
+                check = LoginCompare(URL);
+                if (check) {
+                    BachelorManagerStart start = new BachelorManagerStart();
+                    start.setVisible(true);
+                    dispose();
+                    break;
+                } else {
+                    break;
+                }
             case 71: // ID 첫 글자 G == 수업 담당자
                 //메모장 절대 경로
                 URL = "C:\\Users\\pc\\Desktop\\java\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\class_manager.txt";

@@ -16,6 +16,7 @@ public class BachelorManagerStart extends javax.swing.JFrame {
      */
     public BachelorManagerStart() {
         initComponents();
+        setTitle("학사 담당자");
     }
 
     /**
