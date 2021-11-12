@@ -214,17 +214,17 @@ public class LoginPage extends javax.swing.JFrame {
         switch (first) {
             case 83: // ID 첫 글자 S == 학생
                 //메모장 절대 경로
-                URL = "C:\\Users\\pc\\Desktop\\java\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\student.txt";
+                URL = "C:\\project\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\student.txt";
                 LoginCompare(URL);
                 break;
             case 80: // ID 첫 글자 P == 교수
                 //메모장 절대 경로
-                URL = "C:\\Users\\pc\\Desktop\\java\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\professor.txt";
+                URL = "C:\\project\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\professor.txt";
                 LoginCompare(URL);
                 break;
             case 72: // ID 첫 글자 H == 학사 담당자
                 //메모장 절대 경로
-                URL = "C:\\Users\\pc\\Desktop\\java\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\bachelor_manager.txt";
+                URL = "C:\\project\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\bachelor_manager.txt";
                 check = LoginCompare(URL);
                 if (check) {
                     BachelorManagerStart start = new BachelorManagerStart();
@@ -236,7 +236,7 @@ public class LoginPage extends javax.swing.JFrame {
                 }
             case 71: // ID 첫 글자 G == 수업 담당자
                 //메모장 절대 경로
-                URL = "C:\\Users\\pc\\Desktop\\java\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\class_manager.txt";
+                URL = "C:\\project\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\class_manager.txt";
                 LoginCompare(URL);
                 break;
         }

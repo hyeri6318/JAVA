@@ -94,10 +94,10 @@ public class First extends javax.swing.JFrame {
         // 버튼을 누르면 로그인 페이지로 이동
         // 시작 전 파일 절대 경로 설정해주기
         // 파일 처리 방식을 사용하기 위해 시작 전 info에 txt 파일을 생성
-        File student = new File("C:\\Users\\pc\\Desktop\\java\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\student.txt");
-        File professor = new File("C:\\Users\\pc\\Desktop\\java\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\professor.txt");
-        File class_manager = new File("C:\\Users\\pc\\Desktop\\java\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\class_manager.txt");
-        File bachelor_manager = new File("C:\\Users\\pc\\Desktop\\java\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\bachelor_manager.txt");
+        File student = new File("C:\\project\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\student.txt");
+        File professor = new File("C:\\project\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\professor.txt");
+        File class_manager = new File("C:\\project\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\class_manager.txt");
+        File bachelor_manager = new File("C:\\project\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\bachelor_manager.txt");
         try {
             // 학생 정보 메모장 생성
             if(student.createNewFile()) {
