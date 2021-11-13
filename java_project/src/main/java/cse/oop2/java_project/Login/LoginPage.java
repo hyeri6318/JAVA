@@ -32,15 +32,25 @@ public class LoginPage extends javax.swing.JFrame {
     /**
      * Creates new form LoginPage
      */
+    String URL = null;
+    String URL_student = null;
+    String URL_professor = null; 
+    String URL_bachelor = null;
+    String URL_class = null;
     public LoginPage() {
         initComponents();
         setTitle("로그인");
     }
-    String URL = null;
-
-    public void setURL(String URL) { // 시작 페이지에서 파일 절대 경로를 받아오기 위함
-        this.URL = URL;
-    }
+    public LoginPage(String url) {
+        initComponents();
+        setTitle("로그인");
+        URL = url;
+        URL_student = URL + "\\student.txt";
+        URL_professor = URL + "\\professor.txt";
+        URL_bachelor = URL + "\\bachelor_manager.txt";
+        URL_class = URL + "\\class_manager.txt";        
+    }    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -216,20 +226,14 @@ public class LoginPage extends javax.swing.JFrame {
         boolean check = false; // 로그인 실패 유무를 확인하기 위함
         char first = ID_INPUT.getText().charAt(0); // 첫 번째 글자에 따라 학생,교수,학사담당자,수업담당자 페이지에 매칭 시켜주기 위함
         switch (first) {
-            case 83: // ID 첫 글자 S == 학생
-                //메모장 절대 경로
-                URL =  URL + "\\student.txt";
-                LoginCompare(URL);
+            case 83: // ID 첫 글자 S == 학생                          
+                LoginCompare(URL_student);
                 break;
-            case 80: // ID 첫 글자 P == 교수
-                //메모장 절대 경로
-                URL =  URL + "\\professor.txt";
-                LoginCompare(URL);
+            case 80: // ID 첫 글자 P == 교수               
+                LoginCompare(URL_professor);
                 break;
             case 72: // ID 첫 글자 H == 학사 담당자
-                //메모장 절대 경로
-                URL = URL + "\\bachelor_manager.txt";
-                check = LoginCompare(URL);
+                check = LoginCompare(URL_bachelor);
                 if (check) {
                     BachelorManagerStart start = new BachelorManagerStart();
                     start.setVisible(true);
@@ -239,9 +243,7 @@ public class LoginPage extends javax.swing.JFrame {
                     break;
                 }
             case 71: // ID 첫 글자 G == 수업 담당자
-                //메모장 절대 경로
-                URL = URL + "\\class_manager.txt";
-                LoginCompare(URL);
+                LoginCompare(URL_class);
                 break;
         }
     }//GEN-LAST:event_BUTT_LOGINActionPerformed

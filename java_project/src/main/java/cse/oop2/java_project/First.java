@@ -153,8 +153,7 @@ public class First extends javax.swing.JFrame {
                 }
 
                 JOptionPane.showMessageDialog(null, "대학 정보 관리 시스템을 시작하겠습니다.");
-                LoginPage login = new LoginPage();
-                login.setURL(URL);
+                LoginPage login = new LoginPage(URL);                
                 login.setVisible(true);
                 dispose();
             } catch (IOException e) {
