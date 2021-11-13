@@ -36,7 +36,11 @@ public class LoginPage extends javax.swing.JFrame {
         initComponents();
         setTitle("로그인");
     }
+    String URL = null;
 
+    public void setURL(String URL) { // 시작 페이지에서 파일 절대 경로를 받아오기 위함
+        this.URL = URL;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -208,23 +212,23 @@ public class LoginPage extends javax.swing.JFrame {
     }
 
     private void BUTT_LOGINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_LOGINActionPerformed
-        String URL = null;
+        
         boolean check = false; // 로그인 실패 유무를 확인하기 위함
-        char first = ID_INPUT.getText().charAt(0);
+        char first = ID_INPUT.getText().charAt(0); // 첫 번째 글자에 따라 학생,교수,학사담당자,수업담당자 페이지에 매칭 시켜주기 위함
         switch (first) {
             case 83: // ID 첫 글자 S == 학생
                 //메모장 절대 경로
-                URL = "C:\\project\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\student.txt";
+                URL =  URL + "\\student.txt";
                 LoginCompare(URL);
                 break;
             case 80: // ID 첫 글자 P == 교수
                 //메모장 절대 경로
-                URL = "C:\\project\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\professor.txt";
+                URL =  URL + "\\professor.txt";
                 LoginCompare(URL);
                 break;
             case 72: // ID 첫 글자 H == 학사 담당자
                 //메모장 절대 경로
-                URL = "C:\\project\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\bachelor_manager.txt";
+                URL = URL + "\\bachelor_manager.txt";
                 check = LoginCompare(URL);
                 if (check) {
                     BachelorManagerStart start = new BachelorManagerStart();
@@ -236,7 +240,7 @@ public class LoginPage extends javax.swing.JFrame {
                 }
             case 71: // ID 첫 글자 G == 수업 담당자
                 //메모장 절대 경로
-                URL = "C:\\project\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\class_manager.txt";
+                URL = URL + "\\class_manager.txt";
                 LoginCompare(URL);
                 break;
         }
