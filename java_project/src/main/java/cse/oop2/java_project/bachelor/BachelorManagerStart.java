@@ -7,7 +7,7 @@ package cse.oop2.java_project.bachelor;
 
 /**
  *
- * @author pc
+ * @author 정민수
  */
 public class BachelorManagerStart extends javax.swing.JFrame {
 
@@ -35,9 +35,19 @@ public class BachelorManagerStart extends javax.swing.JFrame {
 
         BUTT_STUDENT.setFont(new java.awt.Font("굴림", 1, 18)); // NOI18N
         BUTT_STUDENT.setText("학생 정보");
+        BUTT_STUDENT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BUTT_STUDENTActionPerformed(evt);
+            }
+        });
 
         BUTT_PROFESSOR.setFont(new java.awt.Font("굴림", 1, 18)); // NOI18N
         BUTT_PROFESSOR.setText("교수 정보");
+        BUTT_PROFESSOR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BUTT_PROFESSORActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -62,6 +72,18 @@ public class BachelorManagerStart extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BUTT_PROFESSORActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_PROFESSORActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_BUTT_PROFESSORActionPerformed
+
+    private void BUTT_STUDENTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_STUDENTActionPerformed
+        // TODO add your handling code here:
+        Student_Info si = new Student_Info();
+        si.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_BUTT_STUDENTActionPerformed
 
     /**
      * @param args the command line arguments
