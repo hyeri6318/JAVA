@@ -6,6 +6,8 @@
 package cse.oop2.java_project.login;
 
 import cse.oop2.java_project.bachelor.BachelorManagerStart;
+import cse.oop2.java_project.student.StudentPage;
+import cse.oop2.java_project.professor.ProfessorPage;
 
 import java.awt.List;
 import java.io.BufferedReader;
@@ -34,13 +36,15 @@ public class LoginPage extends javax.swing.JFrame {
      */
     String URL = null;
     String URL_student = null;
-    String URL_professor = null; 
+    String URL_professor = null;
     String URL_bachelor = null;
     String URL_class = null;
+
     public LoginPage() {
         initComponents();
         setTitle("로그인");
     }
+
     public LoginPage(String url) {
         initComponents();
         setTitle("로그인");
@@ -48,9 +52,9 @@ public class LoginPage extends javax.swing.JFrame {
         URL_student = URL + "\\student.txt";
         URL_professor = URL + "\\professor.txt";
         URL_bachelor = URL + "\\bachelor_manager.txt";
-        URL_class = URL + "\\class_manager.txt";        
-    }    
-    
+        URL_class = URL + "\\class_manager.txt";
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -95,6 +99,11 @@ public class LoginPage extends javax.swing.JFrame {
         });
 
         jButton1.setText("아이디 찾기");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("아이디 찾기");
 
@@ -222,16 +231,30 @@ public class LoginPage extends javax.swing.JFrame {
     }
 
     private void BUTT_LOGINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_LOGINActionPerformed
-        
+
         boolean check = false; // 로그인 실패 유무를 확인하기 위함
         char first = ID_INPUT.getText().charAt(0); // 첫 번째 글자에 따라 학생,교수,학사담당자,수업담당자 페이지에 매칭 시켜주기 위함
         switch (first) {
             case 83: // ID 첫 글자 S == 학생                          
-                LoginCompare(URL_student);
-                break;
+                check = LoginCompare(URL_student);
+                if (check) {
+                    StudentPage spage = new StudentPage();
+                    spage.setVisible(true);
+                    dispose();
+                    break;
+                } else {
+                    break;
+                }
             case 80: // ID 첫 글자 P == 교수               
-                LoginCompare(URL_professor);
-                break;
+                check = LoginCompare(URL_professor);
+                if (check) {
+                    ProfessorPage ppage = new ProfessorPage();
+                    ppage.setVisible(true);
+                    dispose();
+                    break;
+                } else {
+                    break;
+                }
             case 72: // ID 첫 글자 H == 학사 담당자
                 check = LoginCompare(URL_bachelor);
                 if (check) {
@@ -255,6 +278,10 @@ public class LoginPage extends javax.swing.JFrame {
     private void PW_INPUTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PW_INPUTActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_PW_INPUTActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

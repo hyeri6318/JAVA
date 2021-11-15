@@ -27,26 +27,26 @@ public class StudentPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        BUTT_ChangePW = new javax.swing.JButton();
+        BUTT_CourseRegister = new javax.swing.JButton();
+        BUTT_GradeCheck = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("비밀번호 변경");
+        BUTT_ChangePW.setText("비밀번호 변경");
 
-        jButton2.setText("수강신청");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        BUTT_CourseRegister.setText("수강신청");
+        BUTT_CourseRegister.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                BUTT_CourseRegisterActionPerformed(evt);
             }
         });
 
-        jButton3.setText("성적조회");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        BUTT_GradeCheck.setText("성적조회");
+        BUTT_GradeCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                BUTT_GradeCheckActionPerformed(evt);
             }
         });
 
@@ -61,9 +61,9 @@ public class StudentPage extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(93, 93, 93)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(BUTT_ChangePW, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+                            .addComponent(BUTT_GradeCheck, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+                            .addComponent(BUTT_CourseRegister, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel1)))
@@ -75,30 +75,30 @@ public class StudentPage extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BUTT_ChangePW, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BUTT_CourseRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BUTT_GradeCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void BUTT_CourseRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_CourseRegisterActionPerformed
         // TODO add your handling code here:
         CourseRegister course = new CourseRegister();
         course.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_BUTT_CourseRegisterActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void BUTT_GradeCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_GradeCheckActionPerformed
         // TODO add your handling code here:
         GradeCheck check = new GradeCheck();
         check.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_BUTT_GradeCheckActionPerformed
 
     /**
      * @param args the command line arguments
@@ -136,9 +136,9 @@ public class StudentPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton BUTT_ChangePW;
+    private javax.swing.JButton BUTT_CourseRegister;
+    private javax.swing.JButton BUTT_GradeCheck;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
