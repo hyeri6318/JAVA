@@ -18,6 +18,14 @@ public class Student_Info extends javax.swing.JFrame {
         initComponents();
         setTitle("학사 담당자");
     }
+    
+    String URL = null;
+    public Student_Info(String url) {
+        initComponents();
+        setTitle("학사 담당자");
+        
+        URL = url;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

@@ -18,6 +18,13 @@ public class BachelorManagerStart extends javax.swing.JFrame {
         initComponents();
         setTitle("학사 담당자");
     }
+    
+    String URL = null;
+    public BachelorManagerStart(String url) {
+        initComponents();
+        setTitle("학사 담당자");
+        URL = url;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -80,7 +87,7 @@ public class BachelorManagerStart extends javax.swing.JFrame {
 
     private void BUTT_STUDENTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_STUDENTActionPerformed
         // TODO add your handling code here:
-        Student_Info si = new Student_Info();
+        Student_Info si = new Student_Info(URL);
         si.setVisible(true);
         dispose();
     }//GEN-LAST:event_BUTT_STUDENTActionPerformed
