@@ -5,6 +5,9 @@
  */
 package cse.oop2.java_project.bachelor;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,6 +22,14 @@ public class StudentRegister extends javax.swing.JFrame {
     public StudentRegister() {
         initComponents();
         setTitle("학생 등록");
+    }
+
+    String URL = null;
+
+    public StudentRegister(String url) {
+        initComponents();
+        setTitle("학생 등록");
+        URL = url + "\\student.txt";
     }
 
     /**
@@ -142,7 +153,7 @@ public class StudentRegister extends javax.swing.JFrame {
         return false;
     }
 
-    private boolean RrnCompare() {
+   private boolean RrnCompare() {
         String temp = student_rrn.getText();
         boolean ch = false; // 주민등록번호 입력란에 -가 들어갔는지 확인하기 위함
         int rrn_first = 0;
@@ -153,16 +164,16 @@ public class StudentRegister extends javax.swing.JFrame {
                 break;
             }
         }
-        
+
         // 주민등록번호 입력 시 "-" 이 없을 때 오류를 방지하기 위함
-        if (ch) { 
+        if (ch) {
             String[] cmp = temp.split("-");
             rrn_first = cmp[0].length(); // 주민등록번호 앞
             rrn_second = cmp[1].length(); // 주민등록번호 뒤            
         }
-        
+
         // 주민등록번호 앞 6, 뒤 7자리를 입력했는지 확인하기 위함
-        if ((rrn_first == 6) && (rrn_second == 7)) {          
+        if ((rrn_first == 6) && (rrn_second == 7)) {
             return true;
         } else {
             return false;
@@ -176,11 +187,33 @@ public class StudentRegister extends javax.swing.JFrame {
         boolean rrn_cmp = RrnCompare();
 
         if ((id_cmp == 'S') && (major_cmp) && (rrn_cmp)) {
-            String id = student_ID.getText();
-            String name = student_name.getText();
-            String major = student_major.getText();
-            String number = student_rrn.getText();           
-            
+            try {
+                String id = student_ID.getText();
+                String name = student_name.getText();
+                String major = student_major.getText();
+                String number = student_rrn.getText();
+                String s = "/";
+                String n = "\n";
+                
+                //구현 완료 후 URL 절대 경로 생성자로 입력 받아서 사용하기
+                File file = new File("C:\\Users\\pc\\Desktop\\java\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\student.txt");
+                FileWriter writer;
+                writer = new FileWriter(file, true);
+                writer.write(id);
+                writer.write(s);
+                writer.write(number);
+                writer.write(s);
+                writer.write(major);
+                writer.write(s);
+                writer.write(name);
+                writer.write(n);
+                writer.flush();// 출력은 버퍼에 쌓여있기에 쌓인 버퍼를 목적지로 보내줌
+                writer.close();
+                
+            } catch (IOException ex) {
+               System.out.println("오류발생");
+            }
+
         } else {
             JOptionPane.showMessageDialog(null, "잘못된 입력입니다. 다시 입력해주세요.");
             student_ID.setText(null);
