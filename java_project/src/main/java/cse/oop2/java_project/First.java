@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author 정민수 맨 처음 시작할 때 bachelor_manager.txt에 H000/123456789 저장하기
+ * @author 정민수
  */
 public class First extends javax.swing.JFrame {
 

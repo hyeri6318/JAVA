@@ -25,7 +25,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author 정민수 21.11.10 학사 담당자 파일 오픈 후 입력된 ID,PW와 비교하여 로그인 가능하게 만듦 21.11.11
+ * @author 정민수
  * switch-case를 통해 ID 첫번째 글자를 통해 알맞은 파일을 오픈하여 로그인 가능하게 하기
  *
  */
