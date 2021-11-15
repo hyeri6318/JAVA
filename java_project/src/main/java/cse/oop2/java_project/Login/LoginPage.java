@@ -258,7 +258,7 @@ public class LoginPage extends javax.swing.JFrame {
             case 72: // ID 첫 글자 H == 학사 담당자
                 check = LoginCompare(URL_bachelor);
                 if (check) {
-                    BachelorManagerStart start = new BachelorManagerStart();
+                    BachelorManagerStart start = new BachelorManagerStart(URL);
                     start.setVisible(true);
                     dispose();
                     break;

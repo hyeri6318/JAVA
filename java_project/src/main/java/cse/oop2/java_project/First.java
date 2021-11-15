@@ -7,6 +7,7 @@ package cse.oop2.java_project;
 
 import cse.oop2.java_project.login.LoginPage;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JOptionPane;
 
@@ -117,11 +118,11 @@ public class First extends javax.swing.JFrame {
         // 시작 전 파일 절대 경로 설정해주기
         // 파일 처리 방식을 사용하기 위해 시작 전 info에 txt 파일을 생성
         String URL = null; // 파일 절대 경로를 입력받기 위한 변수
-        
+
         if (FileURL.getText().equals("")) { // 절대경로를 입력하지 않았을 경우
             JOptionPane.showMessageDialog(null, "파일처리 방식을 사용하기 위해 파일 절대경로를 입력해주시기 바랍니다.");
         } else {
-            URL = FileURL.getText();           
+            URL = FileURL.getText();
             File student = new File(URL + "\\student.txt");
             File professor = new File(URL + "\\professor.txt");
             File class_manager = new File(URL + "\\class_manager.txt");
@@ -147,13 +148,21 @@ public class First extends javax.swing.JFrame {
                 }
                 // 학사 담당자 정보 메모장 생성 (시작할 때 초기 로그인 아이디 부여, 프로그램 처음 시작 시 학사 담당자 아이디로만 로그인 가능)
                 if (bachelor_manager.createNewFile()) {
+                    FileWriter writer;
+                    writer = new FileWriter(bachelor_manager, true);
+                    writer.write("H000");
+                    writer.write("/");
+                    writer.write("123456789");
+                    writer.write("\n");
+                    writer.flush();// 출력은 버퍼에 쌓여있기에 쌓인 버퍼를 목적지로 보내줌
+                    writer.close();
                     System.out.println("bachelor_manager File created");
                 } else {
                     System.out.println("bachelor_manager File arlready exists");
                 }
 
                 JOptionPane.showMessageDialog(null, "대학 정보 관리 시스템을 시작하겠습니다.");
-                LoginPage login = new LoginPage(URL);                
+                LoginPage login = new LoginPage(URL);
                 login.setVisible(true);
                 dispose();
             } catch (IOException e) {
