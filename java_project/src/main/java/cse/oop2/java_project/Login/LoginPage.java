@@ -34,7 +34,7 @@ public class LoginPage extends javax.swing.JFrame {
     /**
      * Creates new form LoginPage
      */
-    String URL = null;
+    String URL_first = null;
     String URL_student = null;
     String URL_professor = null;
     String URL_bachelor = null;
@@ -48,11 +48,11 @@ public class LoginPage extends javax.swing.JFrame {
     public LoginPage(String url) {
         initComponents();
         setTitle("로그인");
-        URL = url;
-        URL_student = URL + "\\student.txt";
-        URL_professor = URL + "\\professor.txt";
-        URL_bachelor = URL + "\\bachelor_manager.txt";
-        URL_class = URL + "\\class_manager.txt";
+        URL_first = url;
+        URL_student = URL_first + "\\student.txt";
+        URL_professor = URL_first + "\\professor.txt";
+        URL_bachelor = URL_first + "\\bachelor_manager.txt";
+        URL_class = URL_first + "\\class_manager.txt";
     }
 
     /**
@@ -258,7 +258,7 @@ public class LoginPage extends javax.swing.JFrame {
             case 72: // ID 첫 글자 H == 학사 담당자
                 check = LoginCompare(URL_bachelor);
                 if (check) {
-                    BachelorManagerStart start = new BachelorManagerStart(URL);
+                    BachelorManagerStart start = new BachelorManagerStart(URL_first);
                     start.setVisible(true);
                     dispose();
                     break;

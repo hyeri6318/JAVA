@@ -5,9 +5,17 @@
  */
 package cse.oop2.java_project.bachelor;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -153,7 +161,7 @@ public class StudentRegister extends javax.swing.JFrame {
         return false;
     }
 
-   private boolean RrnCompare() {
+    private boolean RrnCompare() {
         String temp = student_rrn.getText();
         boolean ch = false; // 주민등록번호 입력란에 -가 들어갔는지 확인하기 위함
         int rrn_first = 0;
@@ -180,6 +188,51 @@ public class StudentRegister extends javax.swing.JFrame {
         }
     }
 
+    private boolean IdCompare(String url) {
+        try {
+            //메모장 절대 경로
+            String URL = url;
+
+            String str; // 메모장 안에 있는 데이터를 읽어와 저장
+            String[] array = null;
+
+            BufferedReader is = new BufferedReader(new FileReader(URL));
+
+            //파일 객체 생성
+            Path path = Paths.get(URL);
+            // 캐릭터셋 지정
+            Charset cs = StandardCharsets.UTF_8;
+            // 파일 내용을 담을 리스트
+            ArrayList<String> list = new ArrayList<String>();
+            list = (ArrayList<String>) Files.readAllLines(path, cs);
+            // 모든 파일 내용 읽어와서 저장
+            ArrayList<String> list_temp = new ArrayList<String>(); // 임시 저장
+            ArrayList<String> id_list = new ArrayList<String>(); // id_list
+
+            for (String i : list) {
+                array = i.split("\n");
+                list_temp.add(array[0]);
+            }
+
+            for (String i : list_temp) {
+                String[] temp = i.split("/");
+                id_list.add(temp[0]);
+            }
+
+            for (String tmp : id_list) {
+                if (student_ID.getText().equals(tmp)) {
+                    is.close();
+                    return false;
+                }
+            }
+
+        } catch (IOException E10) {
+            E10.printStackTrace();
+        }
+
+        return true;
+    }
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         char id_cmp = student_ID.getText().charAt(0);
@@ -194,24 +247,35 @@ public class StudentRegister extends javax.swing.JFrame {
                 String number = student_rrn.getText();
                 String s = "/";
                 String n = "\n";
-                
-                //구현 완료 후 URL 절대 경로 생성자로 입력 받아서 사용하기
-                File file = new File("C:\\Users\\pc\\Desktop\\java\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\student.txt");
-                FileWriter writer;
-                writer = new FileWriter(file, true);
-                writer.write(id);
-                writer.write(s);
-                writer.write(number);
-                writer.write(s);
-                writer.write(major);
-                writer.write(s);
-                writer.write(name);
-                writer.write(n);
-                writer.flush();// 출력은 버퍼에 쌓여있기에 쌓인 버퍼를 목적지로 보내줌
-                writer.close();
-                
+
+                // 학번이 중복인지 확인하기 위함
+                boolean id_temp = IdCompare("C:\\Users\\ppak\\Desktop\\project\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\student.txt");
+                if (id_temp) { // 학번이 중복이 아니면
+                    //구현 완료 후 URL 절대 경로 생성자로 입력 받아서 사용하기
+                    File file = new File("C:\\Users\\ppak\\Desktop\\project\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\student.txt");
+                    FileWriter writer;
+                    writer = new FileWriter(file, true);
+                    writer.write(id);
+                    writer.write(s);
+                    writer.write(number);
+                    writer.write(s);
+                    writer.write(major);
+                    writer.write(s);
+                    writer.write(name);
+                    writer.write(n);
+                    writer.flush();// 출력은 버퍼에 쌓여있기에 쌓인 버퍼를 목적지로 보내줌
+                    writer.close();
+                    JOptionPane.showMessageDialog(null, "학생이 등록되었습니다.");
+                } else {
+                    JOptionPane.showMessageDialog(null, "같은 학번이 존재합니다. 다른 학번을 입력해주시기 바랍니다.");
+                    student_ID.setText(null);
+                    student_name.setText(null);
+                    student_major.setText(null);
+                    student_rrn.setText(null);
+                }
+
             } catch (IOException ex) {
-               System.out.println("오류발생");
+                System.out.println("오류발생");
             }
 
         } else {
