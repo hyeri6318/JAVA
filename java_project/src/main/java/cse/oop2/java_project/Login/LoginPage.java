@@ -195,7 +195,9 @@ public class LoginPage extends javax.swing.JFrame {
                 array = i.split("\n");
                 list_temp.add(array[0]);
             }
-
+            
+            System.out.println(list_temp);
+            
             for (String i : list_temp) {
                 String[] temp = i.split("/");
                 id_list.add(temp[0]);

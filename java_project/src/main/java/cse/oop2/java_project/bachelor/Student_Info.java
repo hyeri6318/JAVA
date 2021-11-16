@@ -55,6 +55,11 @@ public class Student_Info extends javax.swing.JFrame {
         jButton3.setText("학생 정보 삭제");
 
         jButton4.setText("학생 정보 조회");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -90,8 +95,17 @@ public class Student_Info extends javax.swing.JFrame {
         // TODO add your handling code here:
         StudentRegister sr = new StudentRegister();
         sr.setVisible(true);
-        dispose();
+        
     }//GEN-LAST:event_RegisterActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        
+        // URL 변수에 담아서 넘겨주기
+        Student_InfoChange sic = new Student_InfoChange("C:\\Users\\ppak\\Desktop\\project\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info");
+        sic.setVisible(true);
+        
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments

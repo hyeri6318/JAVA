@@ -266,6 +266,9 @@ public class StudentRegister extends javax.swing.JFrame {
                     writer.flush();// 출력은 버퍼에 쌓여있기에 쌓인 버퍼를 목적지로 보내줌
                     writer.close();
                     JOptionPane.showMessageDialog(null, "학생이 등록되었습니다.");
+                    
+                    dispose();
+                    
                 } else {
                     JOptionPane.showMessageDialog(null, "같은 학번이 존재합니다. 다른 학번을 입력해주시기 바랍니다.");
                     student_ID.setText(null);
