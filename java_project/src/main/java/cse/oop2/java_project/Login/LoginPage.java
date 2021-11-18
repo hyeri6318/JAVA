@@ -189,8 +189,9 @@ public class LoginPage extends javax.swing.JFrame {
             // 모든 파일 내용 읽어와서 저장
             ArrayList<String> list_temp = new ArrayList<String>(); // 임시 저장
             ArrayList<String> id_list = new ArrayList<String>(); // id_list
-            ArrayList<String> pw_list = new ArrayList<String>(); // pw_list
-
+            ArrayList<String> pw_list_temp = new ArrayList<String>(); // 주민등록번호 앞 뒤 모두 저장
+            ArrayList<String> pw_list = new ArrayList<String>(); // 초기 비밀번호로 사용하는 주민등록번호 뒷자리를 -로 구분하여 저장
+            
             for (String i : list) {
                 array = i.split("\n");
                 list_temp.add(array[0]);
@@ -200,13 +201,22 @@ public class LoginPage extends javax.swing.JFrame {
             
             for (String i : list_temp) {
                 String[] temp = i.split("/");
-                id_list.add(temp[0]);
-                pw_list.add(temp[1]);
+                id_list.add(temp[0]); // 학번, 교수번호, 직원번호
+                pw_list_temp.add(temp[1]); // 주민등록번호
+            }
+            
+            for (String i : pw_list_temp) {
+                String[] temp = i.split("-");
+                pw_list.add(temp[1]); // 초기 비밀번호 주민등록번호 뒷자리 저장
             }
 
             for (String i : id_list) {
                 System.out.println(i);
             }
+            for (String j : pw_list_temp) {
+                System.out.println(j);
+            }
+            
             for (String j : pw_list) {
                 System.out.println(j);
             }

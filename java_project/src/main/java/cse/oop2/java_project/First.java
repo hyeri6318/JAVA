@@ -152,7 +152,7 @@ public class First extends javax.swing.JFrame {
                     writer = new FileWriter(bachelor_manager, true);
                     writer.write("H000");
                     writer.write("/");
-                    writer.write("123456789");
+                    writer.write("123456-0000000");
                     writer.write("\n");
                     writer.flush();// 출력은 버퍼에 쌓여있기에 쌓인 버퍼를 목적지로 보내줌
                     writer.close();
