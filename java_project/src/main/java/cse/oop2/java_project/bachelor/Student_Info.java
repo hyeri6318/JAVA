@@ -18,13 +18,14 @@ public class Student_Info extends javax.swing.JFrame {
         initComponents();
         setTitle("학사 담당자");
     }
-    
+
     String URL = null;
+
     public Student_Info(String url) {
         initComponents();
         setTitle("학사 담당자");
-        
-        URL = url;
+
+        URL = url + "\\student.txt";
     }
 
     /**
@@ -51,6 +52,11 @@ public class Student_Info extends javax.swing.JFrame {
         });
 
         jButton2.setText("학생 정보 수정");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("학생 정보 삭제");
 
@@ -93,19 +99,23 @@ public class Student_Info extends javax.swing.JFrame {
 
     private void RegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterActionPerformed
         // TODO add your handling code here:
-        StudentRegister sr = new StudentRegister();
+        StudentRegister sr = new StudentRegister(URL);
         sr.setVisible(true);
-        
+
     }//GEN-LAST:event_RegisterActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        
-        // URL 변수에 담아서 넘겨주기
-        Student_InfoChange sic = new Student_InfoChange("C:\\Users\\ppak\\Desktop\\project\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info");
-        sic.setVisible(true);
-        
+
+
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        // URL 변수에 담아서 넘겨주기
+        Student_Info_Change sic = new Student_Info_Change(URL);
+        sic.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

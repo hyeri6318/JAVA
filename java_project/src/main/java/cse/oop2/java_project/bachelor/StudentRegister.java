@@ -37,7 +37,7 @@ public class StudentRegister extends javax.swing.JFrame {
     public StudentRegister(String url) {
         initComponents();
         setTitle("학생 등록");
-        URL = url + "\\student.txt";
+        URL = url;
     }
 
     /**
@@ -190,8 +190,7 @@ public class StudentRegister extends javax.swing.JFrame {
 
     private boolean IdCompare(String url) {
         try {
-            //메모장 절대 경로
-            String URL = url;
+            
 
             String str; // 메모장 안에 있는 데이터를 읽어와 저장
             String[] array = null;
@@ -249,10 +248,10 @@ public class StudentRegister extends javax.swing.JFrame {
                 String n = "\n";
 
                 // 학번이 중복인지 확인하기 위함
-                boolean id_temp = IdCompare("C:\\Users\\ppak\\Desktop\\project\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\student.txt");
+                boolean id_temp = IdCompare(URL);
                 if (id_temp) { // 학번이 중복이 아니면
                     //구현 완료 후 URL 절대 경로 생성자로 입력 받아서 사용하기
-                    File file = new File("C:\\Users\\ppak\\Desktop\\project\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\student.txt");
+                    File file = new File(URL);
                     FileWriter writer;
                     writer = new FileWriter(file, true);
                     writer.write(id);
