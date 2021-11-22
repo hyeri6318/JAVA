@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author ppak
+ * @author 정민수
  */
 public class Student_Info_Search extends javax.swing.JFrame {
 
@@ -154,14 +154,14 @@ public class Student_Info_Search extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, num_list.get(i) + "\n" + jumin_list.get(i) + "\n" + major_list.get(i) + "\n" + name_list.get(i));
                     ch = 0;
                     break;
-                }                
+                }
             }
-            
-            if(ch == -1)
+
+            if (ch == -1) {
                 JOptionPane.showMessageDialog(null, "입력하신 정보를 찾을 수 없습니다. 다시 입력하십시오.");
-            
-            
-            System.out.println(jumin_list);
+            } else {
+                dispose();
+            }
 
         } catch (IOException E10) {
             E10.printStackTrace();

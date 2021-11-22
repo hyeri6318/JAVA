@@ -350,7 +350,8 @@ public class Student_Info_Change extends javax.swing.JFrame {
                 } else {
                     NewFileCreat(); // 파일에 기록 후 종료
                 }
-
+                dispose();
+                
             } catch (IOException E10) {
                 E10.printStackTrace();
             }
