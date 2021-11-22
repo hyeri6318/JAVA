@@ -82,7 +82,9 @@ public class BachelorManagerStart extends javax.swing.JFrame {
 
     private void BUTT_PROFESSORActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_PROFESSORActionPerformed
         // TODO add your handling code here:
-        
+        Professor_Info pi = new Professor_Info(URL);
+        pi.setVisible(true);
+        dispose();
     }//GEN-LAST:event_BUTT_PROFESSORActionPerformed
 
     private void BUTT_STUDENTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_STUDENTActionPerformed

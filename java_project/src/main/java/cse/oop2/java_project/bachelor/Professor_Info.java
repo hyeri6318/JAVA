@@ -7,7 +7,7 @@ package cse.oop2.java_project.bachelor;
 
 /**
  *
- * @author pc
+ * @author 정민수
  */
 public class Professor_Info extends javax.swing.JFrame {
 
@@ -42,28 +42,28 @@ public class Professor_Info extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        Register.setText("새 학생 등록");
+        Register.setText("새 교수 등록");
         Register.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RegisterActionPerformed(evt);
             }
         });
 
-        jButton2.setText("학생 정보 수정");
+        jButton2.setText("교수 정보 수정");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        jButton3.setText("학생 정보 삭제");
+        jButton3.setText("교수 정보 삭제");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
 
-        jButton4.setText("학생 정보 조회");
+        jButton4.setText("교수 정보 조회");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -107,20 +107,20 @@ public class Professor_Info extends javax.swing.JFrame {
     }//GEN-LAST:event_RegisterActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Student_Info_Change sic = new Student_Info_Change(URL);
-        sic.setVisible(true);
+        Professor_Info_Change pic = new Professor_Info_Change(URL);
+        pic.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        Student_Info_Delete sid = new Student_Info_Delete(URL);
-        sid.setVisible(true);
+        Professor_Info_Delete pid = new Professor_Info_Delete(URL);
+        pid.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        Student_Info_Search sis = new Student_Info_Search(URL);
-        sis.setVisible(true);
+        Professor_Info_Search pis = new Professor_Info_Search(URL);
+        pis.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**

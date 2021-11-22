@@ -22,19 +22,19 @@ import javax.swing.JOptionPane;
  *
  * @author 정민수
  */
-public class StudentRegister extends javax.swing.JFrame {
+public class Student_Info_Register extends javax.swing.JFrame {
 
     /**
      * Creates new form StudentRegister
      */
-    public StudentRegister() {
+    public Student_Info_Register() {
         initComponents();
         setTitle("학생 등록");
     }
 
     String URL = null;
 
-    public StudentRegister(String url) {
+    public Student_Info_Register(String url) {
         initComponents();
         setTitle("학생 등록");
         URL = url;
@@ -306,20 +306,23 @@ public class StudentRegister extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(StudentRegister.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Student_Info_Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(StudentRegister.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Student_Info_Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(StudentRegister.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Student_Info_Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(StudentRegister.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Student_Info_Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new StudentRegister().setVisible(true);
+                new Student_Info_Register().setVisible(true);
             }
         });
     }

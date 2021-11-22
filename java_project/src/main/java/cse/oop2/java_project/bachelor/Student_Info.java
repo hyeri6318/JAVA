@@ -104,7 +104,7 @@ public class Student_Info extends javax.swing.JFrame {
 
     private void RegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterActionPerformed
         // TODO add your handling code here:
-        StudentRegister sr = new StudentRegister(URL);
+        Student_Info_Register sr = new Student_Info_Register(URL);
         sr.setVisible(true);
 
     }//GEN-LAST:event_RegisterActionPerformed
