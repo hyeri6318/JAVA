@@ -106,7 +106,8 @@ public class Student_Info extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-
+        Student_Info_Search sis = new Student_Info_Search(URL);
+        sis.setVisible(true);
 
     }//GEN-LAST:event_jButton4ActionPerformed
 
