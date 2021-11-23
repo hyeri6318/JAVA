@@ -5,14 +5,20 @@
  */
 package cse.oop2.java_project.student;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 /**
  *
- * @author 이혜리 21.11.12. 강의 목록에서 선택하여 현재 강의 신청 목록에 출력하도록 구현 21.11.13. 수강신청한 학점을계산하도록 만듦. 
- * 21.11.14. 수강신청 성공 메세지 출력
+ * @author 이혜리 21.11.12. 강의 목록에서 선택하여 현재 강의 신청 목록에 출력하도록 구현 21.11.13. 수강신청한
+ * 학점을계산하도록 만듦. 21.11.14. 수강신청 성공 메세지 출력
  */
 public class CourseRegister extends javax.swing.JFrame {
 
@@ -44,6 +50,7 @@ public class CourseRegister extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -112,6 +119,13 @@ public class CourseRegister extends javax.swing.JFrame {
 
         jLabel4.setText("현재 강의신청 목록");
 
+        jButton1.setText("저장");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -139,8 +153,10 @@ public class CourseRegister extends javax.swing.JFrame {
                 .addComponent(BUTT_Close, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(384, 384, 384)
+                .addGap(302, 302, 302)
                 .addComponent(BUTT_AddCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -160,9 +176,11 @@ public class CourseRegister extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(Total_OUTPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                .addComponent(BUTT_AddCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BUTT_AddCourse, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(BUTT_Close, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BUTT_Back, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -190,7 +208,7 @@ public class CourseRegister extends javax.swing.JFrame {
                 row[3] = model1.getValueAt(indexs[i], 3);
                 row[4] = model1.getValueAt(indexs[i], 4);
                 model2.addRow(row);
-                JOptionPane.showMessageDialog(this, "수강신청이 완료되었습니다.");
+
             } else {
                 JOptionPane.showMessageDialog(this, "최대 수강신청 학점은 18학점입니다.");
             }
@@ -213,6 +231,33 @@ public class CourseRegister extends javax.swing.JFrame {
     private void Total_OUTPUTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Total_OUTPUTActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Total_OUTPUTActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here
+
+        String filePath = "C:\\javaproject\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\stcourse.txt";
+        File file = new File(filePath);
+        String s = "/";
+        String n = "\n";
+
+        try {
+            FileWriter fw = new FileWriter(file, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+
+            for (int i = 0; i < jTable2.getRowCount(); i++) {
+                for (int j = 0; j < jTable2.getColumnCount(); j++) {
+                    bw.write(jTable2.getValueAt(i, j).toString());
+                    bw.write(s);
+                }
+                bw.write(n);
+            }
+            bw.close();
+            fw.close();
+        } catch (IOException ex) {
+            Logger.getLogger(CourseRegister.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        JOptionPane.showMessageDialog(this, "수강신청이 완료되었습니다.");
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -254,6 +299,7 @@ public class CourseRegister extends javax.swing.JFrame {
     private javax.swing.JButton BUTT_Back;
     private javax.swing.JButton BUTT_Close;
     private javax.swing.JTextField Total_OUTPUT;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
