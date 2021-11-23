@@ -5,6 +5,18 @@
  */
 package cse.oop2.java_project.lectureclass;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author yooun
@@ -16,6 +28,56 @@ public class OpenLecture extends javax.swing.JFrame {
      */
     public OpenLecture() {
         initComponents();
+    }
+    
+    private boolean MajorCompare() {
+        String[] major = {"전산학과", "전자공학과", "화학공학과", "기계공학과", "항공우주학과"};
+        
+        for (String i : major) {
+            if (LectureMajor.getText().equals(i)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //TODO
+    private boolean NumCompare(String cjavaprojectJAVAjava_projectsrcmainjavacs) {
+        try {
+            String URL = "C:\\javaproject\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\lectureclass.txt";
+            String str;
+            String[] array = null;
+            
+            BufferedReader is = new BufferedReader(new FileReader(URL));
+            
+            Path path = Paths.get(URL);
+            Charset cs = StandardCharsets.UTF_8;
+            ArrayList<String> list = new ArrayList<String>();
+            list = (ArrayList<String>) Files.readAllLines(path, cs);
+            
+            ArrayList<String> list_temp = new ArrayList<String>();
+            ArrayList<String> num_list = new ArrayList<String>();
+            
+            for (String i : list) {
+                array = i.split("\n");
+                list_temp.add(array[0]);
+            }
+            
+            for (String i : list_temp) {
+                String[] temp = i.split("/");
+                num_list.add(temp[0]);
+            }
+            
+            for (String tmp : num_list) {
+                if (LectureNum.getText().equals(tmp)) {
+                    is.close();
+                    return false;
+                }
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return true;
     }
 
     /**
@@ -74,8 +136,18 @@ public class OpenLecture extends javax.swing.JFrame {
         });
 
         jButton1.setText("취소");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("확인");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -121,7 +193,7 @@ public class OpenLecture extends javax.swing.JFrame {
                                             .addComponent(LectureMajor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                                 .addComponent(jButton2)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGap(18, 18, 18)
                                                 .addComponent(jButton1)))))))
                         .addGap(0, 22, Short.MAX_VALUE))))
         );
@@ -175,6 +247,65 @@ public class OpenLecture extends javax.swing.JFrame {
     private void LectureScoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LectureScoreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_LectureScoreActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        boolean major_cmp = MajorCompare();
+        if (major_cmp) {
+            try {
+                String num = LectureNum.getText();
+                String name = LectureName.getText();
+                String major = LectureMajor.getText();
+                String professor = LectureProfessor.getText();
+                String score = LectureScore.getText();
+                String info = LectureInfo.getText();
+                String max = LectureMax.getText();
+                String mini = LectureMini.getText();
+                String s = "/";
+                String n = "\n";
+                boolean num_temp = NumCompare("C:\\javaproject\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\lectureclass.txt");
+                if (num_temp) {
+                    File file = new File("C:\\javaproject\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\lectureclass.txt");
+                    FileWriter writer;
+                    
+                    writer = new FileWriter(file, true);
+                    writer.write(num);
+                    writer.write(s);
+                    writer.write(name);
+                    writer.write(s);
+                    writer.write(major);
+                    writer.write(s);
+                    writer.write(professor);
+                    writer.write(s);
+                    writer.write(score);
+                    writer.write(s);
+                    writer.write(info);
+                    writer.write(s);
+                    writer.write(max);
+                    writer.write(s);
+                    writer.write(mini);
+                    writer.write(n);
+                    
+                    writer.flush();
+                    writer.close();
+                    JOptionPane.showMessageDialog(null, "강좌가 개설되었습니다.");
+                    dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "같은 강좌 번호가 존재합니다. 다시 입력하세요.");
+                    LectureNum.setText(null);
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "잘못된 입력입니다. 다시 입력해주세요.");
+            LectureMajor.setText(null);
+        }
+
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
