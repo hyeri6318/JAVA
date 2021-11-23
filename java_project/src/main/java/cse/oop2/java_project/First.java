@@ -127,6 +127,9 @@ public class First extends javax.swing.JFrame {
             File professor = new File(URL + "\\professor.txt");
             File class_manager = new File(URL + "\\class_manager.txt");
             File bachelor_manager = new File(URL + "\\bachelor_manager.txt");
+            File lectureclass = new File(URL + "\\lectureclass.txt");
+            File stcourse = new File(URL + "\\stcourse.txt");
+
             try {
                 // 학생 정보 메모장 생성
                 if (student.createNewFile()) {
@@ -146,6 +149,19 @@ public class First extends javax.swing.JFrame {
                 } else {
                     System.out.println("class_manage File arlready exists");
                 }
+                //  강의, 강좌 정보 메모장 생성
+                if (lectureclass.createNewFile()) {
+                    System.out.println("lectureclass File created");
+                } else {
+                    System.out.println("lectureclass File arlready exists");
+                }
+                // 수강 신청한 내용을 저장하는 메모장 생성
+                if (stcourse.createNewFile()) {
+                    System.out.println("stcourse File created");
+                } else {
+                    System.out.println("stcourse File arlready exists");
+                }
+
                 // 학사 담당자 정보 메모장 생성 (시작할 때 초기 로그인 아이디 부여, 프로그램 처음 시작 시 학사 담당자 아이디로만 로그인 가능)
                 if (bachelor_manager.createNewFile()) {
                     FileWriter writer;
