@@ -33,13 +33,27 @@ public class CourseRegister extends javax.swing.JFrame {
         Total_OUTPUT.setEnabled(false); // 신청 학점란 변경 못하게 막음        
         jTable2.setEnabled(false);
     }
-    
-    String URL = null;
+
     public CourseRegister(String URL) {
         initComponents();
         setTitle("학생 수강신청");
         this.URL = URL;
-        
+
+        Total_OUTPUT.setEnabled(false); // 신청 학점란 변경 못하게 막음        
+        jTable2.setEnabled(false);
+
+    }
+    String URL = null;
+    String name = null; // 학생 이름
+    String num = null; // 학번
+
+    public CourseRegister(String URL, String name, String num) {
+        initComponents();
+        setTitle("학생 수강신청");
+        this.URL = URL;
+        this.name = name;
+        this.num = num;
+
         Total_OUTPUT.setEnabled(false); // 신청 학점란 변경 못하게 막음        
         jTable2.setEnabled(false);
     }
@@ -218,18 +232,35 @@ public class CourseRegister extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // 중복되는 강좌번호 및 강좌 이름이 있는지 체크하는 메소드
+    void Compare_Lecture_Class() {
+        DefaultTableModel model2 = (DefaultTableModel) jTable2.getModel();
+
+        for (int i = 0; i < model2.getRowCount(); i++) {
+            for (int j = 0; j < model2.getColumnCount(); j++) {
+                if (model2.getValueAt(i, j).equals(row[0]) || model2.getValueAt(i, j).equals(row[1])) {
+                    ch = -2;
+                    break;
+                }
+            }
+            if (ch == -2) {
+                break;
+            }
+        }
+    }
+
     // 강의 목록에서 선택하여 현재 강의 신청 목록에 출력
     int ch = 0; // 체크 변수
     int sum_result = 0; // 신청 학점
+    Object[] row = new Object[6];
     private void BUTT_AddCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_AddCourseActionPerformed
 
         TableModel model1 = jTable1.getModel(); // 테이블 저장
         int[] indexs = jTable1.getSelectedRows(); // 테이블에 있는 열 저장
-        Object[] row = new Object[6];
+
         DefaultTableModel model2 = (DefaultTableModel) jTable2.getModel();
 
         int sum_temp = 0;
-        //18학점 이상은 이수 불가능하게 해야함        
 
         for (int i = 0; i < indexs.length; i++) {
             row[0] = model1.getValueAt(indexs[i], 0);
@@ -240,7 +271,10 @@ public class CourseRegister extends javax.swing.JFrame {
             row[5] = model1.getValueAt(indexs[i], 5);
         }
 
-        if (ch != -1) {
+        // 같은 강좌가 있는 지 비교하기 위함
+        Compare_Lecture_Class();
+
+        if (ch == 0) {
             model2.addRow(row);
             for (int i = 0; i < model2.getRowCount(); i++) {
                 if (sum_temp < 18) {
@@ -255,10 +289,12 @@ public class CourseRegister extends javax.swing.JFrame {
             sum_result = sum_temp;
             Total_OUTPUT.setText(Integer.toString(sum_result));
             sum_result = 0;
+        } else if (ch == -2) {
+            JOptionPane.showMessageDialog(null, "강좌가 중복되었습니다.");
         } else {
             JOptionPane.showMessageDialog(null, "18학점을 초과하셨습니다.");
         }
-
+        ch = 0; // 중복된 강좌 클릭 후 중복 아닌 강좌 클릭 시 오류를 해결하기 위한 초기화
     }//GEN-LAST:event_BUTT_AddCourseActionPerformed
 
     private void BUTT_CloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_CloseActionPerformed
@@ -280,6 +316,7 @@ public class CourseRegister extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //학번, 이름 제외 구현 완료
         String filePath = "C:\\Users\\ppak\\Desktop\\project\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\stcourse.txt";
+
         File file = new File(filePath);
 
         String s = "/";
@@ -290,9 +327,12 @@ public class CourseRegister extends javax.swing.JFrame {
             BufferedWriter writer = new BufferedWriter(fw);
 
             for (int i = 0; i < jTable2.getRowCount(); i++) {
+                writer.write(num);
+                writer.write(s);
+                writer.write(name);
                 for (int j = 0; j < jTable2.getColumnCount(); j++) {
-                    writer.write(jTable2.getValueAt(i, j).toString());
                     writer.write(s);
+                    writer.write(jTable2.getValueAt(i, j).toString());
                 }
                 writer.write(n);
             }
@@ -304,15 +344,17 @@ public class CourseRegister extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "수강신청이 완료되었습니다.");
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    int check = 0; // 체크하기 위함
     // 강좌조회 중복으로 계속 이어 나가는 문제 해결하기
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         String filePath = "C:\\Users\\ppak\\Desktop\\project\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\lectureclass.txt";
         File file = new File(filePath);
 
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
         try {
             BufferedReader read = new BufferedReader(new FileReader(file));
-            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
             Object[] tableline = read.lines().toArray();
 
@@ -330,6 +372,7 @@ public class CourseRegister extends javax.swing.JFrame {
 
                 model.addRow(new Object[]{arr.get(0), arr.get(1), arr.get(2), arr.get(3), arr.get(4), arr.get(5)});
             }
+
         } catch (Exception ex) {
             ex.printStackTrace();
         }
