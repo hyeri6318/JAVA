@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author ppak
+ * @author 정민수,윤채민
  */
 public class ChangeLecture extends javax.swing.JFrame {
 

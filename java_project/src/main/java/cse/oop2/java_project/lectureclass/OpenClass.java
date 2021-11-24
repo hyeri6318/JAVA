@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author yooun
+ * @author 정민수,윤채민
  */
 public class OpenClass extends javax.swing.JFrame {
 

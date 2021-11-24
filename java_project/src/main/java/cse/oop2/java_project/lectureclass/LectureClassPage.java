@@ -7,7 +7,7 @@ package cse.oop2.java_project.lectureclass;
 
 /**
  *
- * @author ppak
+ * @author 정민수,윤채민
  */
 public class LectureClassPage extends javax.swing.JFrame {
 
@@ -111,10 +111,14 @@ public class LectureClassPage extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        ChangeLecture cl = new ChangeLecture();
+        cl.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        RemoveLecture rl = new RemoveLecture();
+        rl.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
