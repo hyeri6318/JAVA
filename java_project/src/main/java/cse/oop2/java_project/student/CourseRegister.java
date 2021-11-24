@@ -77,7 +77,7 @@ public class CourseRegister extends javax.swing.JFrame {
 
             },
             new String [] {
-                "강좌번호", "강좌명", "담당학과", "담당교수", "학점수", "강의계획내용"
+                "강좌번호", "강좌명", "담당학과", "담당교수", "학점", "강의계획내용"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -87,7 +87,7 @@ public class CourseRegister extends javax.swing.JFrame {
 
             },
             new String [] {
-                "강좌번호", "강좌이름", "담당학과", "학점", "강의계획내용"
+                "강좌번호", "강좌명", "담당학과", "담당교수", "학점", "강의계획내용"
             }
         ));
         jScrollPane2.setViewportView(jTable2);
@@ -156,19 +156,19 @@ public class CourseRegister extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 787, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(302, 302, 302)
-                                    .addComponent(BUTT_AddCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(116, 116, 116)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 787, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(116, 116, 116)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 787, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton2)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(393, 393, 393)
+                .addComponent(BUTT_AddCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -192,11 +192,11 @@ public class CourseRegister extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(Total_OUTPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BUTT_AddCourse, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE))
-                .addGap(29, 29, 29)
+                    .addComponent(BUTT_AddCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(BUTT_Close, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BUTT_Back, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -209,13 +209,14 @@ public class CourseRegister extends javax.swing.JFrame {
     // 강의 목록에서 선택하여 현재 강의 신청 목록에 출력
     private void BUTT_AddCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_AddCourseActionPerformed
         int sum = 0;
+        String name;
         TableModel model1 = jTable1.getModel();
         int[] indexs = jTable1.getSelectedRows();
-        Object[] row = new Object[5];
+        Object[] row = new Object[6];
         DefaultTableModel model2 = (DefaultTableModel) jTable2.getModel();
         for (int i = 0; i < indexs.length; i++) {
-            for (int j = 0; j < jTable2.getRowCount(); j++) {
-                sum = sum + Integer.parseInt(jTable2.getValueAt(j, 3).toString());
+            for (int j = 0; j < jTable2.getRowCount(); j++) { // 처음부터 최대 학점 count 안되는거 수정, 동일한 강좌 중복 수강 불가 추가, 최대 수강 인원 추가
+                sum = Integer.parseInt(jTable2.getValueAt(j, 4).toString()) + sum;
             }
             if (sum < 18) {
                 row[0] = model1.getValueAt(indexs[i], 0);
@@ -223,13 +224,14 @@ public class CourseRegister extends javax.swing.JFrame {
                 row[2] = model1.getValueAt(indexs[i], 2);
                 row[3] = model1.getValueAt(indexs[i], 3);
                 row[4] = model1.getValueAt(indexs[i], 4);
+                row[5] = model1.getValueAt(indexs[i], 5);
                 model2.addRow(row);
 
+                Total_OUTPUT.setText(Integer.toString(sum));
             } else {
                 JOptionPane.showMessageDialog(this, "최대 수강신청 학점은 18학점입니다.");
             }
         }
-        Total_OUTPUT.setText(Integer.toString(sum));
     }//GEN-LAST:event_BUTT_AddCourseActionPerformed
 
     private void BUTT_CloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_CloseActionPerformed
@@ -249,30 +251,30 @@ public class CourseRegister extends javax.swing.JFrame {
     }//GEN-LAST:event_Total_OUTPUTActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here
-
+         //학번, 이름 제외 구현 완료
         String filePath = "C:\\javaproject\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\stcourse.txt";
         File file = new File(filePath);
-        String s = "/";
-        String n = "\n";
-
-        try {
+        
+        String s="/";
+        String n="\n";
+        
+        try{
             FileWriter fw = new FileWriter(file, true);
-            BufferedWriter bw = new BufferedWriter(fw);
-
-            for (int i = 0; i < jTable2.getRowCount(); i++) {
-                for (int j = 0; j < jTable2.getColumnCount(); j++) {
-                    bw.write(jTable2.getValueAt(i, j).toString());
-                    bw.write(s);
+            BufferedWriter writer=new BufferedWriter(fw);
+            
+            for(int i=0;i<jTable2.getRowCount();i++){
+                for(int j=0;j<jTable2.getColumnCount();j++){
+                    writer.write(jTable2.getValueAt(i,j).toString());
+                    writer.write(s);
                 }
-                bw.write(n);
+                writer.write(n);
             }
-            bw.close();
+            writer.close();
             fw.close();
-        } catch (IOException ex) {
-            Logger.getLogger(CourseRegister.class.getName()).log(Level.SEVERE, null, ex);
+        }catch (Exception ex){
+            ex.printStackTrace();
         }
-        JOptionPane.showMessageDialog(this, "수강신청이 완료되었습니다.");
+        JOptionPane.showMessageDialog(null, "수강신청이 완료되었습니다.");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
