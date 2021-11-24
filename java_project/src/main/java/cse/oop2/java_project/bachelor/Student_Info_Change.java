@@ -43,10 +43,10 @@ public class Student_Info_Change extends javax.swing.JFrame {
         URL = url;
     }
 
-    ArrayList<String> jumin_list = new ArrayList<String>(); // 주민등록번호 리스트
-    ArrayList<String> name_list = new ArrayList<String>(); // 이름 리스트
-    ArrayList<String> num_list = new ArrayList<String>(); // 학번 리스트
-    ArrayList<String> major_list = new ArrayList<String>(); // 학과 리스트
+    ArrayList<String> jumin_list = new ArrayList<>(); // 주민등록번호 리스트
+    ArrayList<String> name_list = new ArrayList<>(); // 이름 리스트
+    ArrayList<String> num_list = new ArrayList<>(); // 학번 리스트
+    ArrayList<String> major_list = new ArrayList<>(); // 학과 리스트
 
     /**
      * This method is called from within the constructor to initialize the form.
