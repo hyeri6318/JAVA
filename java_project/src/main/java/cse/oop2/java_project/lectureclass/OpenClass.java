@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -161,23 +162,17 @@ public class OpenClass extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // 메모장 불러오기
-        try {
-            String URL = "C:\\Users\\yooun\\Desktop\\윤채민\\JAVAPROJECT\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\LectureClass";
-
-            String str; // 메모장 안에 있는 데이터를 읽어와 저장
-            String[] sep = str.split("/");
-            for(int k=0; ; k++){
-                
-            }
+        String URL = "C:\\Users\\yooun\\Desktop\\윤채민\\JAVAPROJECT\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\LectureClass";
+        String str = null; // 메모장 안에 있는 데이터를 읽어와 저장
+        String[] sep = str.split("/");
+        for(int k=0; ; k++){
             
-            //강좌번호랑 이름 맞는지 확인하기
-            
-        
-            //강좌정보 맨 끝에 강좌1/강좌2/... 형태로 추가하기
-            
-        } catch (IOException E10) {
-            E10.printStackTrace();
         }
+        
+        //강좌번호랑 이름 맞는지 확인하기
+        
+        
+        //강좌정보 맨 끝에 강좌1/강좌2/... 형태로 추가하기
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
