@@ -169,7 +169,7 @@ public class LoginPage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     String student_name = null;
-    private boolean LoginCompare(String url) {
+    private boolean LoginCompare(String url, int check) {
 
         try {
             //메모장 절대 경로
@@ -202,7 +202,8 @@ public class LoginPage extends javax.swing.JFrame {
                 String[] temp = i.split("/");
                 id_list.add(temp[0]); // 학번, 교수번호, 직원번호
                 pw_list_temp.add(temp[1]); // 주민등록번호
-                name_list.add(temp[3]); // 이름
+                if(check == 83)
+                    name_list.add(temp[3]); // 이름
             }
 
             for (String i : pw_list_temp) {
@@ -211,15 +212,18 @@ public class LoginPage extends javax.swing.JFrame {
             }
 
             int ch = 0; // 로그인이 되었는지 안되었는지 확인하는 변수
+            int index = 0; // student_name을 가져오기 위함
             for (int i = 0; i < id_list.size(); i++) {
                 if (ID_INPUT.getText().equals(id_list.get(i)) && PW_INPUT.getText().equals(pw_list.get(i))) {
                     JOptionPane.showMessageDialog(null, "로그인이 되었습니다!!");
-                    student_name = name_list.get(i);
+                    index = i;
                     ch = -1; // 로그인 되었을 때 함수
                     is.close();
                     return true;
                 }
             }
+            student_name = name_list.get(index);
+            
             if (ch == 0) {
                 JOptionPane.showMessageDialog(null, "로그인에 실패하셨습니다!!");
                 ID_INPUT.setText(null);
@@ -238,7 +242,7 @@ public class LoginPage extends javax.swing.JFrame {
         char first = ID_INPUT.getText().charAt(0); // 첫 번째 글자에 따라 학생,교수,학사담당자,수업담당자 페이지에 매칭 시켜주기 위함
         switch (first) {
             case 83: // ID 첫 글자 S == 학생                          
-                check = LoginCompare(URL_student);
+                check = LoginCompare(URL_student, 'S');
                 if (check) {
                     StudentPage spage = new StudentPage(URL_first, student_name , ID_INPUT.getText());
                     spage.setVisible(true);
@@ -248,7 +252,7 @@ public class LoginPage extends javax.swing.JFrame {
                     break;
                 }
             case 80: // ID 첫 글자 P == 교수               
-                check = LoginCompare(URL_professor);
+                check = LoginCompare(URL_professor, 'P');
                 if (check) {
                     ProfessorPage ppage = new ProfessorPage();
                     ppage.setVisible(true);
@@ -258,7 +262,7 @@ public class LoginPage extends javax.swing.JFrame {
                     break;
                 }
             case 72: // ID 첫 글자 H == 학사 담당자
-                check = LoginCompare(URL_bachelor);
+                check = LoginCompare(URL_bachelor, 'H');
                 if (check) {
                     BachelorManagerStart start = new BachelorManagerStart(URL_first);
                     start.setVisible(true);
@@ -268,7 +272,7 @@ public class LoginPage extends javax.swing.JFrame {
                     break;
                 }
             case 71: // ID 첫 글자 G == 수업 담당자
-                LoginCompare(URL_class);
+                LoginCompare(URL_class, 'G');
                 break;
         }
     }//GEN-LAST:event_BUTT_LOGINActionPerformed
