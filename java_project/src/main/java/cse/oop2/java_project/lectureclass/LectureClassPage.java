@@ -23,7 +23,7 @@ public class LectureClassPage extends javax.swing.JFrame {
     public LectureClassPage(String URL) {
         initComponents();
         setTitle("수업 담당자");
-        this.URL = URL + "\\lectureclass.txt";        
+        this.URL = URL;       
     }
     
     /**
