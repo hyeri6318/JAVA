@@ -30,6 +30,18 @@ public class CourseRegister extends javax.swing.JFrame {
      */
     public CourseRegister() {
         initComponents();
+        Total_OUTPUT.setEnabled(false); // 신청 학점란 변경 못하게 막음        
+        jTable2.setEnabled(false);
+    }
+    
+    String URL = null;
+    public CourseRegister(String URL) {
+        initComponents();
+        setTitle("학생 수강신청");
+        this.URL = URL;
+        
+        Total_OUTPUT.setEnabled(false); // 신청 학점란 변경 못하게 막음        
+        jTable2.setEnabled(false);
     }
 
     /**
@@ -207,31 +219,46 @@ public class CourseRegister extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     // 강의 목록에서 선택하여 현재 강의 신청 목록에 출력
+    int ch = 0; // 체크 변수
+    int sum_result = 0; // 신청 학점
     private void BUTT_AddCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_AddCourseActionPerformed
-        int sum = 0;
-        String name;
-        TableModel model1 = jTable1.getModel();
-        int[] indexs = jTable1.getSelectedRows();
+
+        TableModel model1 = jTable1.getModel(); // 테이블 저장
+        int[] indexs = jTable1.getSelectedRows(); // 테이블에 있는 열 저장
         Object[] row = new Object[6];
         DefaultTableModel model2 = (DefaultTableModel) jTable2.getModel();
-        for (int i = 0; i < indexs.length; i++) {
-            for (int j = 0; j < jTable2.getRowCount(); j++) { // 처음부터 최대 학점 count 안되는거 수정, 동일한 강좌 중복 수강 불가 추가, 최대 수강 인원 추가
-                sum = Integer.parseInt(jTable2.getValueAt(j, 4).toString()) + sum;
-            }
-            if (sum < 18) {
-                row[0] = model1.getValueAt(indexs[i], 0);
-                row[1] = model1.getValueAt(indexs[i], 1);
-                row[2] = model1.getValueAt(indexs[i], 2);
-                row[3] = model1.getValueAt(indexs[i], 3);
-                row[4] = model1.getValueAt(indexs[i], 4);
-                row[5] = model1.getValueAt(indexs[i], 5);
-                model2.addRow(row);
 
-                Total_OUTPUT.setText(Integer.toString(sum));
-            } else {
-                JOptionPane.showMessageDialog(this, "최대 수강신청 학점은 18학점입니다.");
-            }
+        int sum_temp = 0;
+        //18학점 이상은 이수 불가능하게 해야함        
+
+        for (int i = 0; i < indexs.length; i++) {
+            row[0] = model1.getValueAt(indexs[i], 0);
+            row[1] = model1.getValueAt(indexs[i], 1);
+            row[2] = model1.getValueAt(indexs[i], 2);
+            row[3] = model1.getValueAt(indexs[i], 3);
+            row[4] = model1.getValueAt(indexs[i], 4);
+            row[5] = model1.getValueAt(indexs[i], 5);
         }
+
+        if (ch != -1) {
+            model2.addRow(row);
+            for (int i = 0; i < model2.getRowCount(); i++) {
+                if (sum_temp < 18) {
+                    sum_temp += Integer.parseInt(model2.getValueAt(i, 4).toString());
+                }
+
+                //18학점 이상 신청하지 못하게 하기 위함
+                if (sum_temp == 18) {
+                    ch = -1;
+                }
+            }
+            sum_result = sum_temp;
+            Total_OUTPUT.setText(Integer.toString(sum_result));
+            sum_result = 0;
+        } else {
+            JOptionPane.showMessageDialog(null, "18학점을 초과하셨습니다.");
+        }
+
     }//GEN-LAST:event_BUTT_AddCourseActionPerformed
 
     private void BUTT_CloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_CloseActionPerformed
@@ -251,35 +278,36 @@ public class CourseRegister extends javax.swing.JFrame {
     }//GEN-LAST:event_Total_OUTPUTActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         //학번, 이름 제외 구현 완료
-        String filePath = "C:\\javaproject\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\stcourse.txt";
+        //학번, 이름 제외 구현 완료
+        String filePath = "C:\\Users\\ppak\\Desktop\\project\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\stcourse.txt";
         File file = new File(filePath);
-        
-        String s="/";
-        String n="\n";
-        
-        try{
+
+        String s = "/";
+        String n = "\n";
+
+        try {
             FileWriter fw = new FileWriter(file, true);
-            BufferedWriter writer=new BufferedWriter(fw);
-            
-            for(int i=0;i<jTable2.getRowCount();i++){
-                for(int j=0;j<jTable2.getColumnCount();j++){
-                    writer.write(jTable2.getValueAt(i,j).toString());
+            BufferedWriter writer = new BufferedWriter(fw);
+
+            for (int i = 0; i < jTable2.getRowCount(); i++) {
+                for (int j = 0; j < jTable2.getColumnCount(); j++) {
+                    writer.write(jTable2.getValueAt(i, j).toString());
                     writer.write(s);
                 }
                 writer.write(n);
             }
             writer.close();
             fw.close();
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
         JOptionPane.showMessageDialog(null, "수강신청이 완료되었습니다.");
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    // 강좌조회 중복으로 계속 이어 나가는 문제 해결하기
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        String filePath = "C:\\javaproject\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\lectureclass.txt";
+        String filePath = "C:\\Users\\ppak\\Desktop\\project\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\lectureclass.txt";
         File file = new File(filePath);
 
         try {
