@@ -36,7 +36,7 @@ public class OpenLecture extends javax.swing.JFrame {
     public OpenLecture(String URL) {
         initComponents();
         setTitle("강좌 개설");
-        this.URL = URL;
+        this.URL = URL + "\\lectureclass_temp.txt";
     }
 
     /**
@@ -193,17 +193,20 @@ public class OpenLecture extends javax.swing.JFrame {
             String[] array = null;
 
             BufferedReader is = new BufferedReader(new FileReader("C:\\Users\\ppak\\Desktop\\project\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\lectureclass_temp.txt"));
-
+            //BufferedReader is = new BufferedReader(new FileReader(URL);
+            
             //파일 객체 생성
             Path path = Paths.get("C:\\Users\\ppak\\Desktop\\project\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\lectureclass_temp.txt");
+            //Path path = Paths.get(URL);
+            
             // 캐릭터셋 지정
             Charset cs = StandardCharsets.UTF_8;
             // 파일 내용을 담을 리스트
-            ArrayList<String> list = new ArrayList<String>();
+            ArrayList<String> list = new ArrayList<>();
             list = (ArrayList<String>) Files.readAllLines(path, cs);
             // 모든 파일 내용 읽어와서 저장
-            ArrayList<String> list_temp = new ArrayList<String>(); // 임시 저장
-            ArrayList<String> num_list = new ArrayList<String>(); // 강좌 번호
+            ArrayList<String> list_temp = new ArrayList<>(); // 임시 저장
+            ArrayList<String> num_list = new ArrayList<>(); // 강좌 번호
 
             for (String i : list) {
                 array = i.split("\n");
@@ -268,19 +271,11 @@ public class OpenLecture extends javax.swing.JFrame {
                 String n = "\n";
 
                 File file = new File("C:\\Users\\ppak\\Desktop\\project\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\lectureclass_temp.txt");
+                // File file = new File(URL);
                 FileWriter writer;
                 writer = new FileWriter(file, true);
-                writer.write(num);
-                writer.write(s);
-                writer.write(name);
-                writer.write(s);
-                writer.write(major);
-                writer.write(s);
-                writer.write(s); // 담당 교수 미정
-                writer.write(score);
-                writer.write(s);
-                writer.write(info);
-                writer.write(n);
+                String str = String.format("%s/%s/%s/%s//%s/%s%n", num, name, major, score, info);
+                writer.write(str);
                 writer.flush();// 출력은 버퍼에 쌓여있기에 쌓인 버퍼를 목적지로 보내줌
                 writer.close();
                 JOptionPane.showMessageDialog(null, "강좌 등록이 완료되었습니다.");
