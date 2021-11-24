@@ -25,8 +25,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author 정민수
- * switch-case를 통해 ID 첫번째 글자를 통해 알맞은 파일을 오픈하여 로그인 가능하게 하기
+ * @author 정민수 switch-case를 통해 ID 첫번째 글자를 통해 알맞은 파일을 오픈하여 로그인 가능하게 하기
  *
  */
 public class LoginPage extends javax.swing.JFrame {
@@ -168,6 +167,8 @@ public class LoginPage extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    String student_name = null;
     private boolean LoginCompare(String url) {
 
         try {
@@ -191,40 +192,29 @@ public class LoginPage extends javax.swing.JFrame {
             ArrayList<String> id_list = new ArrayList<String>(); // id_list
             ArrayList<String> pw_list_temp = new ArrayList<String>(); // 주민등록번호 앞 뒤 모두 저장
             ArrayList<String> pw_list = new ArrayList<String>(); // 초기 비밀번호로 사용하는 주민등록번호 뒷자리를 -로 구분하여 저장
-            
+            ArrayList<String> name_list = new ArrayList<String>(); // name_list
             for (String i : list) {
                 array = i.split("\n");
                 list_temp.add(array[0]);
             }
-            
-            System.out.println(list_temp);
-            
+
             for (String i : list_temp) {
                 String[] temp = i.split("/");
                 id_list.add(temp[0]); // 학번, 교수번호, 직원번호
                 pw_list_temp.add(temp[1]); // 주민등록번호
+                name_list.add(temp[3]); // 이름
             }
-            
+
             for (String i : pw_list_temp) {
                 String[] temp = i.split("-");
                 pw_list.add(temp[1]); // 초기 비밀번호 주민등록번호 뒷자리 저장
-            }
-
-            for (String i : id_list) {
-                System.out.println(i);
-            }
-            for (String j : pw_list_temp) {
-                System.out.println(j);
-            }
-            
-            for (String j : pw_list) {
-                System.out.println(j);
             }
 
             int ch = 0; // 로그인이 되었는지 안되었는지 확인하는 변수
             for (int i = 0; i < id_list.size(); i++) {
                 if (ID_INPUT.getText().equals(id_list.get(i)) && PW_INPUT.getText().equals(pw_list.get(i))) {
                     JOptionPane.showMessageDialog(null, "로그인이 되었습니다!!");
+                    student_name = name_list.get(i);
                     ch = -1; // 로그인 되었을 때 함수
                     is.close();
                     return true;
@@ -250,7 +240,7 @@ public class LoginPage extends javax.swing.JFrame {
             case 83: // ID 첫 글자 S == 학생                          
                 check = LoginCompare(URL_student);
                 if (check) {
-                    StudentPage spage = new StudentPage();
+                    StudentPage spage = new StudentPage(URL_first, student_name , ID_INPUT.getText());
                     spage.setVisible(true);
                     dispose();
                     break;

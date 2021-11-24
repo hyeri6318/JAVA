@@ -17,6 +17,17 @@ public class StudentPage extends javax.swing.JFrame {
     public StudentPage() {
         initComponents();
     }
+    
+    String URL = null;
+    String name = null;
+    String num = null;
+    public StudentPage(String URL, String name, String num) {
+        initComponents();
+        
+        this.URL = URL;
+        this.name = name;
+        this.num = num;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -88,7 +99,7 @@ public class StudentPage extends javax.swing.JFrame {
 
     private void BUTT_CourseRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_CourseRegisterActionPerformed
         // TODO add your handling code here:
-        CourseRegister course = new CourseRegister();
+        CourseRegister course = new CourseRegister(URL, name, num);
         course.setVisible(true);
         dispose();
     }//GEN-LAST:event_BUTT_CourseRegisterActionPerformed
