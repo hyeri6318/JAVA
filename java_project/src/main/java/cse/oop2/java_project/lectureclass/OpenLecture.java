@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -29,55 +30,13 @@ public class OpenLecture extends javax.swing.JFrame {
     public OpenLecture() {
         initComponents();
     }
-    
-    private boolean MajorCompare() {
-        String[] major = {"전산학과", "전자공학과", "화학공학과", "기계공학과", "항공우주학과"};
-        
-        for (String i : major) {
-            if (LectureMajor.getText().equals(i)) {
-                return true;
-            }
-        }
-        return false;
-    }
 
-    //TODO
-    private boolean NumCompare(String cjavaprojectJAVAjava_projectsrcmainjavacs) {
-        try {
-            String URL = "C:\\javaproject\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\lectureclass.txt";
-            String str;
-            String[] array = null;
-            
-            BufferedReader is = new BufferedReader(new FileReader(URL));
-            
-            Path path = Paths.get(URL);
-            Charset cs = StandardCharsets.UTF_8;
-            ArrayList<String> list = new ArrayList<String>();
-            list = (ArrayList<String>) Files.readAllLines(path, cs);
-            
-            ArrayList<String> list_temp = new ArrayList<String>();
-            ArrayList<String> num_list = new ArrayList<String>();
-            
-            for (String i : list) {
-                array = i.split("\n");
-                list_temp.add(array[0]);
-            }
-            
-            for (String i : list_temp) {
-                String[] temp = i.split("/");
-                num_list.add(temp[0]);
-            }
-            
-            for (String tmp : num_list) {
-                if (LectureNum.getText().equals(tmp)) {
-                    is.close();
-                    return false;
-                }
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        return true;
+    String URL = null;
+
+    public OpenLecture(String URL) {
+        initComponents();
+        setTitle("강좌 개설");
+        this.URL = URL;
     }
 
     /**
@@ -95,11 +54,11 @@ public class OpenLecture extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        LectureInfo = new javax.swing.JTextField();
-        LectureScore = new javax.swing.JTextField();
-        LectureMajor = new javax.swing.JTextField();
-        LectureName = new javax.swing.JTextField();
-        LectureNum = new javax.swing.JTextField();
+        lecture_info = new javax.swing.JTextField();
+        lecture_score = new javax.swing.JTextField();
+        lecture_major = new javax.swing.JTextField();
+        lecture_name = new javax.swing.JTextField();
+        lecture_num = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -117,9 +76,9 @@ public class OpenLecture extends javax.swing.JFrame {
 
         jLabel7.setText("강의 계획 내용");
 
-        LectureScore.addActionListener(new java.awt.event.ActionListener() {
+        lecture_score.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LectureScoreActionPerformed(evt);
+                lecture_scoreActionPerformed(evt);
             }
         });
 
@@ -153,14 +112,12 @@ public class OpenLecture extends javax.swing.JFrame {
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel2)
                                     .addGap(78, 78, 78)
-                                    .addComponent(LectureNum))
+                                    .addComponent(lecture_num))
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(60, 60, 60)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(LectureName, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(lecture_name, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(layout.createSequentialGroup()
                                             .addGap(126, 126, 126)
                                             .addComponent(jButton2)
@@ -173,10 +130,10 @@ public class OpenLecture extends javax.swing.JFrame {
                                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(LectureMajor, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lecture_major, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(LectureInfo)
-                                        .addComponent(LectureScore, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(lecture_info)
+                                        .addComponent(lecture_score, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(0, 22, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -187,22 +144,22 @@ public class OpenLecture extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(LectureNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lecture_num, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LectureName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lecture_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LectureMajor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lecture_major, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LectureScore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lecture_score, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LectureInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lecture_info, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -214,58 +171,126 @@ public class OpenLecture extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void LectureScoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LectureScoreActionPerformed
+    // 5개 학과 중에서 입력했는지 확인하는 메소드
+    private boolean MajorCompare() {
+        String[] major = {"전산학과", "전자공학과", "화학공학과", "기계공학과", "항공우주학과"};
+
+        for (String i : major) {
+            if (lecture_major.getText().equals(i)) {
+                return true;
+            }
+        }
+        JOptionPane.showMessageDialog(null, "존재하지 않는 학과를 입력하셨습니다.");
+        return false;
+    }
+
+    // 강좌 번호 중복 여부 확인하는 메소드
+    private boolean LectureNumCompare() {
+
+        try {
+
+            String str; // 메모장 안에 있는 데이터를 읽어와 저장
+            String[] array = null;
+
+            BufferedReader is = new BufferedReader(new FileReader("C:\\Users\\ppak\\Desktop\\project\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\lectureclass_temp.txt"));
+
+            //파일 객체 생성
+            Path path = Paths.get("C:\\Users\\ppak\\Desktop\\project\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\lectureclass_temp.txt");
+            // 캐릭터셋 지정
+            Charset cs = StandardCharsets.UTF_8;
+            // 파일 내용을 담을 리스트
+            ArrayList<String> list = new ArrayList<String>();
+            list = (ArrayList<String>) Files.readAllLines(path, cs);
+            // 모든 파일 내용 읽어와서 저장
+            ArrayList<String> list_temp = new ArrayList<String>(); // 임시 저장
+            ArrayList<String> num_list = new ArrayList<String>(); // 강좌 번호
+
+            for (String i : list) {
+                array = i.split("\n");
+                list_temp.add(array[0]);
+            }
+
+            for (String i : list_temp) {
+                String[] temp = i.split("/");
+                num_list.add(temp[0]);
+            }
+
+            for (int i = 0; i < num_list.size(); i++) {
+                if (lecture_num.getText().equals(num_list.get(i))) {
+                    JOptionPane.showMessageDialog(null, "강의 번호가 중복됩니다. 다시 입력하세요.");
+                    is.close();
+                    return false;
+                }
+            }
+
+            is.close();
+        } catch (IOException E10) {
+            E10.printStackTrace();
+        }
+
+        return true;
+    }
+
+    // 학점이 1, 2, 3 학점 사이인지 확인하는 메소드
+    private boolean LectureScoreCompare() {
+
+        String score = lecture_score.getText();
+        int num = Integer.parseInt(score); // 숫자가 아닌 것이 들어올 경우에 오류 생각해야함
+
+        if (num >= 1 && num <= 3) {
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null, "학점 입력은 1~3 학점 사이로 입력하셔야합니다.");
+            return false;
+        }
+
+    }
+
+
+    private void lecture_scoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lecture_scoreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_LectureScoreActionPerformed
+    }//GEN-LAST:event_lecture_scoreActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        boolean major_cmp = MajorCompare();
-        if (major_cmp) {
+
+        if (MajorCompare() && LectureNumCompare() && LectureScoreCompare()) {
             try {
-                String num = LectureNum.getText();
-                String name = LectureName.getText();
-                String major = LectureMajor.getText();
-                String score = LectureScore.getText();
-                String info = LectureInfo.getText();
+                String num = lecture_num.getText();
+                String name = lecture_name.getText();
+                String major = lecture_major.getText();
+                String score = lecture_score.getText();
+                String info = lecture_info.getText();
                 String s = "/";
                 String n = "\n";
-                boolean num_temp = NumCompare("C:\\javaproject\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\lectureclass.txt");
-                if (num_temp) {
-                    File file = new File("C:\\javaproject\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\lectureclass.txt");
-                    FileWriter writer;
-                    
-                    writer = new FileWriter(file, true);
-                    writer.write(num);
-                    writer.write(s);
-                    writer.write(name);
-                    writer.write(s);
-                    writer.write(major);
-                    writer.write(s);
-                    writer.write(score);
-                    writer.write(s);
-                    writer.write(info);
-                    writer.write(s);
-                    writer.write(n);
-                    
-                    writer.flush();
-                    writer.close();
-                    JOptionPane.showMessageDialog(null, "강좌가 개설되었습니다.");
-                    dispose();
-                } else {
-                    JOptionPane.showMessageDialog(null, "같은 강좌 번호가 존재합니다. 다시 입력하세요.");
-                    LectureNum.setText(null);
-                }
-            } catch (Exception ex) {
-                ex.printStackTrace();
+
+                File file = new File("C:\\Users\\ppak\\Desktop\\project\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\lectureclass_temp.txt");
+                FileWriter writer;
+                writer = new FileWriter(file, true);
+                writer.write(num);
+                writer.write(s);
+                writer.write(name);
+                writer.write(s);
+                writer.write(major);
+                writer.write(s);
+                writer.write(s); // 담당 교수 미정
+                writer.write(score);
+                writer.write(s);
+                writer.write(info);
+                writer.write(n);
+                writer.flush();// 출력은 버퍼에 쌓여있기에 쌓인 버퍼를 목적지로 보내줌
+                writer.close();
+                JOptionPane.showMessageDialog(null, "강좌 등록이 완료되었습니다.");
+
+            } catch (IOException ex) {
+                System.out.println("오류발생");
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "잘못된 입력입니다. 다시 입력해주세요.");
-            LectureMajor.setText(null);
         }
+
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -304,11 +329,6 @@ public class OpenLecture extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField LectureInfo;
-    private javax.swing.JTextField LectureMajor;
-    private javax.swing.JTextField LectureName;
-    private javax.swing.JTextField LectureNum;
-    private javax.swing.JTextField LectureScore;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -317,5 +337,10 @@ public class OpenLecture extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JTextField lecture_info;
+    private javax.swing.JTextField lecture_major;
+    private javax.swing.JTextField lecture_name;
+    private javax.swing.JTextField lecture_num;
+    private javax.swing.JTextField lecture_score;
     // End of variables declaration//GEN-END:variables
 }
