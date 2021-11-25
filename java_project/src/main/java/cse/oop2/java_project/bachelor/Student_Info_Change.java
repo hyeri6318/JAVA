@@ -19,12 +19,10 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
-
 /**
  *
- * @author 정민수
- * 정보 수정할 때 학과 5개만으로 바꿀수 있게 유지보수하기
- * 정보 수정할 때 학번이 겹치게 변경하는 경우를 어떻게 해결할 지 생각하기
+ * @author 정민수 정보 수정할 때 학과 5개만으로 바꿀수 있게 유지보수하기 정보 수정할 때 학번이 겹치게 변경하는 경우를 어떻게 해결할
+ * 지 생각하기
  */
 public class Student_Info_Change extends javax.swing.JFrame {
 
@@ -351,7 +349,7 @@ public class Student_Info_Change extends javax.swing.JFrame {
                     NewFileCreat(); // 파일에 기록 후 종료
                 }
                 dispose();
-                
+
             } catch (IOException E10) {
                 E10.printStackTrace();
             }
