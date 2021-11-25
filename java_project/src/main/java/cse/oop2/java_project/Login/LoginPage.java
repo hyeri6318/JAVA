@@ -25,8 +25,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author 정민수
- * switch-case를 통해 ID 첫번째 글자를 통해 알맞은 파일을 오픈하여 로그인 가능하게 하기
+ * @author 정민수 switch-case를 통해 ID 첫번째 글자를 통해 알맞은 파일을 오픈하여 로그인 가능하게 하기
  *
  */
 public class LoginPage extends javax.swing.JFrame {
@@ -168,7 +167,9 @@ public class LoginPage extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    private boolean LoginCompare(String url) {
+    
+    String student_name = null;
+    private boolean LoginCompare(String url, int check) {
 
         try {
             //메모장 절대 경로
@@ -191,45 +192,38 @@ public class LoginPage extends javax.swing.JFrame {
             ArrayList<String> id_list = new ArrayList<String>(); // id_list
             ArrayList<String> pw_list_temp = new ArrayList<String>(); // 주민등록번호 앞 뒤 모두 저장
             ArrayList<String> pw_list = new ArrayList<String>(); // 초기 비밀번호로 사용하는 주민등록번호 뒷자리를 -로 구분하여 저장
-            
+            ArrayList<String> name_list = new ArrayList<String>(); // name_list
             for (String i : list) {
                 array = i.split("\n");
                 list_temp.add(array[0]);
             }
-            
-            System.out.println(list_temp);
-            
+
             for (String i : list_temp) {
                 String[] temp = i.split("/");
                 id_list.add(temp[0]); // 학번, 교수번호, 직원번호
                 pw_list_temp.add(temp[1]); // 주민등록번호
+                if(check == 83)
+                    name_list.add(temp[3]); // 이름
             }
-            
+
             for (String i : pw_list_temp) {
                 String[] temp = i.split("-");
                 pw_list.add(temp[1]); // 초기 비밀번호 주민등록번호 뒷자리 저장
             }
 
-            for (String i : id_list) {
-                System.out.println(i);
-            }
-            for (String j : pw_list_temp) {
-                System.out.println(j);
-            }
-            
-            for (String j : pw_list) {
-                System.out.println(j);
-            }
-
             int ch = 0; // 로그인이 되었는지 안되었는지 확인하는 변수
+            int index = 0; // student_name을 가져오기 위함
             for (int i = 0; i < id_list.size(); i++) {
                 if (ID_INPUT.getText().equals(id_list.get(i)) && PW_INPUT.getText().equals(pw_list.get(i))) {
                     JOptionPane.showMessageDialog(null, "로그인이 되었습니다!!");
+                    index = i;
                     ch = -1; // 로그인 되었을 때 함수
                     is.close();
                     return true;
                 }
             }
+            student_name = name_list.get(index);
+            
             if (ch == 0) {
                 JOptionPane.showMessageDialog(null, "로그인에 실패하셨습니다!!");
                 ID_INPUT.setText(null);
@@ -248,9 +242,9 @@ public class LoginPage extends javax.swing.JFrame {
         char first = ID_INPUT.getText().charAt(0); // 첫 번째 글자에 따라 학생,교수,학사담당자,수업담당자 페이지에 매칭 시켜주기 위함
         switch (first) {
             case 83: // ID 첫 글자 S == 학생                          
-                check = LoginCompare(URL_student);
+                check = LoginCompare(URL_student, 'S');
                 if (check) {
-                    StudentPage spage = new StudentPage();
+                    StudentPage spage = new StudentPage(URL_first, student_name , ID_INPUT.getText());
                     spage.setVisible(true);
                     dispose();
                     break;
@@ -258,7 +252,7 @@ public class LoginPage extends javax.swing.JFrame {
                     break;
                 }
             case 80: // ID 첫 글자 P == 교수               
-                check = LoginCompare(URL_professor);
+                check = LoginCompare(URL_professor, 'P');
                 if (check) {
                     ProfessorPage ppage = new ProfessorPage();
                     ppage.setVisible(true);
@@ -268,7 +262,7 @@ public class LoginPage extends javax.swing.JFrame {
                     break;
                 }
             case 72: // ID 첫 글자 H == 학사 담당자
-                check = LoginCompare(URL_bachelor);
+                check = LoginCompare(URL_bachelor, 'H');
                 if (check) {
                     BachelorManagerStart start = new BachelorManagerStart(URL_first);
                     start.setVisible(true);
@@ -278,7 +272,7 @@ public class LoginPage extends javax.swing.JFrame {
                     break;
                 }
             case 71: // ID 첫 글자 G == 수업 담당자
-                LoginCompare(URL_class);
+                LoginCompare(URL_class, 'G');
                 break;
         }
     }//GEN-LAST:event_BUTT_LOGINActionPerformed
