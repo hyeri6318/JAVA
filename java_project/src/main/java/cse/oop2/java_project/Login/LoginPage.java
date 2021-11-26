@@ -170,6 +170,7 @@ public class LoginPage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     String student_name = null;
+    String professor_name = null;
 
     private boolean LoginCompare(String url, int check) {
 
@@ -195,6 +196,7 @@ public class LoginPage extends javax.swing.JFrame {
             ArrayList<String> pw_list_temp = new ArrayList<String>(); // 주민등록번호 앞 뒤 모두 저장
             ArrayList<String> pw_list = new ArrayList<String>(); // 초기 비밀번호로 사용하는 주민등록번호 뒷자리를 -로 구분하여 저장
             ArrayList<String> name_list = new ArrayList<String>(); // name_list
+            ArrayList<String> pname_list = new ArrayList<String>(); // professor_list
             for (String i : list) {
                 array = i.split("\n");
                 list_temp.add(array[0]);
@@ -206,6 +208,9 @@ public class LoginPage extends javax.swing.JFrame {
                 pw_list_temp.add(temp[1]); // 주민등록번호
                 if (check == 83) {
                     name_list.add(temp[3]); // 이름
+                }
+                if (check == 80) {
+                    pname_list.add(temp[3]);
                 }
             }
 
@@ -224,6 +229,9 @@ public class LoginPage extends javax.swing.JFrame {
                     is.close();
                     if (check == 83) {
                         student_name = name_list.get(index);
+                    }
+                    if (check == 80) {
+                        professor_name = pname_list.get(index);
                     }
                     return true;
                 }
@@ -259,7 +267,7 @@ public class LoginPage extends javax.swing.JFrame {
             case 80: // ID 첫 글자 P == 교수               
                 check = LoginCompare(URL_professor, 'P');
                 if (check) {
-                    ProfessorPage ppage = new ProfessorPage();
+                    ProfessorPage ppage = new ProfessorPage(URL_first, professor_name);
                     ppage.setVisible(true);
                     dispose();
                     break;
