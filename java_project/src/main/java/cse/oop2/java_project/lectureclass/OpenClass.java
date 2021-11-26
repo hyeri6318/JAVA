@@ -184,6 +184,8 @@ public class OpenClass extends javax.swing.JFrame {
             // File file = new File(URL + "\\lectureclass.txt");
             FileWriter writer;
             writer = new FileWriter(file, true);
+            
+            //여기서 문제인듯
             String str = String.format("%s/%s/%s/%s/%s/%s%n", num_list.get(index), name_list.get(index), major_list.get(index), professor_list.get(index), score_list.get(index), info_list.get(index));
             writer.write(str);
             writer.flush();// 출력은 버퍼에 쌓여있기에 쌓인 버퍼를 목적지로 보내줌

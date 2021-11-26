@@ -167,8 +167,9 @@ public class LoginPage extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+
     String student_name = null;
+
     private boolean LoginCompare(String url, int check) {
 
         try {
@@ -202,8 +203,9 @@ public class LoginPage extends javax.swing.JFrame {
                 String[] temp = i.split("/");
                 id_list.add(temp[0]); // 학번, 교수번호, 직원번호
                 pw_list_temp.add(temp[1]); // 주민등록번호
-                if(check == 83)
+                if (check == 83) {
                     name_list.add(temp[3]); // 이름
+                }
             }
 
             for (String i : pw_list_temp) {
@@ -219,11 +221,11 @@ public class LoginPage extends javax.swing.JFrame {
                     index = i;
                     ch = -1; // 로그인 되었을 때 함수
                     is.close();
+                    student_name = name_list.get(index);
                     return true;
                 }
             }
-            student_name = name_list.get(index);
-            
+
             if (ch == 0) {
                 JOptionPane.showMessageDialog(null, "로그인에 실패하셨습니다!!");
                 ID_INPUT.setText(null);
@@ -244,7 +246,8 @@ public class LoginPage extends javax.swing.JFrame {
             case 83: // ID 첫 글자 S == 학생                          
                 check = LoginCompare(URL_student, 'S');
                 if (check) {
-                    StudentPage spage = new StudentPage(URL_first, student_name , ID_INPUT.getText());
+                    JOptionPane.showMessageDialog(null, student_name + " " + ID_INPUT.getText());
+                    StudentPage spage = new StudentPage(URL_first, student_name, ID_INPUT.getText());
                     spage.setVisible(true);
                     dispose();
                     break;

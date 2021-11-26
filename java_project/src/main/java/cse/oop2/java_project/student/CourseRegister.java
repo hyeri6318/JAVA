@@ -47,10 +47,12 @@ public class CourseRegister extends javax.swing.JFrame {
     String name = null; // 학생 이름
     String num = null; // 학번
 
+    String URL_stcourse = null;
+
     public CourseRegister(String URL, String name, String num) {
         initComponents();
         setTitle("학생 수강신청");
-        this.URL = URL;
+        this.URL_stcourse = URL + "\\stcourse.txt";
         this.name = name;
         this.num = num;
 
@@ -323,9 +325,7 @@ public class CourseRegister extends javax.swing.JFrame {
         String n = "\n";
 
         try {
-            FileWriter fw = new FileWriter(file, true);
-            BufferedWriter writer = new BufferedWriter(fw);
-
+            FileWriter writer = new FileWriter(file, true);
             for (int i = 0; i < jTable2.getRowCount(); i++) {
                 writer.write(num);
                 writer.write(s);
@@ -336,8 +336,8 @@ public class CourseRegister extends javax.swing.JFrame {
                 }
                 writer.write(n);
             }
+            writer.flush();
             writer.close();
-            fw.close();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
