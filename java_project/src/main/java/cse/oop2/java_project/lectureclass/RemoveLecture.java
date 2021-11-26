@@ -130,10 +130,10 @@ public class RemoveLecture extends javax.swing.JFrame {
             String str; // 메모장 안에 있는 데이터를 읽어와 저장
             String[] array = null;
 
-            BufferedReader is = new BufferedReader(new FileReader("C:\\Users\\ppak\\Desktop\\project\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\lectureclass_temp.txt"));
+            BufferedReader is = new BufferedReader(new FileReader(URL));
 
             //파일 객체 생성
-            Path path = Paths.get("C:\\Users\\ppak\\Desktop\\project\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\lectureclass_temp.txt");
+            Path path = Paths.get(URL);
             // 캐릭터셋 지정
             Charset cs = StandardCharsets.UTF_8;
             // 파일 내용을 담을 리스트
@@ -177,7 +177,7 @@ public class RemoveLecture extends javax.swing.JFrame {
             int end = -1; // 0 : 정상 삭제, -1 : 없는 정보
             // 입력한 정보가 존재할 경우
             if (ch == 0) {
-                File file = new File("C:\\Users\\ppak\\Desktop\\project\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\lectureclass_temp.txt");
+                File file = new File(URL);
                 FileWriter writer;
                 writer = new FileWriter(file, false);
                 for (int i = 0; i < num_list.size(); i++) {

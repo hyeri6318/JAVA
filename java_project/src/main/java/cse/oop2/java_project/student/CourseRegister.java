@@ -52,6 +52,7 @@ public class CourseRegister extends javax.swing.JFrame {
     public CourseRegister(String URL, String name, String num) {
         initComponents();
         setTitle("학생 수강신청");
+        this.URL = URL;
         this.URL_stcourse = URL + "\\stcourse.txt";
         this.name = name;
         this.num = num;
@@ -317,7 +318,7 @@ public class CourseRegister extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //학번, 이름 제외 구현 완료
-        String filePath = "C:\\Users\\ppak\\Desktop\\project\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\stcourse.txt";
+        String filePath = URL_stcourse;
 
         File file = new File(filePath);
 
@@ -350,7 +351,7 @@ public class CourseRegister extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (check != -1) {
 
-            String filePath = "C:\\Users\\ppak\\Desktop\\project\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\lectureclass.txt";
+            String filePath = URL + "\\lectureclass.txt";
             File file = new File(filePath);
 
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
