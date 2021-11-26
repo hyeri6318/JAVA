@@ -298,8 +298,6 @@ public class Professor_Info_Change extends javax.swing.JFrame {
                     list_temp.add(array[0]);
                 }
 
-                System.out.println(list_temp);
-
                 for (String i : list_temp) {
                     String[] temp = i.split("/");
 
@@ -309,8 +307,6 @@ public class Professor_Info_Change extends javax.swing.JFrame {
                     name_list.add(temp[3]);
 
                 }
-
-                System.out.println(name_list);
 
                 int ch = 0; // 0이면 정상 종료, -1 이면 기존 정보가 없음
                 int index = 0; // 새로운 파일에 복사하기 위함

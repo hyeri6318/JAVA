@@ -30,12 +30,13 @@ public class Professor_Info_Delete extends javax.swing.JFrame {
     public Professor_Info_Delete() {
         initComponents();
     }
-    
+
     String URL = null;
+
     public Professor_Info_Delete(String URL) {
         initComponents();
         setTitle("교수 정보 삭제");
-        
+
         this.URL = URL;
     }
 
@@ -147,8 +148,6 @@ public class Professor_Info_Delete extends javax.swing.JFrame {
                 list_temp.add(array[0]);
             }
 
-            System.out.println(list_temp);
-
             for (String i : list_temp) {
                 String[] temp = i.split("/");
 
@@ -197,8 +196,9 @@ public class Professor_Info_Delete extends javax.swing.JFrame {
                 dispose();
             }
 
-            if(end ==  -1)
-            JOptionPane.showMessageDialog(null, "없는 정보입니다. 다시 입력해주세요.");
+            if (end == -1) {
+                JOptionPane.showMessageDialog(null, "없는 정보입니다. 다시 입력해주세요.");
+            }
 
         } catch (IOException E10) {
             E10.printStackTrace();
