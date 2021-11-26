@@ -274,7 +274,7 @@ public class OpenLecture extends javax.swing.JFrame {
                 // File file = new File(URL);
                 FileWriter writer;
                 writer = new FileWriter(file, true);
-                String str = String.format("%s/%s/%s/%s//%s/%n", num, name, major, score, info);
+                String str = String.format("%s/%s/%s//%s/%s%n", num, name, major, score, info);
                 writer.write(str);
                 writer.flush();// 출력은 버퍼에 쌓여있기에 쌓인 버퍼를 목적지로 보내줌
                 writer.close();

@@ -245,8 +245,7 @@ public class LoginPage extends javax.swing.JFrame {
         switch (first) {
             case 83: // ID 첫 글자 S == 학생                          
                 check = LoginCompare(URL_student, 'S');
-                if (check) {
-                    JOptionPane.showMessageDialog(null, student_name + " " + ID_INPUT.getText());
+                if (check) {                    
                     StudentPage spage = new StudentPage(URL_first, student_name, ID_INPUT.getText());
                     spage.setVisible(true);
                     dispose();
