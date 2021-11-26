@@ -344,38 +344,44 @@ public class CourseRegister extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "수강신청이 완료되었습니다.");
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    int check = 0; // 체크하기 위함
+    int check = 0; // 강좌 조회 횟수를 1회로 제한하기 위함
     // 강좌조회 중복으로 계속 이어 나가는 문제 해결하기
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        String filePath = "C:\\Users\\ppak\\Desktop\\project\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\lectureclass.txt";
-        File file = new File(filePath);
+        if (check != -1) {
 
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            String filePath = "C:\\Users\\ppak\\Desktop\\project\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\lectureclass.txt";
+            File file = new File(filePath);
 
-        try {
-            BufferedReader read = new BufferedReader(new FileReader(file));
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
-            Object[] tableline = read.lines().toArray();
+            try {
+                BufferedReader read = new BufferedReader(new FileReader(file));
 
-            for (int i = 0; i < tableline.length; i++) {
-                String line = tableline[i].toString().trim();
-                String[] dataRow = line.split("/");
+                Object[] tableline = read.lines().toArray();
 
-                ArrayList arr = new ArrayList<>();
-                arr.add(dataRow[0]);
-                arr.add(dataRow[1]);
-                arr.add(dataRow[2]);
-                arr.add(dataRow[3]);
-                arr.add(dataRow[4]);
-                arr.add(dataRow[5]);
+                for (int i = 0; i < tableline.length; i++) {
+                    String line = tableline[i].toString().trim();
+                    String[] dataRow = line.split("/");
 
-                model.addRow(new Object[]{arr.get(0), arr.get(1), arr.get(2), arr.get(3), arr.get(4), arr.get(5)});
+                    ArrayList arr = new ArrayList<>();
+                    arr.add(dataRow[0]);
+                    arr.add(dataRow[1]);
+                    arr.add(dataRow[2]);
+                    arr.add(dataRow[3]);
+                    arr.add(dataRow[4]);
+                    arr.add(dataRow[5]);
+
+                    model.addRow(new Object[]{arr.get(0), arr.get(1), arr.get(2), arr.get(3), arr.get(4), arr.get(5)});
+                }
+                check = -1;
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } else {
+            JOptionPane.showMessageDialog(null, "강좌 조회는 1회만 가능합니다.");
         }
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

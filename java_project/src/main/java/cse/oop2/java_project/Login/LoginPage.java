@@ -6,6 +6,7 @@
 package cse.oop2.java_project.login;
 
 import cse.oop2.java_project.bachelor.BachelorManagerStart;
+import cse.oop2.java_project.lectureclass.LectureClassPage;
 import cse.oop2.java_project.student.StudentPage;
 import cse.oop2.java_project.professor.ProfessorPage;
 
@@ -221,8 +222,9 @@ public class LoginPage extends javax.swing.JFrame {
                     index = i;
                     ch = -1; // 로그인 되었을 때 함수
                     is.close();
-                    if(check == 83)
+                    if (check == 83) {
                         student_name = name_list.get(index);
+                    }
                     return true;
                 }
             }
@@ -246,7 +248,7 @@ public class LoginPage extends javax.swing.JFrame {
         switch (first) {
             case 83: // ID 첫 글자 S == 학생                          
                 check = LoginCompare(URL_student, 'S');
-                if (check) {                    
+                if (check) {
                     StudentPage spage = new StudentPage(URL_first, student_name, ID_INPUT.getText());
                     spage.setVisible(true);
                     dispose();
@@ -275,8 +277,16 @@ public class LoginPage extends javax.swing.JFrame {
                     break;
                 }
             case 71: // ID 첫 글자 G == 수업 담당자
-                LoginCompare(URL_class, 'G');
-                break;
+                check = LoginCompare(URL_class, 'G');
+                if (check) {
+                    LectureClassPage lcp = new LectureClassPage(URL_first);
+                    lcp.setVisible(true);
+                    dispose();
+                    break;
+                } else {
+                    break;
+                }
+
         }
     }//GEN-LAST:event_BUTT_LOGINActionPerformed
 

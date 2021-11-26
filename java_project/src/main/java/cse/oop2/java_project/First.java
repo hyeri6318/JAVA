@@ -146,6 +146,14 @@ public class First extends javax.swing.JFrame {
                 // 수업 담당자 정보 메모장 생성
                 if (class_manager.createNewFile()) {
                     System.out.println("class_manager File created");
+                    FileWriter writer;
+                    writer = new FileWriter(class_manager, true);
+                    writer.write("G000");
+                    writer.write("/");
+                    writer.write("123456-0000000");
+                    writer.write("\n");
+                    writer.flush();// 출력은 버퍼에 쌓여있기에 쌓인 버퍼를 목적지로 보내줌
+                    writer.close();
                 } else {
                     System.out.println("class_manage File arlready exists");
                 }

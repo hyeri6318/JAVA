@@ -180,11 +180,10 @@ public class OpenClass extends javax.swing.JFrame {
     private void NewFileCreat(int index) {
         try {
 
-            File file = new File("C:\\Users\\ppak\\Desktop\\project\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\lectureclass.txt");
-            // File file = new File(URL + "\\lectureclass.txt");
+            File file = new File(URL + "\\lectureclass.txt");
             FileWriter writer;
             writer = new FileWriter(file, true);
-            
+
             //여기서 문제인듯
             String str = String.format("%s/%s/%s/%s/%s/%s%n", num_list.get(index), name_list.get(index), major_list.get(index), professor_list.get(index), score_list.get(index), info_list.get(index));
             writer.write(str);
@@ -222,11 +221,10 @@ public class OpenClass extends javax.swing.JFrame {
             String[] array = null;
 
             // 절대경로 바꾸기
-            BufferedReader is = new BufferedReader(new FileReader("C:\\Users\\ppak\\Desktop\\project\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\lectureclass.txt"));
-            // BufferedReader is = new BufferedReader(new FileReader(URL + "\\lectureclass.txt"));
+            BufferedReader is = new BufferedReader(new FileReader(URL + "\\lectureclass.txt"));
             //파일 객체 생성
-            Path path = Paths.get("C:\\Users\\ppak\\Desktop\\project\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\lectureclass.txt");
-            // Path path = Paths.get(URL + "\\lectureclass.txt");
+
+            Path path = Paths.get(URL + "\\lectureclass.txt");
             // 캐릭터셋 지정
             Charset cs = StandardCharsets.UTF_8;
             // 파일 내용을 담을 리스트
@@ -267,10 +265,9 @@ public class OpenClass extends javax.swing.JFrame {
             String[] array = null;
 
             // 절대경로 바꾸기
-            BufferedReader is = new BufferedReader(new FileReader("C:\\Users\\ppak\\Desktop\\project\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\lectureclass_temp.txt"));
-
+            BufferedReader is = new BufferedReader(new FileReader(URL + "\\lectureclass_temp.txt"));
             //파일 객체 생성
-            Path path = Paths.get("C:\\Users\\ppak\\Desktop\\project\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\lectureclass_temp.txt");
+            Path path = Paths.get(URL + "\\lectureclass_temp.txt");
             // 캐릭터셋 지정
             Charset cs = StandardCharsets.UTF_8;
             // 파일 내용을 담을 리스트
