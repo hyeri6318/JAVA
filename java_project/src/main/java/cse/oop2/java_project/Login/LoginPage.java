@@ -221,7 +221,8 @@ public class LoginPage extends javax.swing.JFrame {
                     index = i;
                     ch = -1; // 로그인 되었을 때 함수
                     is.close();
-                    student_name = name_list.get(index);
+                    if(check == 83)
+                        student_name = name_list.get(index);
                     return true;
                 }
             }
