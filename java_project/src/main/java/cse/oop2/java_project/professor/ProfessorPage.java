@@ -42,10 +42,11 @@ public class ProfessorPage extends javax.swing.JFrame {
     }
 
     String URL_lecture = null;
+
     public ProfessorPage(String URL, String name) {
         initComponents();
         this.URL = URL;
-        this.URL_lecture =  URL + "\\lectureclass.txt";
+        this.URL_lecture = URL + "\\lectureclass.txt";
         this.name = name;
     }
 
@@ -240,6 +241,7 @@ public class ProfessorPage extends javax.swing.JFrame {
         // TODO add your handling code here:
         boolean name_compare = ProfessorNameCompare();
 
+        // 등록된 강좌에 교수 이름이 존재하는지 확인하기
         if (name_compare) {
             try {
                 String filePath = URL_lecture;
@@ -254,11 +256,14 @@ public class ProfessorPage extends javax.swing.JFrame {
                     String line = tableline[i].toString().trim();
                     String[] dataRow = line.split("/");
 
-                    ArrayList arr = new ArrayList<>();
-                    arr.add(dataRow[0]);
-                    arr.add(dataRow[1]);
+                    if (dataRow[3].equals(name)) {
+                        ArrayList arr = new ArrayList<>();
+                        arr.add(dataRow[0]);
+                        arr.add(dataRow[1]);
 
-                    model.addRow(new Object[]{arr.get(0), arr.get(1)});
+                        model.addRow(new Object[]{arr.get(0), arr.get(1)});
+                    }
+
                 }
             } catch (Exception ex) {
                 ex.printStackTrace();
