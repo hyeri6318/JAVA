@@ -6,7 +6,7 @@
 package cse.oop2.java_project.professor;
 
 import cse.oop2.java_project.professor.ProfessorPage;
-import static cse.oop2.java_project.professor.ProfessorPage.lecture_name;
+import static cse.oop2.java_project.professor.ProfessorPage.lecture_num;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -69,7 +69,7 @@ public class StudentList extends javax.swing.JFrame {
             }
 
             for (int i = 0; i < num_list.size(); i++) {
-                if (ProfessorPage.lecture_name.equals(num_list.get(i))) {                    
+                if (ProfessorPage.lecture_num.equals(num_list.get(i))) {                    
                     return true;
                 }
             }
@@ -224,7 +224,7 @@ public class StudentList extends javax.swing.JFrame {
             if (CourseCompare()) {
 
                 for (int i = 0; i < tableline.length; i++) {
-                    if (ProfessorPage.lecture_name.equals(num_list.get(i))) {
+                    if (ProfessorPage.lecture_num.equals(num_list.get(i))) {
                         String line = tableline[i].toString().trim();
                         String[] dataRow = line.split("/");
                         ArrayList arr = new ArrayList<>();

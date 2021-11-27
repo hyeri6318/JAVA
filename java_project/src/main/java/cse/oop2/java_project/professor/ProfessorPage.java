@@ -34,7 +34,7 @@ public class ProfessorPage extends javax.swing.JFrame {
 
     String URL = null;
     String name = null;
-    static String lecture_name = null;
+    static String lecture_num = null;
 
     public ProfessorPage(String URL) {
         initComponents();
@@ -231,7 +231,7 @@ public class ProfessorPage extends javax.swing.JFrame {
 
     private void BUTT_InputGradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_InputGradeActionPerformed
         // TODO add your handling code here:
-        GradeInput grade = new GradeInput();
+        GradeInput grade = new GradeInput(URL);
         grade.setVisible(true);
         dispose();
     }//GEN-LAST:event_BUTT_InputGradeActionPerformed
@@ -272,7 +272,7 @@ public class ProfessorPage extends javax.swing.JFrame {
         // TODO add your handling code here:
         int number = jTable1.getSelectedRow();
 
-        lecture_name = jTable1.getValueAt(number, 0).toString();
+        lecture_num = jTable1.getValueAt(number, 0).toString();
 
 
     }//GEN-LAST:event_jTable1MouseClicked

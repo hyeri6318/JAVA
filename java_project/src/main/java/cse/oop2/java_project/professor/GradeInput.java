@@ -5,6 +5,9 @@
  */
 package cse.oop2.java_project.professor;
 
+import cse.oop2.java_project.professor.ProfessorPage;
+import static cse.oop2.java_project.professor.ProfessorPage.lecture_num;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -38,6 +41,151 @@ public class GradeInput extends javax.swing.JFrame {
         initComponents();
     }
 
+    String URL = null;
+
+    public GradeInput(String URL) {
+        initComponents();
+        this.URL = URL + "\\stcourse.txt";
+    }
+
+    // 강좌 일치 비교
+    ArrayList<String> num_list = new ArrayList<>();
+
+    private boolean CourseCompare() {
+        try {
+            String[] array = null;
+
+            BufferedReader is = new BufferedReader(new FileReader(URL));
+
+            Path path = Paths.get(URL);
+            Charset cs = StandardCharsets.UTF_8;
+
+            ArrayList<String> list = new ArrayList<>();
+            list = (ArrayList<String>) Files.readAllLines(path, cs);
+
+            ArrayList<String> list_temp = new ArrayList<>();
+
+            for (String i : list) {
+                array = i.split("\n");
+                list_temp.add(array[0]);
+            }
+
+            for (String i : list_temp) {
+                String[] temp = i.split("/");
+                num_list.add((temp[2])); // 강좌번호
+            }
+
+            for (int i = 0; i < num_list.size(); i++) {
+                if (ProfessorPage.lecture_num.equals(num_list.get(i))) {
+                    return true;
+                }
+            }
+
+            is.close();
+        } catch (Exception ex) {
+            ex.getStackTrace();
+        }
+        return false;
+    }
+
+    private boolean CompareName(String[] cmp_temp) {
+
+        String[] cmp = cmp_temp;
+        try {
+            for (int j = 0; j < jTable2.getRowCount(); j++) {
+                if (cmp[0].equals(jTable2.getValueAt(j, 0).toString()) && cmp[1].equals(jTable2.getValueAt(j, 1).toString())) {
+                    return false;
+                }
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return true;
+    }
+
+    String student_num = null;
+
+    private boolean GradeCompare() {
+        String grade = Grade_INPUT.getText();
+        if (grade.equals("A") || grade.equals("B") || grade.equals("C") || grade.equals("D") || grade.equals("F")) {
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null, "학점은 A, B, C, D, E 중 하나가 입력되어야 합니다.");
+            return false;
+        }
+    }
+
+    ArrayList<String> snum_list = new ArrayList<>(); //학번 리스트
+    ArrayList<String> sname_list = new ArrayList<>(); // 학생이름 리스트
+    ArrayList<String> lnum_list = new ArrayList<>(); // 강좌번호 리스트
+    ArrayList<String> lname_list = new ArrayList<>(); // 강좌명 리스트
+    ArrayList<String> major_list = new ArrayList<>(); // 개설학과 리스트
+    ArrayList<String> professor_list = new ArrayList<>(); // 교수이름 리스트
+    ArrayList<String> score_list = new ArrayList<>(); // 학점 리스트
+    ArrayList<String> info_list = new ArrayList<>(); // 강의정보 리스트
+
+    private boolean SNumCompare(int index) {
+        if (student_num.equals(snum_list.get(index))) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean LNumCompare(int index) {
+        if (ProfessorPage.lecture_num.equals(lnum_list.get(index))) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private void NewFileCreat() {
+        try {
+            File file = new File(URL);
+            FileWriter writer;
+            writer = new FileWriter(file, false);
+            String s = "/";
+            String n = "\n";
+            for (int i = 0; i < snum_list.size(); i++) {
+                writer.write(snum_list.get(i));
+                writer.write(s);
+                writer.write(sname_list.get(i));
+                writer.write(s);
+                writer.write(lnum_list.get(i));
+                writer.write(s);
+                writer.write(lname_list.get(i));
+                writer.write(s);
+                writer.write(major_list.get(i));
+                writer.write(s);
+                writer.write(professor_list.get(i));
+                writer.write(s);
+                writer.write(score_list.get(i));
+                writer.write(s);
+                writer.write(info_list.get(i));
+
+                if (SNumCompare(i) && LNumCompare(i)) {
+                    writer.write(s);
+                    writer.write(Grade_INPUT.getText());
+                }
+                writer.write(n);
+                writer.flush();
+            }
+            writer.close();
+
+            snum_list.clear();
+            sname_list.clear();
+            lnum_list.clear();
+            lname_list.clear();
+            major_list.clear();
+            professor_list.clear();
+            score_list.clear();
+            info_list.clear();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -53,7 +201,7 @@ public class GradeInput extends javax.swing.JFrame {
         BUTT_Back = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        ScoreText = new javax.swing.JTextField();
+        Grade_INPUT = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -74,6 +222,11 @@ public class GradeInput extends javax.swing.JFrame {
                 "학번", "이름", "학점"
             }
         ));
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTable2);
 
         BUTT_Back.setText("돌아가기");
@@ -87,9 +240,9 @@ public class GradeInput extends javax.swing.JFrame {
 
         jLabel2.setText("성적");
 
-        ScoreText.addActionListener(new java.awt.event.ActionListener() {
+        Grade_INPUT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ScoreTextActionPerformed(evt);
+                Grade_INPUTActionPerformed(evt);
             }
         });
 
@@ -126,7 +279,7 @@ public class GradeInput extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(18, 18, 18)
-                                .addComponent(ScoreText, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(Grade_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(34, 34, 34)
                                 .addComponent(jButton3)))
@@ -149,7 +302,7 @@ public class GradeInput extends javax.swing.JFrame {
                         .addGap(52, 52, 52)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(ScoreText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Grade_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jButton3))
                     .addGroup(layout.createSequentialGroup()
@@ -167,15 +320,6 @@ public class GradeInput extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    ArrayList<String> snum_list = new ArrayList<>(); //학번 리스트
-    ArrayList<String> sname_list = new ArrayList<>(); // 학생이름 리스트
-    ArrayList<String> lnum_list = new ArrayList<>(); // 강의번호 리스트
-    ArrayList<String> lname_list = new ArrayList<>(); // 강의명 리스트
-    ArrayList<String> major_list = new ArrayList<>(); // 개설학과 리스트
-    ArrayList<String> professor_list = new ArrayList<>(); // 교수이름 리스트
-    ArrayList<String> score_list = new ArrayList<>(); // 학점 리스트
-    ArrayList<String> info_list = new ArrayList<>(); // 강의정보 리스트
-
     private void BUTT_CloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_CloseActionPerformed
         // TODO add your handling code here:
         System.exit(0);
@@ -188,80 +332,81 @@ public class GradeInput extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_BUTT_BackActionPerformed
 
-    private void ScoreTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ScoreTextActionPerformed
+    private void Grade_INPUTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Grade_INPUTActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ScoreTextActionPerformed
-
-// A, B, C, D, F의 값으로만 학점을 입력했는지 확인하는 메소드
-    private boolean GradeCompare() {
-        String score = ScoreText.getText();
-        if (score.equals("A") || score.equals("B") || score.equals("C") || score.equals("D") || score.equals("F")) {
-            return true;
-        } else {
-            JOptionPane.showMessageDialog(null, "학점은 A, B, C, D, E 중 하나가 입력되어야 합니다.");
-            return false;
-        }
-    }
+    }//GEN-LAST:event_Grade_INPUTActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // 학점은 A, B, C, D, F의 값으로만 학점을 입력할 수 있도록 추가
-        //write 전체 수정
-
-        if (GradeCompare()) {
-            JOptionPane.showMessageDialog(null, "성공");
-            /*
-            try {
-                String str;
-                String[] array = null;
-
-                BufferedReader is = new BufferedReader(new FileReader("C:\\Users\\lhl63\\OneDrive\\바탕 화면\\211125_수업담당자기능구현\\project\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\stcourse.txt"));
-
-                Path path = Paths.get("C:\\Users\\lhl63\\OneDrive\\바탕 화면\\211125_수업담당자기능구현\\project\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\stcourse.txt");
-
-                Charset cs = StandardCharsets.UTF_8;
-
-                ArrayList<String> list = new ArrayList<>();
-                list = (ArrayList<String>) Files.readAllLines(path, cs);
-
-                ArrayList<String> list_temp = new ArrayList<>();
-                is.close();
-
-                for (String i : list) {
-                    array = i.split("\n");
-                    list_temp.add(array[0]);
-                }
-
-                for (String i : list_temp) {
-                    String[] temp = i.split("/");
-
-                    snum_list.add(temp[0]);
-                    sname_list.add(temp[1]);
-                    lnum_list.add(temp[2]);
-                    lname_list.add(temp[3]);
-                    major_list.add(temp[4]);
-                    professor_list.add(temp[5]);
-                    score_list.add(temp[6]);
-                    info_list.add(temp[7]);
-
-                }
-
-                if (GradeCompare()) {
-                    for (int i = 0; i < snum_list.size(); i++) {
-
-                    }
-                }
-
-            } catch (Exception ex) {
-                ex.printStackTrace();
+        System.out.print(student_num);
+        System.out.print(Grade_INPUT.getText());
+        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+        if (jTable2.getSelectedRowCount() == 1) {
+            if (GradeCompare()) {
+                String score = Grade_INPUT.getText();
+                model.setValueAt(score, jTable2.getSelectedRow(), 2);
             }
-            */
+        }
+
+        try {
+            String str;
+            String[] array = null;
+
+            BufferedReader is = new BufferedReader(new FileReader(URL));
+
+            Path path = Paths.get(URL);
+            Charset cs = StandardCharsets.UTF_8;
+
+            ArrayList<String> list = new ArrayList<String>();
+            list = (ArrayList<String>) Files.readAllLines(path, cs);
+
+            ArrayList<String> list_temp = new ArrayList<String>();
+            is.close();
+
+            for (String i : list) {
+                array = i.split("\n");
+                list_temp.add(array[0]);
+            }
+
+            for (String i : list_temp) {
+                String[] temp = i.split("/");
+                snum_list.add(temp[0]);
+                sname_list.add(temp[1]);
+                lnum_list.add(temp[2]);
+                lname_list.add(temp[3]);
+                major_list.add(temp[4]);
+                professor_list.add(temp[5]);
+                score_list.add(temp[6]);
+                info_list.add(temp[7]);
+            }
+
+            int ch = 0;
+            int index = 0;
+            for (int i = 0; i < snum_list.size(); i++) {
+                if (SNumCompare(i)) {
+                    ch = 0;
+                    break;
+                } else {
+                    ch = -1;
+
+                }
+            }
+
+            if (ch == -1) {
+                JOptionPane.showMessageDialog(null, "오류발생.");
+            } else {
+                NewFileCreat();
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // 교수 첫번째 페이지에서 클릭한 강좌번호와 stcourse에 저장되어있는 강좌번호가 일치하는 조건 추가
-        String filePath = "C:\\Users\\lhl63\\OneDrive\\바탕 화면\\211125_수업담당자기능구현\\project\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\stcourse.txt";
+        String filePath = URL;
         File file = new File(filePath);
+
         try {
             BufferedReader read = new BufferedReader(new FileReader(file));
             DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
@@ -269,14 +414,29 @@ public class GradeInput extends javax.swing.JFrame {
             // 텍스트파일에서 한 줄씩 읽어옴.
             Object[] tableline = read.lines().toArray();
 
-            for (int i = 0; i < tableline.length; i++) {
-                String line = tableline[i].toString().trim();
-                String[] dataRow = line.split("/");
+            if (CourseCompare()) {
+                for (int i = 0; i < tableline.length; i++) {
+                    if (ProfessorPage.lecture_num.equals(num_list.get(i))) {
+                        String line = tableline[i].toString().trim();
+                        String[] dataRow = line.split("/");
+                        ArrayList arr = new ArrayList<>();
 
-                ArrayList arr = new ArrayList<>();
-                arr.add(dataRow[0]);
-                arr.add(dataRow[1]);
-                model.addRow(new Object[]{arr.get(0), arr.get(1)});
+                        if (jTable2.getRowCount() == 0) {
+                            arr.add(dataRow[0]);
+                            arr.add(dataRow[1]);
+
+                            model.addRow(new Object[]{arr.get(0), arr.get(1)});
+                        } else {
+                            if (CompareName(dataRow)) {
+                                arr.add(dataRow[0]);
+                                arr.add(dataRow[1]);
+
+                                model.addRow(new Object[]{arr.get(0), arr.get(1)});
+                            }
+                        }
+                    }
+
+                }
 
             }
 
@@ -284,6 +444,12 @@ public class GradeInput extends javax.swing.JFrame {
             ex.printStackTrace();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+        // TODO add your handling code here:
+        int number = jTable2.getSelectedRow();
+        student_num = jTable2.getValueAt(number, 0).toString();
+    }//GEN-LAST:event_jTable2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -323,7 +489,7 @@ public class GradeInput extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BUTT_Back;
     private javax.swing.JButton BUTT_Close;
-    private javax.swing.JTextField ScoreText;
+    private javax.swing.JTextField Grade_INPUT;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
