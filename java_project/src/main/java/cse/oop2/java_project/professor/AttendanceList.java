@@ -5,9 +5,17 @@
  */
 package cse.oop2.java_project.professor;
 
+import cse.oop2.java_project.professor.ProfessorPage;
+import static cse.oop2.java_project.professor.ProfessorPage.lecture_num;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -23,8 +31,66 @@ public class AttendanceList extends javax.swing.JFrame {
     public AttendanceList() {
         initComponents();
     }
-    
-    
+
+    String URL = null;
+
+    public AttendanceList(String URL) {
+        initComponents();
+        this.URL = URL + "\\stcourse.txt";
+    }
+
+    ArrayList<String> num_list = new ArrayList<>();
+
+    private boolean CourseCompare() {
+        try {
+            String[] array = null;
+
+            BufferedReader is = new BufferedReader(new FileReader(URL));
+
+            Path path = Paths.get(URL);
+            Charset cs = StandardCharsets.UTF_8;
+
+            ArrayList<String> list = new ArrayList<>();
+            list = (ArrayList<String>) Files.readAllLines(path, cs);
+
+            ArrayList<String> list_temp = new ArrayList<>();
+
+            for (String i : list) {
+                array = i.split("\n");
+                list_temp.add(array[0]);
+            }
+
+            for (String i : list_temp) {
+                String[] temp = i.split("/");
+                num_list.add(temp[2]);
+            }
+
+            for (int i = 0; i < num_list.size(); i++) {
+                if (ProfessorPage.lecture_num.equals(num_list.get(i))) {
+                    return true;
+                }
+            }
+            is.close();
+        } catch (Exception ex) {
+            ex.getStackTrace();
+        }
+        return false;
+    }
+
+    private boolean CompareName(String[] cmp_temp) {
+        String[] cmp = cmp_temp;
+
+        try {
+            for (int j = 0; j < jTable1.getRowCount(); j++) {
+                if (cmp[0].equals(jTable1.getValueAt(j, 0).toString()) && cmp[1].equals(jTable1.getValueAt(j, 1).toString())) {
+                    return false;
+                }
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return true;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -133,29 +199,41 @@ public class AttendanceList extends javax.swing.JFrame {
     }//GEN-LAST:event_BUTT_CloseActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // 교수 첫번째 페이지에서 클릭한 강좌번호와 stcourse에 저장되어있는 강좌번호가 일치하는 조건 추가
-        // 취득학점을 무엇을 의미
-        String filePath = "C:\\Users\\lhl63\\OneDrive\\바탕 화면\\211125_수업담당자기능구현\\project\\JAVA\\java_project\\src\\main\\java\\cse\\oop2\\java_project\\info\\stcourse.txt";
+
+        String filePath = URL;
         File file = new File(filePath);
+
         try {
             BufferedReader read = new BufferedReader(new FileReader(file));
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
-            // 텍스트파일에서 한 줄씩 읽어옴.
             Object[] tableline = read.lines().toArray();
 
-            for (int i = 0; i < tableline.length; i++) {
-                String line = tableline[i].toString().trim();
-                String[] dataRow = line.split("/");
+            if (CourseCompare()) {
+                for (int i = 0; i < tableline.length; i++) {
+                    if (ProfessorPage.lecture_num.equals(num_list.get(i))) {
+                        String line = tableline[i].toString().trim();
+                        String[] dataRow = line.split("/");
+                        ArrayList arr = new ArrayList<>();
 
-                ArrayList arr = new ArrayList<>();
-                arr.add(dataRow[0]);
-                arr.add(dataRow[1]);
-                arr.add(dataRow[8]);
-                model.addRow(new Object[]{arr.get(0), arr.get(1), arr.get(2)});
+                        if (jTable1.getRowCount() == 0) {
+                            arr.add(dataRow[0]);
+                            arr.add(dataRow[1]);
+                            arr.add(dataRow[8]);
 
+                            model.addRow(new Object[]{arr.get(0), arr.get(1), arr.get(2)});
+                        } else {
+                            if (CompareName(dataRow)) {
+                                arr.add(dataRow[0]);
+                                arr.add(dataRow[1]);
+                                arr.add(dataRow[8]);
+
+                                model.addRow(new Object[]{arr.get(0), arr.get(1), arr.get(2)});
+                            }
+                        }
+                    }
+                }
             }
-
         } catch (Exception ex) {
             ex.printStackTrace();
         }

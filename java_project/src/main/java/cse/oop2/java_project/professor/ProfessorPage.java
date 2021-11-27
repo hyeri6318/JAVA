@@ -224,7 +224,7 @@ public class ProfessorPage extends javax.swing.JFrame {
 
     private void BUTT_SearchAttendanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_SearchAttendanceActionPerformed
         // TODO add your handling code here;
-        AttendanceList attend = new AttendanceList();
+        AttendanceList attend = new AttendanceList(URL);
         attend.setVisible(true);
         dispose();
     }//GEN-LAST:event_BUTT_SearchAttendanceActionPerformed
