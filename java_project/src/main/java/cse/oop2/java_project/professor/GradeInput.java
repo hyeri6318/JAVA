@@ -336,71 +336,79 @@ public class GradeInput extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Grade_INPUTActionPerformed
 
+    int check = 0; // 조회를 누르지 않고 입력을 누르면 오류가 나는 것을 방지하기 위함
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
-        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
-        if (jTable2.getSelectedRowCount() == 1) {
-            if (GradeCompare()) {
-                String score = Grade_INPUT.getText();
-                model.setValueAt(score, jTable2.getSelectedRow(), 2);
-            }
-        }
-
-        try {
-            String str;
-            String[] array = null;
-
-            BufferedReader is = new BufferedReader(new FileReader(URL));
-
-            Path path = Paths.get(URL);
-            Charset cs = StandardCharsets.UTF_8;
-
-            ArrayList<String> list = new ArrayList<String>();
-            list = (ArrayList<String>) Files.readAllLines(path, cs);
-
-            ArrayList<String> list_temp = new ArrayList<String>();
-            is.close();
-
-            for (String i : list) {
-                array = i.split("\n");
-                list_temp.add(array[0]);
-            }
-
-            for (String i : list_temp) {
-                String[] temp = i.split("/");
-                snum_list.add(temp[0]);
-                sname_list.add(temp[1]);
-                lnum_list.add(temp[2]);
-                lname_list.add(temp[3]);
-                major_list.add(temp[4]);
-                professor_list.add(temp[5]);
-                score_list.add(temp[6]);
-                info_list.add(temp[7]);
-                grade_list.add(temp[8]);
-            }
-
-            int ch = 0;
-            int index = 0;
-            for (int i = 0; i < snum_list.size(); i++) {
-                if (SNumCompare(i) && LNumCompare(i)) {
-                    grade_list.set(i, Grade_INPUT.getText());
-                    ch = 0;
-                    break;
-                } else {
-                    ch = -1;
-
+        // 조회 버튼을 누른 다음에 성적 입력이 가능하게 하기 위함
+        if (check == -1) {
+            DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+            if (jTable2.getSelectedRowCount() == 1) {
+                if (GradeCompare()) {
+                    String score = Grade_INPUT.getText();
+                    model.setValueAt(score, jTable2.getSelectedRow(), 2);
                 }
             }
 
-            if (ch == -1) {
-                JOptionPane.showMessageDialog(null, "오류발생.");
-            } else {
-                NewFileCreat();
-            }
+            try {
+                String str;
+                String[] array = null;
 
-        } catch (Exception ex) {
-            ex.printStackTrace();
+                BufferedReader is = new BufferedReader(new FileReader(URL));
+
+                Path path = Paths.get(URL);
+                Charset cs = StandardCharsets.UTF_8;
+
+                ArrayList<String> list = new ArrayList<String>();
+                list = (ArrayList<String>) Files.readAllLines(path, cs);
+
+                ArrayList<String> list_temp = new ArrayList<String>();
+                is.close();
+
+                for (String i : list) {
+                    array = i.split("\n");
+                    list_temp.add(array[0]);
+                }
+
+                for (String i : list_temp) {
+                    String[] temp = i.split("/");
+                    snum_list.add(temp[0]);
+                    sname_list.add(temp[1]);
+                    lnum_list.add(temp[2]);
+                    lname_list.add(temp[3]);
+                    major_list.add(temp[4]);
+                    professor_list.add(temp[5]);
+                    score_list.add(temp[6]);
+                    info_list.add(temp[7]);
+                    grade_list.add(temp[8]);
+                }
+
+                int ch = 0;
+                int index = 0;
+                for (int i = 0; i < snum_list.size(); i++) {
+                    if (SNumCompare(i) && LNumCompare(i)) {
+                        grade_list.set(i, Grade_INPUT.getText());
+                        ch = 0;
+                        break;
+                    } else {
+                        ch = -1;
+
+                    }
+                }
+
+                if (ch == -1) {
+                    JOptionPane.showMessageDialog(null, "오류발생.");
+                } else {
+                    NewFileCreat();
+                }
+
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "정보 조회 버튼을 먼저 눌러주세요.");
         }
+
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -442,7 +450,7 @@ public class GradeInput extends javax.swing.JFrame {
                 }
 
             }
-
+            check = -1; // 조회를 한 번 누르면 -1이 되고 -1일 경우에 성적 입력 버튼을 누를 수 있게 하기 위함
         } catch (Exception ex) {
             ex.printStackTrace();
         }
