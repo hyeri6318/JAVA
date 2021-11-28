@@ -193,38 +193,46 @@ public class GradeCheck extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_BUTT_BackActionPerformed
 
+    int check = 0; // 강좌 조회 횟수를 1회로 제한하기 위함
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        boolean num_compare = StudentNumCompmare();
-        if (num_compare) {
-            try {
-                String filePath = URL_stcourse;
-                File file = new File(filePath);
+        if (check != -1) {
 
-                DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-                BufferedReader read = new BufferedReader(new FileReader(file));
+            boolean num_compare = StudentNumCompmare();
+            if (num_compare) {
+                try {
+                    String filePath = URL_stcourse;
+                    File file = new File(filePath);
 
-                Object[] tableline = read.lines().toArray();
+                    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+                    BufferedReader read = new BufferedReader(new FileReader(file));
 
-                for (int i = 0; i < tableline.length; i++) {
-                    String line = tableline[i].toString().trim();
-                    String[] dataRow = line.split("/");
+                    Object[] tableline = read.lines().toArray();
 
-                    if (dataRow[0].equals(num)) {
-                        ArrayList arr = new ArrayList<>();
-                        arr.add(dataRow[2]);
-                        arr.add(dataRow[3]);
-                        arr.add(dataRow[8]);
+                    for (int i = 0; i < tableline.length; i++) {
+                        String line = tableline[i].toString().trim();
+                        String[] dataRow = line.split("/");
 
-                        model.addRow(new Object[]{arr.get(0), arr.get(1), arr.get(2)});
+                        if (dataRow[0].equals(num)) {
+                            ArrayList arr = new ArrayList<>();
+                            arr.add(dataRow[2]);
+                            arr.add(dataRow[3]);
+                            arr.add(dataRow[8]);
+
+                            model.addRow(new Object[]{arr.get(0), arr.get(1), arr.get(2)});
+                        }
                     }
+                    check = -1;
+                } catch (Exception ex) {
+                    ex.printStackTrace();
                 }
-            } catch (Exception ex) {
-                ex.printStackTrace();
+            } else {
+                JOptionPane.showMessageDialog(null, "오류발생");
             }
         } else {
-            JOptionPane.showMessageDialog(null, "오류발생");
+            JOptionPane.showMessageDialog(null, "성적 조회는 1회만 가능합니다.");
         }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
