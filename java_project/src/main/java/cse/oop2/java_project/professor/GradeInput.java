@@ -123,7 +123,8 @@ public class GradeInput extends javax.swing.JFrame {
     ArrayList<String> professor_list = new ArrayList<>(); // 교수이름 리스트
     ArrayList<String> score_list = new ArrayList<>(); // 학점 리스트
     ArrayList<String> info_list = new ArrayList<>(); // 강의정보 리스트
-
+    ArrayList<String> grade_list = new ArrayList<>(); // 성적정보 리스트
+    
     private boolean SNumCompare(int index) {
         if (student_num.equals(snum_list.get(index))) {
             return true;
@@ -163,11 +164,9 @@ public class GradeInput extends javax.swing.JFrame {
                 writer.write(score_list.get(i));
                 writer.write(s);
                 writer.write(info_list.get(i));
-
-                if (SNumCompare(i) && LNumCompare(i)) {
-                    writer.write(s);
-                    writer.write(Grade_INPUT.getText());
-                }
+                writer.write(s);
+                writer.write(grade_list.get(i));
+                
                 writer.write(n);
                 writer.flush();
             }
@@ -181,6 +180,7 @@ public class GradeInput extends javax.swing.JFrame {
             professor_list.clear();
             score_list.clear();
             info_list.clear();
+            grade_list.clear();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -337,8 +337,7 @@ public class GradeInput extends javax.swing.JFrame {
     }//GEN-LAST:event_Grade_INPUTActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        System.out.print(student_num);
-        System.out.print(Grade_INPUT.getText());
+
         DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
         if (jTable2.getSelectedRowCount() == 1) {
             if (GradeCompare()) {
@@ -377,12 +376,14 @@ public class GradeInput extends javax.swing.JFrame {
                 professor_list.add(temp[5]);
                 score_list.add(temp[6]);
                 info_list.add(temp[7]);
+                grade_list.add(temp[8]);
             }
 
             int ch = 0;
             int index = 0;
             for (int i = 0; i < snum_list.size(); i++) {
                 if (SNumCompare(i)) {
+                    grade_list.set(i, Grade_INPUT.getText());
                     ch = 0;
                     break;
                 } else {
@@ -424,14 +425,16 @@ public class GradeInput extends javax.swing.JFrame {
                         if (jTable2.getRowCount() == 0) {
                             arr.add(dataRow[0]);
                             arr.add(dataRow[1]);
+                            arr.add(dataRow[8]);
 
-                            model.addRow(new Object[]{arr.get(0), arr.get(1)});
+                            model.addRow(new Object[]{arr.get(0), arr.get(1),arr.get(2)});
                         } else {
                             if (CompareName(dataRow)) {
                                 arr.add(dataRow[0]);
                                 arr.add(dataRow[1]);
-
-                                model.addRow(new Object[]{arr.get(0), arr.get(1)});
+                                arr.add(dataRow[8]);
+                                
+                                model.addRow(new Object[]{arr.get(0), arr.get(1),arr.get(2)});
                             }
                         }
                     }

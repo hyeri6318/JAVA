@@ -335,6 +335,8 @@ public class CourseRegister extends javax.swing.JFrame {
                     writer.write(s);
                     writer.write(jTable2.getValueAt(i, j).toString());
                 }
+                writer.write(s);
+                writer.write("학점");
                 writer.write(n);
             }
             writer.flush();
