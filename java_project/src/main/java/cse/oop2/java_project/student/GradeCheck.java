@@ -5,6 +5,18 @@
  */
 package cse.oop2.java_project.student;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author 이혜리
@@ -16,6 +28,63 @@ public class GradeCheck extends javax.swing.JFrame {
      */
     public GradeCheck() {
         initComponents();
+    }
+
+    String URL = null;
+    String name = null;
+    String num = null;
+    String URL_stcourse = null;
+
+    public GradeCheck(String URL) {
+        initComponents();
+        setTitle("학생 성적 조회");
+        this.URL = URL;
+    }
+
+    public GradeCheck(String URL, String name, String num) {
+        initComponents();
+        setTitle("학생 성적 조회");
+        this.URL = URL;
+        this.name = name;
+        this.URL_stcourse = URL + "\\stcourse.txt";
+        this.num = num;
+    }
+
+    private boolean StudentNumCompmare() {
+        try {
+            String[] array = null;
+
+            BufferedReader is = new BufferedReader(new FileReader(URL_stcourse));
+
+            Path path = Paths.get(URL_stcourse);
+            Charset cs = StandardCharsets.UTF_8;
+
+            ArrayList<String> list = new ArrayList<>();
+            list = (ArrayList<String>) Files.readAllLines(path, cs);
+
+            ArrayList<String> list_temp = new ArrayList<>();
+            ArrayList<String> num_list = new ArrayList<>();
+
+            for (String i : list) {
+                array = i.split("\n");
+                list_temp.add(array[0]);
+            }
+
+            for (String i : list_temp) {
+                String[] temp = i.split("/");
+                num_list.add(temp[0]);
+            }
+
+            for (int i = 0; i < num_list.size(); i++) {
+                if (num.equals(num_list.get(i))) {
+                    return true;
+                }
+            }
+            is.close();
+        } catch (Exception ex) {
+            ex.getStackTrace();
+        }
+        return false;
     }
 
     /**
@@ -32,6 +101,7 @@ public class GradeCheck extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         BUTT_Close = new javax.swing.JButton();
         BUTT_Back = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -39,19 +109,19 @@ public class GradeCheck extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "강좌번호", "강좌이름", "학점", "등급"
+                "강좌번호", "강좌이름", "학점"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -70,22 +140,36 @@ public class GradeCheck extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("조회");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BUTT_Back))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 505, Short.MAX_VALUE)
-                .addComponent(BUTT_Close, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BUTT_Back))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 505, Short.MAX_VALUE)
+                        .addComponent(BUTT_Close, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(105, 105, 105)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(283, 283, 283)
+                                .addComponent(jButton1)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(105, 105, 105)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,7 +178,9 @@ public class GradeCheck extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(58, 58, 58)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BUTT_Back)
                     .addComponent(BUTT_Close))
@@ -115,6 +201,40 @@ public class GradeCheck extends javax.swing.JFrame {
         back.setVisible(true);
         dispose();
     }//GEN-LAST:event_BUTT_BackActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        boolean num_compare = StudentNumCompmare();
+        if (num_compare) {
+            try {
+                String filePath = URL_stcourse;
+                File file = new File(filePath);
+
+                DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+                BufferedReader read = new BufferedReader(new FileReader(file));
+
+                Object[] tableline = read.lines().toArray();
+
+                for (int i = 0; i < tableline.length; i++) {
+                    String line = tableline[i].toString().trim();
+                    String[] dataRow = line.split("/");
+
+                    if (dataRow[0].equals(num)) {
+                        ArrayList arr = new ArrayList<>();
+                        arr.add(dataRow[2]);
+                        arr.add(dataRow[3]);
+                        arr.add(dataRow[8]);
+
+                        model.addRow(new Object[]{arr.get(0), arr.get(1), arr.get(2)});
+                    }
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "오류발생");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -154,6 +274,7 @@ public class GradeCheck extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BUTT_Back;
     private javax.swing.JButton BUTT_Close;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

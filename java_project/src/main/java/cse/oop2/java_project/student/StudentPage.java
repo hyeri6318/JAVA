@@ -106,7 +106,7 @@ public class StudentPage extends javax.swing.JFrame {
 
     private void BUTT_GradeCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_GradeCheckActionPerformed
         // TODO add your handling code here:
-        GradeCheck check = new GradeCheck();
+        GradeCheck check = new GradeCheck(URL, name, num);
         check.setVisible(true);
         dispose();
     }//GEN-LAST:event_BUTT_GradeCheckActionPerformed
