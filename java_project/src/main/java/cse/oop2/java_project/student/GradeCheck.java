@@ -193,7 +193,7 @@ public class GradeCheck extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_BUTT_BackActionPerformed
 
-    int check = 0; // 강좌 조회 횟수를 1회로 제한하기 위함
+    int check = 0; // 성적 조회 횟수를 1회로 제한하기 위함
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         if (check != -1) {
