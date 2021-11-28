@@ -124,7 +124,7 @@ public class GradeInput extends javax.swing.JFrame {
     ArrayList<String> score_list = new ArrayList<>(); // 학점 리스트
     ArrayList<String> info_list = new ArrayList<>(); // 강의정보 리스트
     ArrayList<String> grade_list = new ArrayList<>(); // 성적정보 리스트
-    
+
     private boolean SNumCompare(int index) {
         if (student_num.equals(snum_list.get(index))) {
             return true;
@@ -166,7 +166,7 @@ public class GradeInput extends javax.swing.JFrame {
                 writer.write(info_list.get(i));
                 writer.write(s);
                 writer.write(grade_list.get(i));
-                
+
                 writer.write(n);
                 writer.flush();
             }
@@ -382,7 +382,7 @@ public class GradeInput extends javax.swing.JFrame {
             int ch = 0;
             int index = 0;
             for (int i = 0; i < snum_list.size(); i++) {
-                if (SNumCompare(i)) {
+                if (SNumCompare(i) && LNumCompare(i)) {
                     grade_list.set(i, Grade_INPUT.getText());
                     ch = 0;
                     break;
@@ -427,14 +427,14 @@ public class GradeInput extends javax.swing.JFrame {
                             arr.add(dataRow[1]);
                             arr.add(dataRow[8]);
 
-                            model.addRow(new Object[]{arr.get(0), arr.get(1),arr.get(2)});
+                            model.addRow(new Object[]{arr.get(0), arr.get(1), arr.get(2)});
                         } else {
                             if (CompareName(dataRow)) {
                                 arr.add(dataRow[0]);
                                 arr.add(dataRow[1]);
                                 arr.add(dataRow[8]);
-                                
-                                model.addRow(new Object[]{arr.get(0), arr.get(1),arr.get(2)});
+
+                                model.addRow(new Object[]{arr.get(0), arr.get(1), arr.get(2)});
                             }
                         }
                     }
