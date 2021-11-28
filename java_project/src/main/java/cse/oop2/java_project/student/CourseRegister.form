@@ -269,6 +269,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="Total_OUTPUT">
       <Properties>
+        <Property name="editable" type="boolean" value="false"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
       <Events>

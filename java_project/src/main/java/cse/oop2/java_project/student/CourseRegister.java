@@ -57,8 +57,8 @@ public class CourseRegister extends javax.swing.JFrame {
         this.name = name;
         this.num = num;
 
-        Total_OUTPUT.setEnabled(false); // 신청 학점란 변경 못하게 막음        
-        jTable2.setEnabled(false);
+        //Total_OUTPUT.setEnabled(false); // 신청 학점란 변경 못하게 막음        
+        //jTable2.setEnabled(false);
     }
 
     /**
@@ -130,6 +130,7 @@ public class CourseRegister extends javax.swing.JFrame {
 
         jLabel1.setText("수강신청 총 학점 ");
 
+        Total_OUTPUT.setEditable(false);
         Total_OUTPUT.setToolTipText("");
         Total_OUTPUT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -183,11 +184,10 @@ public class CourseRegister extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 641, Short.MAX_VALUE)
                         .addComponent(BUTT_Close, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(116, 116, 116)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 787, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(116, 116, 116)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 787, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 787, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton2)
                         .addGap(0, 0, Short.MAX_VALUE)))
