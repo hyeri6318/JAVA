@@ -27,10 +27,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel1" alignment="0" min="-2" pref="81" max="-2" attributes="0"/>
-                          <Component id="BUTT_Back" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="jLabel1" min="-2" pref="81" max="-2" attributes="0"/>
                       <EmptySpace pref="505" max="32767" attributes="0"/>
                       <Component id="BUTT_Close" min="-2" pref="73" max="-2" attributes="0"/>
                   </Group>
@@ -62,10 +59,7 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="86" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="BUTT_Back" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="BUTT_Close" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
+              <Component id="BUTT_Close" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -121,18 +115,10 @@
     </Container>
     <Component class="javax.swing.JButton" name="BUTT_Close">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#xc885;&#xb8cc;"/>
+        <Property name="text" type="java.lang.String" value="&#xb2eb;&#xae30;"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BUTT_CloseActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="BUTT_Back">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="&#xb3cc;&#xc544;&#xac00;&#xae30;"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BUTT_BackActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">

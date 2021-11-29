@@ -33,6 +33,7 @@ public class Money extends javax.swing.JFrame {
 
     public Money(String URL) {
         initComponents();
+        setTitle("수업 담당자 - 수강료 청구서 발급");
         this.URL = URL + "\\stcourse.txt";
         URL_student = URL + "\\student.txt";
     }

@@ -36,7 +36,7 @@ public class OpenClass extends javax.swing.JFrame {
 
     public OpenClass(String URL) {
         initComponents();
-        setTitle("강좌 개설");
+        setTitle("수업 담당자 - 강의 개설");
         this.URL = URL;
         this.URL_professor = URL + "\\professor.txt";
     }
@@ -71,7 +71,7 @@ public class OpenClass extends javax.swing.JFrame {
 
         jLabel3.setText("강의주차");
 
-        jButton1.setText("취소");
+        jButton1.setText("닫기");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -175,7 +175,7 @@ public class OpenClass extends javax.swing.JFrame {
     ArrayList<String> pname_list = new ArrayList<>(); // 
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        System.exit(0);
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void NewFileCreat(int index) {

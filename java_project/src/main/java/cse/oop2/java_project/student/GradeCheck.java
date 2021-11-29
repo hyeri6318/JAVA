@@ -100,7 +100,6 @@ public class GradeCheck extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         BUTT_Close = new javax.swing.JButton();
-        BUTT_Back = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -117,17 +116,10 @@ public class GradeCheck extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        BUTT_Close.setText("종료");
+        BUTT_Close.setText("닫기");
         BUTT_Close.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BUTT_CloseActionPerformed(evt);
-            }
-        });
-
-        BUTT_Back.setText("돌아가기");
-        BUTT_Back.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BUTT_BackActionPerformed(evt);
             }
         });
 
@@ -146,9 +138,7 @@ public class GradeCheck extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(BUTT_Back))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 505, Short.MAX_VALUE)
                         .addComponent(BUTT_Close, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -172,9 +162,7 @@ public class GradeCheck extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BUTT_Back)
-                    .addComponent(BUTT_Close))
+                .addComponent(BUTT_Close)
                 .addContainerGap())
         );
 
@@ -183,15 +171,8 @@ public class GradeCheck extends javax.swing.JFrame {
 
     private void BUTT_CloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_CloseActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_BUTT_CloseActionPerformed
-
-    private void BUTT_BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_BackActionPerformed
-        // TODO add your handling code here:
-        StudentPage back = new StudentPage();
-        back.setVisible(true);
         dispose();
-    }//GEN-LAST:event_BUTT_BackActionPerformed
+    }//GEN-LAST:event_BUTT_CloseActionPerformed
 
     int check = 0; // 성적 조회 횟수를 1회로 제한하기 위함
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -271,7 +252,6 @@ public class GradeCheck extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BUTT_Back;
     private javax.swing.JButton BUTT_Close;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;

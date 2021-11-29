@@ -17,13 +17,14 @@ public class StudentPage extends javax.swing.JFrame {
     public StudentPage() {
         initComponents();
     }
-    
+
     String URL = null;
     String name = null;
     String num = null;
+
     public StudentPage(String URL, String name, String num) {
         initComponents();
-        
+        setTitle("학생");
         this.URL = URL;
         this.name = name;
         this.num = num;
@@ -38,14 +39,12 @@ public class StudentPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        BUTT_ChangePW = new javax.swing.JButton();
         BUTT_CourseRegister = new javax.swing.JButton();
         BUTT_GradeCheck = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        BUTT_ChangePW.setText("비밀번호 변경");
 
         BUTT_CourseRegister.setText("수강신청");
         BUTT_CourseRegister.addActionListener(new java.awt.event.ActionListener() {
@@ -63,21 +62,30 @@ public class StudentPage extends javax.swing.JFrame {
 
         jLabel1.setText("학생페이지");
 
+        jButton1.setText("닫기");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton1))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(93, 93, 93)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(BUTT_ChangePW, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
-                            .addComponent(BUTT_GradeCheck, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
-                            .addComponent(BUTT_CourseRegister, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(BUTT_GradeCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(93, 93, 93)
+                            .addComponent(BUTT_CourseRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jLabel1))))
                 .addContainerGap(114, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -85,13 +93,12 @@ public class StudentPage extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
-                .addComponent(BUTT_ChangePW, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(48, 48, 48)
                 .addComponent(BUTT_CourseRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(32, 32, 32)
                 .addComponent(BUTT_GradeCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                .addComponent(jButton1))
         );
 
         pack();
@@ -101,15 +108,18 @@ public class StudentPage extends javax.swing.JFrame {
         // TODO add your handling code here:
         CourseRegister course = new CourseRegister(URL, name, num);
         course.setVisible(true);
-        dispose();
     }//GEN-LAST:event_BUTT_CourseRegisterActionPerformed
 
     private void BUTT_GradeCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_GradeCheckActionPerformed
         // TODO add your handling code here:
         GradeCheck check = new GradeCheck(URL, name, num);
         check.setVisible(true);
-        dispose();
     }//GEN-LAST:event_BUTT_GradeCheckActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -147,9 +157,9 @@ public class StudentPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BUTT_ChangePW;
     private javax.swing.JButton BUTT_CourseRegister;
     private javax.swing.JButton BUTT_GradeCheck;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

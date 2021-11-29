@@ -45,6 +45,7 @@ public class ProfessorPage extends javax.swing.JFrame {
 
     public ProfessorPage(String URL, String name) {
         initComponents();
+        setTitle("교수");
         this.URL = URL;
         this.URL_lecture = URL + "\\lectureclass.txt";
         this.name = name;
@@ -101,11 +102,11 @@ public class ProfessorPage extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        BUTT_ChangePW = new javax.swing.JButton();
         BUTT_SearchStudent = new javax.swing.JButton();
         BUTT_SearchAttendance = new javax.swing.JButton();
         BUTT_InputGrade = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -125,13 +126,6 @@ public class ProfessorPage extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(jTable1);
-
-        BUTT_ChangePW.setText("비밀번호 변경");
-        BUTT_ChangePW.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BUTT_ChangePWActionPerformed(evt);
-            }
-        });
 
         BUTT_SearchStudent.setText("학생 명단 조회");
         BUTT_SearchStudent.addActionListener(new java.awt.event.ActionListener() {
@@ -161,6 +155,13 @@ public class ProfessorPage extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("닫기");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -168,25 +169,24 @@ public class ProfessorPage extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(BUTT_ChangePW, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BUTT_SearchStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BUTT_SearchAttendance, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BUTT_InputGrade, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap()
+                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(76, 76, 76)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(76, 76, 76)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel1)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1)))
+                                .addComponent(BUTT_SearchStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(49, 49, 49)
+                                .addComponent(BUTT_SearchAttendance, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(BUTT_InputGrade, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
                 .addContainerGap(42, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton2))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,39 +202,32 @@ public class ProfessorPage extends javax.swing.JFrame {
                         .addComponent(jButton1)
                         .addGap(104, 104, 104)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BUTT_ChangePW, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BUTT_SearchStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BUTT_SearchAttendance, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BUTT_InputGrade, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BUTT_ChangePWActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_ChangePWActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BUTT_ChangePWActionPerformed
-
     private void BUTT_SearchStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_SearchStudentActionPerformed
         // TODO add your handling code here:
         StudentList student = new StudentList(URL);
-        student.setVisible(true);
-        dispose();
+        student.setVisible(true);        
     }//GEN-LAST:event_BUTT_SearchStudentActionPerformed
 
     private void BUTT_SearchAttendanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_SearchAttendanceActionPerformed
         // TODO add your handling code here;
         AttendanceList attend = new AttendanceList(URL);
         attend.setVisible(true);
-        dispose();
     }//GEN-LAST:event_BUTT_SearchAttendanceActionPerformed
 
     private void BUTT_InputGradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_InputGradeActionPerformed
         // TODO add your handling code here:
         GradeInput grade = new GradeInput(URL);
         grade.setVisible(true);
-        dispose();
     }//GEN-LAST:event_BUTT_InputGradeActionPerformed
 
     int check = 0; // 강좌번호 및 이름 조회 횟수를 1회로 제한하기 위함
@@ -288,6 +281,11 @@ public class ProfessorPage extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jTable1MouseClicked
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -325,11 +323,11 @@ public class ProfessorPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BUTT_ChangePW;
     private javax.swing.JButton BUTT_InputGrade;
     private javax.swing.JButton BUTT_SearchAttendance;
     private javax.swing.JButton BUTT_SearchStudent;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

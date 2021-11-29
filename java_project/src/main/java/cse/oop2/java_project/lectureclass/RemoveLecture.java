@@ -35,6 +35,7 @@ public class RemoveLecture extends javax.swing.JFrame {
 
     public RemoveLecture(String URL) {
         initComponents();
+        setTitle("수업 담당자 - 강좌 삭제");
         this.URL = URL + "\\lectureclass_temp.txt";
     }
 
@@ -63,7 +64,12 @@ public class RemoveLecture extends javax.swing.JFrame {
 
         jLabel3.setText("강좌번호");
 
-        jButton1.setText("취소");
+        jButton1.setText("닫기");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("확인");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -216,6 +222,11 @@ public class RemoveLecture extends javax.swing.JFrame {
             E10.printStackTrace();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

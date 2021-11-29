@@ -45,7 +45,8 @@ public class GradeInput extends javax.swing.JFrame {
 
     public GradeInput(String URL) {
         initComponents();
-        this.URL = URL + "\\stcourse.txt";
+        setTitle("교수 - 성적 입력");
+        this.URL = URL + "\\stcourse.txt";        
     }
 
     // 강좌 일치 비교
@@ -198,7 +199,6 @@ public class GradeInput extends javax.swing.JFrame {
         BUTT_Close = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        BUTT_Back = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         Grade_INPUT = new javax.swing.JTextField();
@@ -207,7 +207,7 @@ public class GradeInput extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        BUTT_Close.setText("종료");
+        BUTT_Close.setText("닫기");
         BUTT_Close.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BUTT_CloseActionPerformed(evt);
@@ -228,13 +228,6 @@ public class GradeInput extends javax.swing.JFrame {
             }
         });
         jScrollPane2.setViewportView(jTable2);
-
-        BUTT_Back.setText("돌아가기");
-        BUTT_Back.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BUTT_BackActionPerformed(evt);
-            }
-        });
 
         jLabel1.setText("성적입력");
 
@@ -268,8 +261,7 @@ public class GradeInput extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(BUTT_Back)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(BUTT_Close))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -311,9 +303,7 @@ public class GradeInput extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BUTT_Back)
-                    .addComponent(BUTT_Close))
+                .addComponent(BUTT_Close)
                 .addContainerGap())
         );
 
@@ -322,15 +312,8 @@ public class GradeInput extends javax.swing.JFrame {
 
     private void BUTT_CloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_CloseActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_BUTT_CloseActionPerformed
-
-    private void BUTT_BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_BackActionPerformed
-        // TODO add your handling code here:
-        ProfessorPage back = new ProfessorPage();
-        back.setVisible(true);
         dispose();
-    }//GEN-LAST:event_BUTT_BackActionPerformed
+    }//GEN-LAST:event_BUTT_CloseActionPerformed
 
     private void Grade_INPUTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Grade_INPUTActionPerformed
         // TODO add your handling code here:
@@ -498,7 +481,6 @@ public class GradeInput extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BUTT_Back;
     private javax.swing.JButton BUTT_Close;
     private javax.swing.JTextField Grade_INPUT;
     private javax.swing.JButton jButton2;

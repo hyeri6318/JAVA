@@ -37,7 +37,7 @@ public class Student_Info_Change extends javax.swing.JFrame {
 
     public Student_Info_Change(String url) {
         initComponents();
-        setTitle("정보 수정");
+        setTitle("학사담당자 - 학생 정보 수정");        
         URL = url;
     }
 
@@ -79,6 +79,7 @@ public class Student_Info_Change extends javax.swing.JFrame {
         result_major = new javax.swing.JTextField();
         result_num = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         jLabel9.setText("jLabel6");
 
@@ -132,6 +133,13 @@ public class Student_Info_Change extends javax.swing.JFrame {
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel15.setText("수정");
 
+        jButton1.setText("닫기");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -141,7 +149,9 @@ public class Student_Info_Change extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap()
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(check)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BUTT_CHECK))
@@ -231,7 +241,9 @@ public class Student_Info_Change extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(check, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(check)
+                        .addComponent(jButton1))
                     .addComponent(BUTT_CHECK, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
@@ -354,6 +366,11 @@ public class Student_Info_Change extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_BUTT_CHECKActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -393,6 +410,7 @@ public class Student_Info_Change extends javax.swing.JFrame {
     private javax.swing.JButton BUTT_CHECK;
     private javax.swing.JCheckBox check;
     private javax.swing.Box.Filler filler1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

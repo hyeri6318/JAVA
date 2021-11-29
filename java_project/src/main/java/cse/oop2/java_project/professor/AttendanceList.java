@@ -36,7 +36,8 @@ public class AttendanceList extends javax.swing.JFrame {
 
     public AttendanceList(String URL) {
         initComponents();
-        this.URL = URL + "\\stcourse.txt";
+        setTitle("교수 - 출석부 조회");
+        this.URL = URL + "\\stcourse.txt";        
     }
 
     ArrayList<String> num_list = new ArrayList<>();
@@ -103,7 +104,6 @@ public class AttendanceList extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        BUTT_Back = new javax.swing.JButton();
         BUTT_Close = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -119,13 +119,6 @@ public class AttendanceList extends javax.swing.JFrame {
             }
         ));
         jScrollPane1.setViewportView(jTable1);
-
-        BUTT_Back.setText("돌아가기");
-        BUTT_Back.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BUTT_BackActionPerformed(evt);
-            }
-        });
 
         BUTT_Close.setText("종료");
         BUTT_Close.addActionListener(new java.awt.event.ActionListener() {
@@ -148,7 +141,7 @@ public class AttendanceList extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(80, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 703, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(81, 81, 81))
             .addGroup(layout.createSequentialGroup()
@@ -158,8 +151,7 @@ public class AttendanceList extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(BUTT_Back)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 702, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(BUTT_Close)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -177,25 +169,16 @@ public class AttendanceList extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BUTT_Back)
-                    .addComponent(BUTT_Close))
+                .addComponent(BUTT_Close)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BUTT_BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_BackActionPerformed
-        // TODO add your handling code here:
-        ProfessorPage back = new ProfessorPage();
-        back.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_BUTT_BackActionPerformed
-
     private void BUTT_CloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_CloseActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
+        dispose();
     }//GEN-LAST:event_BUTT_CloseActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -275,7 +258,6 @@ public class AttendanceList extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BUTT_Back;
     private javax.swing.JButton BUTT_Close;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;

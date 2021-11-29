@@ -51,7 +51,7 @@ public class CourseRegister extends javax.swing.JFrame {
 
     public CourseRegister(String URL, String name, String num) {
         initComponents();
-        setTitle("학생 수강신청");
+        setTitle("학생 - 수강신청");
         this.URL = URL;
         this.URL_stcourse = URL + "\\stcourse.txt";
         this.name = name;
@@ -76,7 +76,6 @@ public class CourseRegister extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        BUTT_Back = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         Total_OUTPUT = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -94,7 +93,7 @@ public class CourseRegister extends javax.swing.JFrame {
             }
         });
 
-        BUTT_Close.setText("종료");
+        BUTT_Close.setText("닫기");
         BUTT_Close.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BUTT_CloseActionPerformed(evt);
@@ -120,13 +119,6 @@ public class CourseRegister extends javax.swing.JFrame {
             }
         ));
         jScrollPane2.setViewportView(jTable2);
-
-        BUTT_Back.setText("돌아가기");
-        BUTT_Back.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BUTT_BackActionPerformed(evt);
-            }
-        });
 
         jLabel1.setText("수강신청 총 학점 ");
 
@@ -166,9 +158,6 @@ public class CourseRegister extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(BUTT_Back))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(116, 116, 116)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,9 +215,7 @@ public class CourseRegister extends javax.swing.JFrame {
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BUTT_AddCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(BUTT_Close, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BUTT_Back, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(BUTT_Close)
                 .addContainerGap())
         );
 
@@ -254,6 +241,7 @@ public class CourseRegister extends javax.swing.JFrame {
 
     // 강의 목록에서 선택하여 현재 강의 신청 목록에 출력
     int ch = 0; // 체크 변수
+    int score_check = 0;
     int sum_result = 0; // 신청 학점
     Object[] row = new Object[6];
     private void BUTT_AddCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_AddCourseActionPerformed
@@ -266,12 +254,14 @@ public class CourseRegister extends javax.swing.JFrame {
         int sum_temp = 0;
 
         for (int i = 0; i < indexs.length; i++) {
-            row[0] = model1.getValueAt(indexs[i], 0);
-            row[1] = model1.getValueAt(indexs[i], 1);
-            row[2] = model1.getValueAt(indexs[i], 2);
-            row[3] = model1.getValueAt(indexs[i], 3);
-            row[4] = model1.getValueAt(indexs[i], 4);
-            row[5] = model1.getValueAt(indexs[i], 5);
+            if (score_check == 0) {
+                row[0] = model1.getValueAt(indexs[i], 0);
+                row[1] = model1.getValueAt(indexs[i], 1);
+                row[2] = model1.getValueAt(indexs[i], 2);
+                row[3] = model1.getValueAt(indexs[i], 3);
+                row[4] = model1.getValueAt(indexs[i], 4);
+                row[5] = model1.getValueAt(indexs[i], 5);
+            }
         }
 
         // 같은 강좌가 있는 지 비교하기 위함
@@ -286,31 +276,24 @@ public class CourseRegister extends javax.swing.JFrame {
 
                 //18학점 이상 신청하지 못하게 하기 위함
                 if (sum_temp == 18) {
-                    ch = -1;
+                    score_check = -1;
                 }
             }
             sum_result = sum_temp;
             Total_OUTPUT.setText(Integer.toString(sum_result));
             sum_result = 0;
+        } else if (score_check == -1) {
+            JOptionPane.showMessageDialog(null, "18학점을 초과하셨습니다.");
         } else if (ch == -2) {
             JOptionPane.showMessageDialog(null, "강좌가 중복되었습니다.");
-        } else {
-            JOptionPane.showMessageDialog(null, "18학점을 초과하셨습니다.");
         }
         ch = 0; // 중복된 강좌 클릭 후 중복 아닌 강좌 클릭 시 오류를 해결하기 위한 초기화
     }//GEN-LAST:event_BUTT_AddCourseActionPerformed
 
     private void BUTT_CloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_CloseActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_BUTT_CloseActionPerformed
-
-    private void BUTT_BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_BackActionPerformed
-        // TODO add your handling code here:
-        StudentPage back = new StudentPage();
-        back.setVisible(true);
         dispose();
-    }//GEN-LAST:event_BUTT_BackActionPerformed
+    }//GEN-LAST:event_BUTT_CloseActionPerformed
 
     private void Total_OUTPUTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Total_OUTPUTActionPerformed
         // TODO add your handling code here:
@@ -345,6 +328,7 @@ public class CourseRegister extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         JOptionPane.showMessageDialog(null, "수강신청이 완료되었습니다.");
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     int check = 0; // 강좌 조회 횟수를 1회로 제한하기 위함
@@ -424,7 +408,6 @@ public class CourseRegister extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BUTT_AddCourse;
-    private javax.swing.JButton BUTT_Back;
     private javax.swing.JButton BUTT_Close;
     private javax.swing.JTextField Total_OUTPUT;
     private javax.swing.JButton jButton1;

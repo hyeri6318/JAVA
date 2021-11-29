@@ -68,8 +68,6 @@ public class LoginPage extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         ID_INPUT = new javax.swing.JTextField();
         PW_INPUT = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -98,15 +96,6 @@ public class LoginPage extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("아이디 찾기");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setText("아이디 찾기");
-
         jLabel2.setText("로고");
 
         jLabel3.setFont(new java.awt.Font("굴림", 0, 18)); // NOI18N
@@ -127,12 +116,8 @@ public class LoginPage extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(ID_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jButton1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
-                            .addComponent(jButton2))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(BUTT_LOGIN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -140,7 +125,7 @@ public class LoginPage extends javax.swing.JFrame {
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(PW_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,13 +142,9 @@ public class LoginPage extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(PW_INPUT, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(BUTT_LOGIN, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addGap(17, 17, 17))
+                .addGap(32, 32, 32))
         );
 
         pack();
@@ -258,8 +239,7 @@ public class LoginPage extends javax.swing.JFrame {
                 check = LoginCompare(URL_student, 'S');
                 if (check) {
                     StudentPage spage = new StudentPage(URL_first, student_name, ID_INPUT.getText());
-                    spage.setVisible(true);
-                    dispose();
+                    spage.setVisible(true);                    
                     break;
                 } else {
                     break;
@@ -268,8 +248,7 @@ public class LoginPage extends javax.swing.JFrame {
                 check = LoginCompare(URL_professor, 'P');
                 if (check) {
                     ProfessorPage ppage = new ProfessorPage(URL_first, professor_name);
-                    ppage.setVisible(true);
-                    dispose();
+                    ppage.setVisible(true);                    
                     break;
                 } else {
                     break;
@@ -278,8 +257,7 @@ public class LoginPage extends javax.swing.JFrame {
                 check = LoginCompare(URL_bachelor, 'H');
                 if (check) {
                     BachelorManagerStart start = new BachelorManagerStart(URL_first);
-                    start.setVisible(true);
-                    dispose();
+                    start.setVisible(true);                    
                     break;
                 } else {
                     break;
@@ -288,8 +266,7 @@ public class LoginPage extends javax.swing.JFrame {
                 check = LoginCompare(URL_class, 'G');
                 if (check) {
                     LectureClassPage lcp = new LectureClassPage(URL_first);
-                    lcp.setVisible(true);
-                    dispose();
+                    lcp.setVisible(true);                    
                     break;
                 } else {
                     break;
@@ -305,10 +282,6 @@ public class LoginPage extends javax.swing.JFrame {
     private void PW_INPUTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PW_INPUTActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_PW_INPUTActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -349,8 +322,6 @@ public class LoginPage extends javax.swing.JFrame {
     private javax.swing.JButton BUTT_LOGIN;
     private javax.swing.JTextField ID_INPUT;
     private javax.swing.JTextField PW_INPUT;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

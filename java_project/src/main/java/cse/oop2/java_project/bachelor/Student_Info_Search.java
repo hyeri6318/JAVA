@@ -33,7 +33,7 @@ public class Student_Info_Search extends javax.swing.JFrame {
 
     public Student_Info_Search(String URL) {
         initComponents();
-        setTitle("학생 조회");
+        setTitle("학사담당자 - 학생 정보 조회");        
         this.URL = URL;
 
     }
@@ -53,6 +53,7 @@ public class Student_Info_Search extends javax.swing.JFrame {
         BUTT_SEARCH = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         name = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,6 +72,13 @@ public class Student_Info_Search extends javax.swing.JFrame {
 
         jLabel3.setText("이름");
 
+        jButton1.setText("닫기");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -79,6 +87,8 @@ public class Student_Info_Search extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BUTT_SEARCH))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(37, 37, 37)
@@ -109,7 +119,9 @@ public class Student_Info_Search extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(name))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addComponent(BUTT_SEARCH)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BUTT_SEARCH)
+                    .addComponent(jButton1))
                 .addContainerGap())
         );
 
@@ -178,6 +190,11 @@ public class Student_Info_Search extends javax.swing.JFrame {
 
     }//GEN-LAST:event_BUTT_SEARCHActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -216,6 +233,7 @@ public class Student_Info_Search extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BUTT_SEARCH;
     private javax.swing.JTextField ID;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

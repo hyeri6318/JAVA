@@ -35,7 +35,7 @@ public class OpenLecture extends javax.swing.JFrame {
 
     public OpenLecture(String URL) {
         initComponents();
-        setTitle("강좌 개설");
+        setTitle("수업 담당자 - 강좌 개설");
         this.URL = URL + "\\lectureclass_temp.txt";
     }
 
@@ -82,7 +82,7 @@ public class OpenLecture extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("취소");
+        jButton1.setText("닫기");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -253,7 +253,7 @@ public class OpenLecture extends javax.swing.JFrame {
     }//GEN-LAST:event_lecture_scoreActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        System.exit(0);
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

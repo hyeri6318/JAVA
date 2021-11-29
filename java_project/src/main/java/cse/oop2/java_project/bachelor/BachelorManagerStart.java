@@ -37,6 +37,7 @@ public class BachelorManagerStart extends javax.swing.JFrame {
 
         BUTT_STUDENT = new javax.swing.JButton();
         BUTT_PROFESSOR = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,6 +57,13 @@ public class BachelorManagerStart extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("닫기");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -66,6 +74,9 @@ public class BachelorManagerStart extends javax.swing.JFrame {
                     .addComponent(BUTT_STUDENT, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BUTT_PROFESSOR, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(72, 72, 72))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton1))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -74,7 +85,8 @@ public class BachelorManagerStart extends javax.swing.JFrame {
                 .addComponent(BUTT_PROFESSOR, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addComponent(BUTT_STUDENT, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44))
+                .addGap(21, 21, 21)
+                .addComponent(jButton1))
         );
 
         pack();
@@ -93,6 +105,11 @@ public class BachelorManagerStart extends javax.swing.JFrame {
         si.setVisible(true);
         dispose();
     }//GEN-LAST:event_BUTT_STUDENTActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -133,5 +150,6 @@ public class BachelorManagerStart extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BUTT_PROFESSOR;
     private javax.swing.JButton BUTT_STUDENT;
+    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }
