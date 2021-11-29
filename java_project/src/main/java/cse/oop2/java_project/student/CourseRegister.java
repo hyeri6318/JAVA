@@ -292,11 +292,7 @@ public class CourseRegister extends javax.swing.JFrame {
 
     private void BUTT_CloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_CloseActionPerformed
         // TODO add your handling code here:
-<<<<<<< HEAD
         dispose();
-=======
-        System.exit(0);
->>>>>>> e4b573a81b8a11f565961714e1ed71f647a64340
     }//GEN-LAST:event_BUTT_CloseActionPerformed
 
     private void Total_OUTPUTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Total_OUTPUTActionPerformed
