@@ -76,7 +76,6 @@ public class CourseRegister extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        BUTT_Back = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         Total_OUTPUT = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -121,13 +120,6 @@ public class CourseRegister extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTable2);
 
-        BUTT_Back.setText("돌아가기");
-        BUTT_Back.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BUTT_BackActionPerformed(evt);
-            }
-        });
-
         jLabel1.setText("수강신청 총 학점 ");
 
         Total_OUTPUT.setEditable(false);
@@ -166,9 +158,6 @@ public class CourseRegister extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(BUTT_Back))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(116, 116, 116)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,9 +215,7 @@ public class CourseRegister extends javax.swing.JFrame {
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BUTT_AddCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(BUTT_Close, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BUTT_Back, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(BUTT_Close)
                 .addContainerGap())
         );
 
@@ -304,13 +291,6 @@ public class CourseRegister extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_BUTT_CloseActionPerformed
-
-    private void BUTT_BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_BackActionPerformed
-        // TODO add your handling code here:
-        StudentPage back = new StudentPage();
-        back.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_BUTT_BackActionPerformed
 
     private void Total_OUTPUTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Total_OUTPUTActionPerformed
         // TODO add your handling code here:
@@ -424,7 +404,6 @@ public class CourseRegister extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BUTT_AddCourse;
-    private javax.swing.JButton BUTT_Back;
     private javax.swing.JButton BUTT_Close;
     private javax.swing.JTextField Total_OUTPUT;
     private javax.swing.JButton jButton1;
