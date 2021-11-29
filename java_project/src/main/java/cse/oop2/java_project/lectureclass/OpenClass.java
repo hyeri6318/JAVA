@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author 정민수,윤채민
+ * @author 정민수,윤채민,이혜리
  */
 public class OpenClass extends javax.swing.JFrame {
 
@@ -32,12 +32,13 @@ public class OpenClass extends javax.swing.JFrame {
     }
 
     String URL = null;
+    String URL_professor = null;
 
     public OpenClass(String URL) {
         initComponents();
         setTitle("강좌 개설");
         this.URL = URL;
-
+        this.URL_professor = URL + "\\professor.txt";
     }
 
     /**
@@ -171,7 +172,7 @@ public class OpenClass extends javax.swing.JFrame {
     ArrayList<String> professor_list = new ArrayList<>(); // 교수 이름 리스트
     ArrayList<String> score_list = new ArrayList<>(); // 학점 리스트
     ArrayList<String> info_list = new ArrayList<>(); // 강의 정보 리스트
-
+    ArrayList<String> pname_list = new ArrayList<>(); // 
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         System.exit(0);
@@ -258,6 +259,43 @@ public class OpenClass extends javax.swing.JFrame {
         return true;
     }
 
+    // 등록된 교수인지 확인하는 메소드
+    private boolean ProfessorName() {
+        try {
+            String[] array = null;
+
+            BufferedReader is = new BufferedReader(new FileReader(URL_professor));
+
+            Path path = Paths.get(URL_professor);
+            Charset cs = StandardCharsets.UTF_8;
+
+            ArrayList<String> list = new ArrayList<>();
+            list = (ArrayList<String>) Files.readAllLines(path, cs);
+
+            ArrayList<String> list_temp = new ArrayList<>();
+
+            for (String i : list) {
+                array = i.split("\n");
+                list_temp.add(array[0]);
+            }
+
+            for (String i : list_temp) {
+                String[] temp = i.split("/");
+                pname_list.add(temp[3]);
+            }
+
+            for (int i = 0; i < pname_list.size(); i++) {
+                if (professor.getText().equals(pname_list.get(i))) {
+                    return true;
+                }
+            }
+            is.close();
+        } catch (Exception ex) {
+            ex.getStackTrace();
+        }
+        return false;
+    }
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
 
@@ -293,28 +331,30 @@ public class OpenClass extends javax.swing.JFrame {
                 info_list.add(temp[5]);
 
             }
-
-            if (NumCompare()) {
-                int ch = -1;
-                int index = 0; // 새로운 파일에 복사하기 위함
-                for (int i = 0; i < num_list.size(); i++) {
-                    if (InfoCompare(i)) {
-                        professor_list.set(i, professor.getText());
-                        ch = 0;
-                        index = i;
-                        break;
+            if (ProfessorName()) {
+                if (NumCompare()) {
+                    int ch = -1;
+                    int index = 0; // 새로운 파일에 복사하기 위함
+                    for (int i = 0; i < num_list.size(); i++) {
+                        if (InfoCompare(i)) {
+                            professor_list.set(i, professor.getText());
+                            ch = 0;
+                            index = i;
+                            break;
+                        }
                     }
-                }
-                if (ch == 0) {
-                    NewFileCreat(index); // 파일에 기록 후 종료
-                    dispose();
+                    if (ch == 0) {
+                        NewFileCreat(index); // 파일에 기록 후 종료
+                        dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "강의명 또는 강의 번호가 일치하지 않습니다.");
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(null, "강의명 또는 강의 번호가 일치하지 않습니다.");
+                    JOptionPane.showMessageDialog(null, "이미 등록된 강의 번호입니다.");
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "이미 등록된 강의 번호입니다.");
+                JOptionPane.showMessageDialog(null, "존재하지 않은 교수입니다.");
             }
-
         } catch (IOException E10) {
             E10.printStackTrace();
         }
