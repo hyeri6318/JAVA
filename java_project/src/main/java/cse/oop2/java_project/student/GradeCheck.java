@@ -100,7 +100,7 @@ public class GradeCheck extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         BUTT_Close = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        Search = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -123,10 +123,10 @@ public class GradeCheck extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("조회");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Search.setText("조회");
+        Search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                SearchActionPerformed(evt);
             }
         });
 
@@ -148,7 +148,7 @@ public class GradeCheck extends javax.swing.JFrame {
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(283, 283, 283)
-                                .addComponent(jButton1)))
+                                .addComponent(Search)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -160,7 +160,7 @@ public class GradeCheck extends javax.swing.JFrame {
                 .addGap(58, 58, 58)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(Search)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
                 .addComponent(BUTT_Close)
                 .addContainerGap())
@@ -175,7 +175,7 @@ public class GradeCheck extends javax.swing.JFrame {
     }//GEN-LAST:event_BUTT_CloseActionPerformed
 
     int check = 0; // 성적 조회 횟수를 1회로 제한하기 위함
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchActionPerformed
         // TODO add your handling code here:
         if (check != -1) {
 
@@ -214,7 +214,7 @@ public class GradeCheck extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "성적 조회는 1회만 가능합니다.");
         }
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_SearchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -253,7 +253,7 @@ public class GradeCheck extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BUTT_Close;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton Search;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

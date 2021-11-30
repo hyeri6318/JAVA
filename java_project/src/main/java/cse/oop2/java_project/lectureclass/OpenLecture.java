@@ -59,8 +59,8 @@ public class OpenLecture extends javax.swing.JFrame {
         lecture_major = new javax.swing.JTextField();
         lecture_name = new javax.swing.JTextField();
         lecture_num = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        Close = new javax.swing.JButton();
+        BUTT_OK = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,17 +82,17 @@ public class OpenLecture extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("닫기");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Close.setText("닫기");
+        Close.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                CloseActionPerformed(evt);
             }
         });
 
-        jButton2.setText("확인");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        BUTT_OK.setText("확인");
+        BUTT_OK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                BUTT_OKActionPerformed(evt);
             }
         });
 
@@ -120,9 +120,9 @@ public class OpenLecture extends javax.swing.JFrame {
                                         .addComponent(lecture_name, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(layout.createSequentialGroup()
                                             .addGap(126, 126, 126)
-                                            .addComponent(jButton2)
+                                            .addComponent(BUTT_OK)
                                             .addGap(18, 18, 18)
-                                            .addComponent(jButton1)))))
+                                            .addComponent(Close)))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -163,8 +163,8 @@ public class OpenLecture extends javax.swing.JFrame {
                     .addComponent(jLabel7))
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(Close)
+                    .addComponent(BUTT_OK))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -252,11 +252,11 @@ public class OpenLecture extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_lecture_scoreActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void CloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CloseActionPerformed
         dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_CloseActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void BUTT_OKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_OKActionPerformed
 
         if (MajorCompare() && LectureNumCompare() && LectureScoreCompare()) {
             try {
@@ -283,7 +283,7 @@ public class OpenLecture extends javax.swing.JFrame {
         }
 
 
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_BUTT_OKActionPerformed
 
     /**
      * @param args the command line arguments
@@ -321,8 +321,8 @@ public class OpenLecture extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton BUTT_OK;
+    private javax.swing.JButton Close;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

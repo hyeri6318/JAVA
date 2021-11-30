@@ -58,8 +58,8 @@ public class Student_Info_Register extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        Register = new javax.swing.JButton();
+        Close = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,17 +75,17 @@ public class Student_Info_Register extends javax.swing.JFrame {
 
         jLabel5.setText("주민번호");
 
-        jButton1.setText("등록");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Register.setText("등록");
+        Register.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                RegisterActionPerformed(evt);
             }
         });
 
-        jButton2.setText("닫기");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        Close.setText("닫기");
+        Close.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                CloseActionPerformed(evt);
             }
         });
 
@@ -126,9 +126,9 @@ public class Student_Info_Register extends javax.swing.JFrame {
                         .addGap(0, 76, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)
+                        .addComponent(Close)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)))
+                        .addComponent(Register)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -154,8 +154,8 @@ public class Student_Info_Register extends javax.swing.JFrame {
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(Register)
+                    .addComponent(Close))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
@@ -244,7 +244,7 @@ public class Student_Info_Register extends javax.swing.JFrame {
         return true;
     }
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void RegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterActionPerformed
         // TODO add your handling code here:
         char id_cmp = student_ID.getText().charAt(0);
         boolean major_cmp = MajorCompare();
@@ -299,12 +299,12 @@ public class Student_Info_Register extends javax.swing.JFrame {
             student_major.setText(null);
             student_rrn.setText(null);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_RegisterActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void CloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CloseActionPerformed
         // TODO add your handling code here:
         dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_CloseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -345,8 +345,8 @@ public class Student_Info_Register extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton Close;
+    private javax.swing.JButton Register;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

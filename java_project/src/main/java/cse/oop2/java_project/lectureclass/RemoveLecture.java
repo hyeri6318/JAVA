@@ -53,8 +53,8 @@ public class RemoveLecture extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         lecture_name = new javax.swing.JTextField();
         lecture_num = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        Close = new javax.swing.JButton();
+        BUTT_OK = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -64,17 +64,17 @@ public class RemoveLecture extends javax.swing.JFrame {
 
         jLabel3.setText("강좌번호");
 
-        jButton1.setText("닫기");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Close.setText("닫기");
+        Close.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                CloseActionPerformed(evt);
             }
         });
 
-        jButton2.setText("확인");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        BUTT_OK.setText("확인");
+        BUTT_OK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                BUTT_OKActionPerformed(evt);
             }
         });
 
@@ -101,9 +101,9 @@ public class RemoveLecture extends javax.swing.JFrame {
                         .addGap(0, 41, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton2)
+                        .addComponent(BUTT_OK)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1)))
+                        .addComponent(Close)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -121,15 +121,15 @@ public class RemoveLecture extends javax.swing.JFrame {
                     .addComponent(lecture_num, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(Close)
+                    .addComponent(BUTT_OK))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void BUTT_OKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_OKActionPerformed
         // TODO add your handling code here:
         try {
 
@@ -221,12 +221,12 @@ public class RemoveLecture extends javax.swing.JFrame {
         } catch (IOException E10) {
             E10.printStackTrace();
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_BUTT_OKActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void CloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CloseActionPerformed
         // TODO add your handling code here:
         dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_CloseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -265,8 +265,8 @@ public class RemoveLecture extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton BUTT_OK;
+    private javax.swing.JButton Close;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

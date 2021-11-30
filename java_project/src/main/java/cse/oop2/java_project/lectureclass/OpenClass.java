@@ -52,8 +52,8 @@ public class OpenClass extends javax.swing.JFrame {
 
         jLabel2 = new javax.swing.JLabel();
         professor = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        Close = new javax.swing.JButton();
+        BUTT_OK = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         lecture_num = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -67,17 +67,17 @@ public class OpenClass extends javax.swing.JFrame {
 
         jLabel2.setText("담당교수");
 
-        jButton1.setText("닫기");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Close.setText("닫기");
+        Close.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                CloseActionPerformed(evt);
             }
         });
 
-        jButton2.setText("확인");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        BUTT_OK.setText("확인");
+        BUTT_OK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                BUTT_OKActionPerformed(evt);
             }
         });
 
@@ -97,16 +97,15 @@ public class OpenClass extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)
+                        .addComponent(BUTT_OK)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1))
+                        .addComponent(Close))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel1))
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel5)))
@@ -145,8 +144,8 @@ public class OpenClass extends javax.swing.JFrame {
                     .addComponent(lecture_min, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(Close)
+                    .addComponent(BUTT_OK))
                 .addContainerGap())
         );
 
@@ -161,9 +160,9 @@ public class OpenClass extends javax.swing.JFrame {
     ArrayList<String> info_list = new ArrayList<>(); // 강의 정보 리스트
     ArrayList<String> pname_list = new ArrayList<>(); // 
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void CloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CloseActionPerformed
         dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_CloseActionPerformed
 
     private void NewFileCreat(int index) {
         try {
@@ -283,7 +282,7 @@ public class OpenClass extends javax.swing.JFrame {
         return false;
     }
     
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void BUTT_OKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_OKActionPerformed
         try {
 
             String str; // 메모장 안에 있는 데이터를 읽어와 저장
@@ -345,7 +344,7 @@ public class OpenClass extends javax.swing.JFrame {
         } catch (IOException E10) {
             E10.printStackTrace();
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_BUTT_OKActionPerformed
 
     /**
      * @param args the command line arguments
@@ -388,8 +387,8 @@ public class OpenClass extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton BUTT_OK;
+    private javax.swing.JButton Close;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;

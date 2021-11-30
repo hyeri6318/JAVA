@@ -20,7 +20,7 @@ import javax.swing.table.TableModel;
 
 /**
  *
- * @author 이혜리 
+ * @author 이혜리, 정민수
  */
 public class CourseRegister extends javax.swing.JFrame {
 
@@ -80,8 +80,8 @@ public class CourseRegister extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        ResultCourse = new javax.swing.JButton();
+        Search = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -135,17 +135,17 @@ public class CourseRegister extends javax.swing.JFrame {
 
         jLabel4.setText("현재 강의신청 목록");
 
-        jButton1.setText("저장");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        ResultCourse.setText("저장");
+        ResultCourse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                ResultCourseActionPerformed(evt);
             }
         });
 
-        jButton2.setText("강의조회");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        Search.setText("강의조회");
+        Search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                SearchActionPerformed(evt);
             }
         });
 
@@ -177,14 +177,14 @@ public class CourseRegister extends javax.swing.JFrame {
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 787, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 787, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2)
+                        .addComponent(Search)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(393, 393, 393)
                 .addComponent(BUTT_AddCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ResultCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -200,7 +200,7 @@ public class CourseRegister extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(77, 77, 77)
-                        .addComponent(jButton2)))
+                        .addComponent(Search)))
                 .addGap(31, 31, 31)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -211,7 +211,7 @@ public class CourseRegister extends javax.swing.JFrame {
                     .addComponent(Total_OUTPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ResultCourse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BUTT_AddCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addComponent(BUTT_Close)
@@ -298,7 +298,7 @@ public class CourseRegister extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Total_OUTPUTActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void ResultCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResultCourseActionPerformed
         String filePath = URL_stcourse;
 
         File file = new File(filePath);
@@ -327,10 +327,10 @@ public class CourseRegister extends javax.swing.JFrame {
         }
         JOptionPane.showMessageDialog(null, "수강신청이 완료되었습니다.");
         dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_ResultCourseActionPerformed
 
     int check = 0; // 강의 조회 횟수를 1회로 제한하기 위함
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchActionPerformed
         // TODO add your handling code here:
         if (check != -1) {
 
@@ -366,7 +366,7 @@ public class CourseRegister extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "강의 조회는 1회만 가능합니다.");
         }
 
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_SearchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -406,9 +406,9 @@ public class CourseRegister extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BUTT_AddCourse;
     private javax.swing.JButton BUTT_Close;
+    private javax.swing.JButton ResultCourse;
+    private javax.swing.JButton Search;
     private javax.swing.JTextField Total_OUTPUT;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

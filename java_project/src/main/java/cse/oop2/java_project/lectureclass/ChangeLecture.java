@@ -62,8 +62,8 @@ public class ChangeLecture extends javax.swing.JFrame {
         result_score = new javax.swing.JTextField();
         result_info = new javax.swing.JTextField();
         check = new javax.swing.JCheckBox();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        Change = new javax.swing.JButton();
+        Close = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -81,17 +81,17 @@ public class ChangeLecture extends javax.swing.JFrame {
 
         check.setText("정보 변경 동의");
 
-        jButton1.setText("수정");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Change.setText("수정");
+        Change.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                ChangeActionPerformed(evt);
             }
         });
 
-        jButton2.setText("닫기");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        Close.setText("닫기");
+        Close.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                CloseActionPerformed(evt);
             }
         });
 
@@ -123,7 +123,7 @@ public class ChangeLecture extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton2)))
+                        .addComponent(Close)))
                 .addGap(1, 1, 1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -143,7 +143,7 @@ public class ChangeLecture extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(check)
                                 .addGap(18, 18, Short.MAX_VALUE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addComponent(Change, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,8 +174,8 @@ public class ChangeLecture extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(check)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)))
+                    .addComponent(Change)
+                    .addComponent(Close)))
         );
 
         pack();
@@ -238,7 +238,7 @@ public class ChangeLecture extends javax.swing.JFrame {
         }
     }
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void ChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangeActionPerformed
         // TODO add your handling code here:
         if (check.isSelected()) { // 동의가 체크되어 있다면
             try {
@@ -305,12 +305,12 @@ public class ChangeLecture extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "정보 수정 동의를 체크해주시기 바랍니다.");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_ChangeActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void CloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CloseActionPerformed
         // TODO add your handling code here:
         dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_CloseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -348,9 +348,9 @@ public class ChangeLecture extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Change;
+    private javax.swing.JButton Close;
     private javax.swing.JCheckBox check;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

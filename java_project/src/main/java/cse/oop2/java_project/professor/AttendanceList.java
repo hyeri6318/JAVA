@@ -106,7 +106,7 @@ public class AttendanceList extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         BUTT_Close = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        Search = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -129,10 +129,10 @@ public class AttendanceList extends javax.swing.JFrame {
 
         jLabel1.setText("출석부");
 
-        jButton1.setText("조회");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Search.setText("조회");
+        Search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                SearchActionPerformed(evt);
             }
         });
 
@@ -156,7 +156,7 @@ public class AttendanceList extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(357, 357, 357)
-                .addComponent(jButton1)
+                .addComponent(Search)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -167,7 +167,7 @@ public class AttendanceList extends javax.swing.JFrame {
                 .addGap(45, 45, 45)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(Search)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addComponent(BUTT_Close)
                 .addContainerGap())
@@ -181,7 +181,7 @@ public class AttendanceList extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_BUTT_CloseActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchActionPerformed
 
         String filePath = URL;
         File file = new File(filePath);
@@ -220,7 +220,7 @@ public class AttendanceList extends javax.swing.JFrame {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_SearchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -259,7 +259,7 @@ public class AttendanceList extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BUTT_Close;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton Search;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

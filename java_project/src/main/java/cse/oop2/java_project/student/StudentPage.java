@@ -42,7 +42,7 @@ public class StudentPage extends javax.swing.JFrame {
         BUTT_CourseRegister = new javax.swing.JButton();
         BUTT_GradeCheck = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        Close = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,10 +62,10 @@ public class StudentPage extends javax.swing.JFrame {
 
         jLabel1.setText("학생페이지");
 
-        jButton1.setText("닫기");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Close.setText("닫기");
+        Close.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                CloseActionPerformed(evt);
             }
         });
 
@@ -75,7 +75,7 @@ public class StudentPage extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1))
+                .addComponent(Close))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(BUTT_GradeCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -98,7 +98,7 @@ public class StudentPage extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addComponent(BUTT_GradeCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
-                .addComponent(jButton1))
+                .addComponent(Close))
         );
 
         pack();
@@ -116,10 +116,10 @@ public class StudentPage extends javax.swing.JFrame {
         check.setVisible(true);
     }//GEN-LAST:event_BUTT_GradeCheckActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void CloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CloseActionPerformed
         // TODO add your handling code here:
         dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_CloseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -159,7 +159,7 @@ public class StudentPage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BUTT_CourseRegister;
     private javax.swing.JButton BUTT_GradeCheck;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton Close;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
