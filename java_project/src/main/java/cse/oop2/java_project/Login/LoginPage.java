@@ -27,6 +27,7 @@ import javax.swing.JOptionPane;
 /**
  *
  * @author 정민수 switch-case를 통해 ID 첫번째 글자를 통해 알맞은 파일을 오픈하여 로그인 가능하게 하기
+ * 2021_11_30 로그인 수정 - 비밀번호 변경 이력이 있을 경우 변경된 비밀번호로 로그인되게 수정
  *
  */
 public class LoginPage extends javax.swing.JFrame {
@@ -178,6 +179,11 @@ public class LoginPage extends javax.swing.JFrame {
             ArrayList<String> pw_list = new ArrayList<String>(); // 초기 비밀번호로 사용하는 주민등록번호 뒷자리를 -로 구분하여 저장
             ArrayList<String> name_list = new ArrayList<String>(); // name_list
             ArrayList<String> pname_list = new ArrayList<String>(); // professor_list
+            ArrayList<String> edit_pw_list = new ArrayList<String>(); // 변경이력 있는 비밀번호 리스트
+            
+            int ch = 0; // 로그인이 되었는지 안되었는지 확인하는 변수
+            int index = 0; // student_name을 가져오기 위함
+
             for (String i : list) {
                 array = i.split("\n");
                 list_temp.add(array[0]);
@@ -187,11 +193,19 @@ public class LoginPage extends javax.swing.JFrame {
                 String[] temp = i.split("/");
                 id_list.add(temp[0]); // 학번, 교수번호, 직원번호
                 pw_list_temp.add(temp[1]); // 주민등록번호
+
                 if (check == 83) {
                     name_list.add(temp[3]); // 이름
                 }
                 if (check == 80) {
                     pname_list.add(temp[3]);
+                }
+                if (temp.length == 5) { // 변경이력 있는 비밀번호 구별 2021_11_30 최종수정
+                    edit_pw_list.add(temp[4]); // 변경된 비밀번호
+                } else if(temp.length == 3) {
+                    edit_pw_list.add(temp[2]); // 변경된 비밀번호
+                } else {
+                    edit_pw_list.add(null);
                 }
             }
 
@@ -200,21 +214,32 @@ public class LoginPage extends javax.swing.JFrame {
                 pw_list.add(temp[1]); // 초기 비밀번호 주민등록번호 뒷자리 저장
             }
 
-            int ch = 0; // 로그인이 되었는지 안되었는지 확인하는 변수
-            int index = 0; // student_name을 가져오기 위함
-            for (int i = 0; i < id_list.size(); i++) {
-                if (ID_INPUT.getText().equals(id_list.get(i)) && PW_INPUT.getText().equals(pw_list.get(i))) {
-                    JOptionPane.showMessageDialog(null, "로그인이 되었습니다!!");
-                    index = i;
-                    ch = -1; // 로그인 되었을 때 함수
-                    is.close();
-                    if (check == 83) {
-                        student_name = name_list.get(index);
+            
+            for (int i = 0; i < id_list.size(); i++) { // 변경이력 있는 비밀번호 구별 2021_11_30 최종수정
+                if (edit_pw_list.get(i) == null) { //변경이력 없는 경우
+                    if (ID_INPUT.getText().equals(id_list.get(i)) && PW_INPUT.getText().equals(pw_list.get(i))) {
+                        JOptionPane.showMessageDialog(null, "로그인이 되었습니다!!");
+                        index = i;
+                        ch = -1; // 로그인 되었을 때 함수
+                        is.close();
+                    
+                        return true;
+                    }        
+                } else { // 변경이력 있는 경우
+                    if (ID_INPUT.getText().equals(id_list.get(i)) && PW_INPUT.getText().equals(edit_pw_list.get(i))) {
+                        JOptionPane.showMessageDialog(null, "로그인이 되었습니다!!");
+                        index = i;
+                        ch = -1; // 로그인 되었을 때 함수
+                        is.close();
+                    
+                        return true;
                     }
-                    if (check == 80) {
-                        professor_name = pname_list.get(index);
-                    }
-                    return true;
+                }
+                if (check == 83) {
+                    student_name = name_list.get(index);
+                }
+                if (check == 80) {
+                    professor_name = pname_list.get(index);
                 }
             }
 
@@ -239,7 +264,7 @@ public class LoginPage extends javax.swing.JFrame {
                 check = LoginCompare(URL_student, 'S');
                 if (check) {
                     StudentPage spage = new StudentPage(URL_first, student_name, ID_INPUT.getText());
-                    spage.setVisible(true);                    
+                    spage.setVisible(true);
                     break;
                 } else {
                     break;
@@ -248,7 +273,7 @@ public class LoginPage extends javax.swing.JFrame {
                 check = LoginCompare(URL_professor, 'P');
                 if (check) {
                     ProfessorPage ppage = new ProfessorPage(URL_first, professor_name);
-                    ppage.setVisible(true);                    
+                    ppage.setVisible(true);
                     break;
                 } else {
                     break;
@@ -257,7 +282,7 @@ public class LoginPage extends javax.swing.JFrame {
                 check = LoginCompare(URL_bachelor, 'H');
                 if (check) {
                     BachelorManagerStart start = new BachelorManagerStart(URL_first);
-                    start.setVisible(true);                    
+                    start.setVisible(true);
                     break;
                 } else {
                     break;
@@ -266,7 +291,7 @@ public class LoginPage extends javax.swing.JFrame {
                 check = LoginCompare(URL_class, 'G');
                 if (check) {
                     LectureClassPage lcp = new LectureClassPage(URL_first);
-                    lcp.setVisible(true);                    
+                    lcp.setVisible(true);
                     break;
                 } else {
                     break;
