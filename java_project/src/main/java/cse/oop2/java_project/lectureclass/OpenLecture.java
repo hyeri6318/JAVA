@@ -218,7 +218,7 @@ public class OpenLecture extends javax.swing.JFrame {
 
             for (int i = 0; i < num_list.size(); i++) {
                 if (lecture_num.getText().equals(num_list.get(i))) {
-                    JOptionPane.showMessageDialog(null, "강의 번호가 중복됩니다. 다시 입력하세요.");
+                    JOptionPane.showMessageDialog(null, "강좌 번호가 중복됩니다. 다시 입력하세요.");
                     is.close();
                     return false;
                 }

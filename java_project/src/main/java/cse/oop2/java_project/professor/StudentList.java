@@ -41,7 +41,7 @@ public class StudentList extends javax.swing.JFrame {
         this.URL = URL + "\\stcourse.txt";
     }
 
-    // 강좌 일치 비교
+    // 강의 일치 비교
     
     ArrayList<String> num_list = new ArrayList<>();
 
@@ -66,7 +66,7 @@ public class StudentList extends javax.swing.JFrame {
 
             for (String i : list_temp) {
                 String[] temp = i.split("/");
-                num_list.add((temp[2])); // 강좌번호
+                num_list.add((temp[2])); // 강의번호
             }
 
             for (int i = 0; i < num_list.size(); i++) {
@@ -190,7 +190,6 @@ public class StudentList extends javax.swing.JFrame {
     }
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // 교수 첫번째 페이지에서 클릭한 강좌번호와 stcourse에 저장되어있는 강좌번호가 일치하는 조건 추가
         String filePath = URL;
         File file = new File(filePath);
 

@@ -117,7 +117,7 @@ public class ProfessorPage extends javax.swing.JFrame {
 
             },
             new String [] {
-                "강좌번호", "강좌이름"
+                "강의번호", "강의이름"
             }
         ));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -230,13 +230,13 @@ public class ProfessorPage extends javax.swing.JFrame {
         grade.setVisible(true);
     }//GEN-LAST:event_BUTT_InputGradeActionPerformed
 
-    int check = 0; // 강좌번호 및 이름 조회 횟수를 1회로 제한하기 위함
+    int check = 0; // 강의번호 및 이름 조회 횟수를 1회로 제한하기 위함
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         if (check != -1) {
             boolean name_compare = ProfessorNameCompare();
 
-            // 등록된 강좌에 교수 이름이 존재하는지 확인하기
+            // 등록된 강의에 교수 이름이 존재하는지 확인하기
             if (name_compare) {
                 try {
                     String filePath = URL_lecture;
@@ -265,10 +265,10 @@ public class ProfessorPage extends javax.swing.JFrame {
                     ex.printStackTrace();
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "배정된 강좌가 없습니다.");
+                JOptionPane.showMessageDialog(null, "배정된 강의가 없습니다.");
             }
         } else {
-            JOptionPane.showMessageDialog(null, "강좌번호 및 이름 조회는 1회만 가능합니다.");
+            JOptionPane.showMessageDialog(null, "강의번호 및 이름 조회는 1회만 가능합니다.");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
