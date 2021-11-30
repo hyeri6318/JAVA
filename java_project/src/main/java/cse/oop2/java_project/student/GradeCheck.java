@@ -111,7 +111,7 @@ public class GradeCheck extends javax.swing.JFrame {
 
             },
             new String [] {
-                "강좌번호", "강좌이름", "학점"
+                "강의번호", "강의이름", "학점"
             }
         ));
         jScrollPane1.setViewportView(jTable1);

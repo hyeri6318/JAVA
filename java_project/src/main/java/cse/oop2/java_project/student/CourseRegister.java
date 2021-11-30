@@ -20,8 +20,7 @@ import javax.swing.table.TableModel;
 
 /**
  *
- * @author 이혜리 21.11.12. 강의 목록에서 선택하여 현재 강의 신청 목록에 출력하도록 구현 21.11.13. 수강신청한
- * 학점을계산하도록 만듦. 21.11.14. 수강신청 성공 메세지 출력
+ * @author 이혜리 
  */
 public class CourseRegister extends javax.swing.JFrame {
 
@@ -105,7 +104,7 @@ public class CourseRegister extends javax.swing.JFrame {
 
             },
             new String [] {
-                "강좌번호", "강좌명", "담당학과", "담당교수", "학점", "강의계획내용"
+                "강의번호", "강의명", "담당학과", "담당교수", "학점", "강의계획내용"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -115,7 +114,7 @@ public class CourseRegister extends javax.swing.JFrame {
 
             },
             new String [] {
-                "강좌번호", "강좌명", "담당학과", "담당교수", "학점", "강의계획내용"
+                "강의번호", "강의명", "담당학과", "담당교수", "학점", "강의계획내용"
             }
         ));
         jScrollPane2.setViewportView(jTable2);
@@ -143,7 +142,7 @@ public class CourseRegister extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("강좌조회");
+        jButton2.setText("강의조회");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -210,7 +209,7 @@ public class CourseRegister extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(Total_OUTPUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BUTT_AddCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -222,7 +221,7 @@ public class CourseRegister extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    // 중복되는 강좌번호 및 강좌 이름이 있는지 체크하는 메소드
+    // 중복되는 강의번호 및 강의 이름이 있는지 체크하는 메소드
     void Compare_Lecture_Class() {
         DefaultTableModel model2 = (DefaultTableModel) jTable2.getModel();
 
@@ -264,7 +263,7 @@ public class CourseRegister extends javax.swing.JFrame {
             }
         }
 
-        // 같은 강좌가 있는 지 비교하기 위함
+        // 같은 강의가 있는 지 비교하기 위함
         Compare_Lecture_Class();
 
         if (ch == 0) {
@@ -285,7 +284,7 @@ public class CourseRegister extends javax.swing.JFrame {
         } else if (score_check == -1) {
             JOptionPane.showMessageDialog(null, "18학점을 초과하셨습니다.");
         } else if (ch == -2) {
-            JOptionPane.showMessageDialog(null, "강좌가 중복되었습니다.");
+            JOptionPane.showMessageDialog(null, "강의가 중복되었습니다.");
         }
         ch = 0; // 중복된 강좌 클릭 후 중복 아닌 강좌 클릭 시 오류를 해결하기 위한 초기화
     }//GEN-LAST:event_BUTT_AddCourseActionPerformed
@@ -300,7 +299,6 @@ public class CourseRegister extends javax.swing.JFrame {
     }//GEN-LAST:event_Total_OUTPUTActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        //학번, 이름 제외 구현 완료
         String filePath = URL_stcourse;
 
         File file = new File(filePath);
@@ -331,8 +329,7 @@ public class CourseRegister extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    int check = 0; // 강좌 조회 횟수를 1회로 제한하기 위함
-    // 강좌조회 중복으로 계속 이어 나가는 문제 해결하기
+    int check = 0; // 강의 조회 횟수를 1회로 제한하기 위함
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         if (check != -1) {
@@ -366,7 +363,7 @@ public class CourseRegister extends javax.swing.JFrame {
                 ex.printStackTrace();
             }
         } else {
-            JOptionPane.showMessageDialog(null, "강좌 조회는 1회만 가능합니다.");
+            JOptionPane.showMessageDialog(null, "강의 조회는 1회만 가능합니다.");
         }
 
     }//GEN-LAST:event_jButton2ActionPerformed

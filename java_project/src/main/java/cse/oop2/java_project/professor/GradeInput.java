@@ -49,7 +49,7 @@ public class GradeInput extends javax.swing.JFrame {
         this.URL = URL + "\\stcourse.txt";        
     }
 
-    // 강좌 일치 비교
+    // 강의 일치 비교
     ArrayList<String> num_list = new ArrayList<>();
 
     private boolean CourseCompare() {
@@ -73,7 +73,7 @@ public class GradeInput extends javax.swing.JFrame {
 
             for (String i : list_temp) {
                 String[] temp = i.split("/");
-                num_list.add((temp[2])); // 강좌번호
+                num_list.add((temp[2])); // 강의번호
             }
 
             for (int i = 0; i < num_list.size(); i++) {
@@ -118,8 +118,8 @@ public class GradeInput extends javax.swing.JFrame {
 
     ArrayList<String> snum_list = new ArrayList<>(); //학번 리스트
     ArrayList<String> sname_list = new ArrayList<>(); // 학생이름 리스트
-    ArrayList<String> lnum_list = new ArrayList<>(); // 강좌번호 리스트
-    ArrayList<String> lname_list = new ArrayList<>(); // 강좌명 리스트
+    ArrayList<String> lnum_list = new ArrayList<>(); // 강의번호 리스트
+    ArrayList<String> lname_list = new ArrayList<>(); // 강의명 리스트
     ArrayList<String> major_list = new ArrayList<>(); // 개설학과 리스트
     ArrayList<String> professor_list = new ArrayList<>(); // 교수이름 리스트
     ArrayList<String> score_list = new ArrayList<>(); // 학점 리스트
@@ -395,7 +395,6 @@ public class GradeInput extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // 교수 첫번째 페이지에서 클릭한 강좌번호와 stcourse에 저장되어있는 강좌번호가 일치하는 조건 추가
         String filePath = URL;
         File file = new File(filePath);
 
