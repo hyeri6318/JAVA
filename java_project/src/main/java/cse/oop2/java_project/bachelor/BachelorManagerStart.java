@@ -37,7 +37,7 @@ public class BachelorManagerStart extends javax.swing.JFrame {
 
         BUTT_STUDENT = new javax.swing.JButton();
         BUTT_PROFESSOR = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        Close = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,10 +57,10 @@ public class BachelorManagerStart extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("닫기");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Close.setText("닫기");
+        Close.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                CloseActionPerformed(evt);
             }
         });
 
@@ -76,7 +76,7 @@ public class BachelorManagerStart extends javax.swing.JFrame {
                 .addGap(72, 72, 72))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1))
+                .addComponent(Close))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -86,7 +86,7 @@ public class BachelorManagerStart extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addComponent(BUTT_STUDENT, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21)
-                .addComponent(jButton1))
+                .addComponent(Close))
         );
 
         pack();
@@ -106,10 +106,10 @@ public class BachelorManagerStart extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_BUTT_STUDENTActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void CloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CloseActionPerformed
         // TODO add your handling code here:
         dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_CloseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,6 +150,6 @@ public class BachelorManagerStart extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BUTT_PROFESSOR;
     private javax.swing.JButton BUTT_STUDENT;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton Close;
     // End of variables declaration//GEN-END:variables
 }
