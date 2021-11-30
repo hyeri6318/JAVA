@@ -29,7 +29,6 @@ public class PasswordChangeP extends javax.swing.JFrame {
     /**
      * Creates new form PasswordChange
      */
-    
     public PasswordChangeP() {
         initComponents();
         setTitle("비밀번호 변경");
@@ -38,16 +37,16 @@ public class PasswordChangeP extends javax.swing.JFrame {
     String URL = null;
     String Num = null;
     String name = null;
-    
+
     public PasswordChangeP(String url) {
         JOptionPane.showMessageDialog(null, "학번 또는 아이디 값을 받지 못했습니다.", "에러", JOptionPane.ERROR_MESSAGE);
     }
-    
+
     public PasswordChangeP(String url, String num) { //URL은 파일 경로, num은 ID 값
         initComponents();
         setTitle("비밀번호 변경");
         Num = num;
-        if(url.contains("\\professor.txt")) {
+        if (url.contains("\\professor.txt")) {
             URL = url.replaceAll("\\professor.txt", "");
             URL = URL + "\\professor.txt";
         } else {
@@ -186,14 +185,10 @@ public class PasswordChangeP extends javax.swing.JFrame {
             String[] array = null;
             BufferedReader is = new BufferedReader(new FileReader(URL));
 
-            //파일 객체 생성
             Path path = Paths.get(URL);
-            // 캐릭터셋 지정
             Charset cs = StandardCharsets.UTF_8;
-            // 파일 내용을 담을 리스트
             ArrayList<String> list = new ArrayList<String>();
             list = (ArrayList<String>) Files.readAllLines(path, cs);
-            // 모든 파일 내용 읽어와서 저장
             ArrayList<String> list_temp = new ArrayList<String>(); // 임시 저장
             ArrayList<String> id_list = new ArrayList<String>(); // id_list
             ArrayList<String> pw_list_temp = new ArrayList<String>(); // 주민등록번호 앞 뒤 모두 저장
@@ -204,12 +199,9 @@ public class PasswordChangeP extends javax.swing.JFrame {
                 list_temp.add(array[0]);
             }
 
-            //System.out.println(list_temp);
-
             for (String i : list_temp) {
                 String[] temp = i.split("/");
                 id_list.add(temp[0]); // 학번
-                //System.out.println(id_list);
                 pw_list_temp.add(temp[1]); // 주민등록번호
                 if (temp.length == 5) {
                     edit_pw_list.add(temp[4]); // 변경된 비밀번호
@@ -235,15 +227,12 @@ public class PasswordChangeP extends javax.swing.JFrame {
                         return true;
                     }
                 } else {
-                    //System.out.println(Num);
-                }
-                //System.out.println(id_list.get(i));
-                //System.out.println(edit_pw_list.get(i));
-                if (Input_CurrentPw.getText().equals(edit_pw_list.get(i)) && Num.equals(id_list.get(i))) {
-                    check = -1; // 비밀번호가 맞았을 때 함수
-                    count = i;
-                    is.close();
-                    return true;
+                    if (Input_CurrentPw.getText().equals(edit_pw_list.get(i)) && Num.equals(id_list.get(i))) {
+                        check = -1; // 비밀번호가 맞았을 때 함수
+                        count = i;
+                        is.close();
+                        return true;
+                    }
                 }
             }
             if (check == 0) {
@@ -253,7 +242,6 @@ public class PasswordChangeP extends javax.swing.JFrame {
                 is.close();
                 return false;
             }
-            is.close();
 
         } catch (IOException ex) {
             System.out.println("Error");
@@ -272,15 +260,13 @@ public class PasswordChangeP extends javax.swing.JFrame {
             Charset cs = StandardCharsets.UTF_8;
             ArrayList<String> list = new ArrayList<String>();
             list = (ArrayList<String>) Files.readAllLines(path, cs);
-            ArrayList<String> list_temp = new ArrayList<String>(); 
+            ArrayList<String> list_temp = new ArrayList<String>();
             is.close();
 
             for (String i : list) {
                 array = i.split("\n");
                 list_temp.add(array[0]);
             }
-
-            //System.out.println(list_temp);
 
             for (String i : list_temp) {
                 String[] temp = i.split("/");
@@ -295,8 +281,6 @@ public class PasswordChangeP extends javax.swing.JFrame {
                     password_list.add("");
                 }
             }
-            //System.out.println(password_list);
-
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "ReadFile에서 에러", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -318,8 +302,6 @@ public class PasswordChangeP extends javax.swing.JFrame {
                 writer.write(s);
                 writer.write(name_list.get(i));
 
-                System.out.printf(num_list + " " + jumin_list + major_list + name_list);
-
                 if (password_list.get(i) == null) {
                     writer.write("");
                 } else {
@@ -328,13 +310,9 @@ public class PasswordChangeP extends javax.swing.JFrame {
                 }
                 writer.write(n);
 
-                writer.flush();// 출력은 버퍼에 쌓여있기에 쌓인 버퍼를 목적지로 보내줌
+                writer.flush();
             }
             writer.close();
-
-            //System.out.println(jumin_list);
-            //System.out.println(num_list);
-            //System.out.println(password_list);
 
             jumin_list.clear();
             num_list.clear();
@@ -370,7 +348,6 @@ public class PasswordChangeP extends javax.swing.JFrame {
         // TODO add your handling code here:
         boolean check = false;
         if (Input_NewPw.getText().equals("")) {
-            //System.out.println("NewPw is null");
             JOptionPane.showMessageDialog(null, "새 비밀번호가 입력되지 않았습니다.", "Error", JOptionPane.ERROR_MESSAGE);
             check = false;
         } else {
@@ -382,9 +359,6 @@ public class PasswordChangeP extends javax.swing.JFrame {
 
             for (int i = 0; i < name_list.size(); i++) {
                 password_list.set(i, edit_pw_list.get(i));
-                //System.out.println(name_list.size());
-                //System.out.println(Input_NewPw.getText());
-                //System.out.println(password_list.get(i));
             }
 
             password_list.set(count, Input_NewPw.getText());
@@ -396,9 +370,6 @@ public class PasswordChangeP extends javax.swing.JFrame {
             back.setVisible(true);
             dispose();
         } else {
-            if (check) {
-                //System.out.println("Current password pass fail");
-            }
             JOptionPane.showMessageDialog(null, "비밀번호 변경을 실패하였습니다.");
         }
     }//GEN-LAST:event_ButtChangeActionPerformed

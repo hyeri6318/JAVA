@@ -38,7 +38,7 @@ public class PasswordChangeS extends javax.swing.JFrame {
     String URL = null;
     String Num = null;
     String name = null;
-    
+
     public PasswordChangeS(String url) {
         JOptionPane.showMessageDialog(null, "학번 또는 아이디 값을 받지 못했습니다.", "에러", JOptionPane.ERROR_MESSAGE);
     }
@@ -47,7 +47,7 @@ public class PasswordChangeS extends javax.swing.JFrame {
         initComponents();
         setTitle("비밀번호 변경");
         this.Num = num;
-        if(url.contains("\\student.txt")) {
+        if (url.contains("\\student.txt")) {
             URL = url.replaceAll("\\student.txt", "");
             URL = URL + "\\student.txt";
         } else {
@@ -186,14 +186,11 @@ public class PasswordChangeS extends javax.swing.JFrame {
             String[] array = null;
             BufferedReader is = new BufferedReader(new FileReader(URL));
 
-            //파일 객체 생성
             Path path = Paths.get(URL);
-            // 캐릭터셋 지정
             Charset cs = StandardCharsets.UTF_8;
-            // 파일 내용을 담을 리스트
             ArrayList<String> list = new ArrayList<String>();
             list = (ArrayList<String>) Files.readAllLines(path, cs);
-            // 모든 파일 내용 읽어와서 저장
+
             ArrayList<String> list_temp = new ArrayList<String>(); // 임시 저장
             ArrayList<String> id_list = new ArrayList<String>(); // id_list
             ArrayList<String> pw_list_temp = new ArrayList<String>(); // 주민등록번호 앞 뒤 모두 저장
@@ -204,12 +201,9 @@ public class PasswordChangeS extends javax.swing.JFrame {
                 list_temp.add(array[0]);
             }
 
-            //System.out.println(list_temp);
-
             for (String i : list_temp) {
                 String[] temp = i.split("/");
                 id_list.add(temp[0]); // 학번
-                //System.out.println(id_list);
                 pw_list_temp.add(temp[1]); // 주민등록번호
                 if (temp.length == 5) {
                     edit_pw_list.add(temp[4]); // 변경된 비밀번호
@@ -223,8 +217,6 @@ public class PasswordChangeS extends javax.swing.JFrame {
                 pw_list.add(temp[1]); // 초기 비밀번호 주민등록번호 뒷자리 저장
             }
 
-            //System.out.println(edit_pw_list);
-
             int check = 0; // 현재 비밀번호가 맞는지 확인하는 변수
             for (int i = 0; i < id_list.size(); i++) {
                 if (edit_pw_list.get(i) == null) {
@@ -235,15 +227,12 @@ public class PasswordChangeS extends javax.swing.JFrame {
                         return true;
                     }
                 } else {
-                    //System.out.println(Num);
-                }
-                //System.out.println(id_list.get(i));
-                //System.out.println(edit_pw_list.get(i));
-                if (Input_CurrentPw.getText().equals(edit_pw_list.get(i)) && Num.equals(id_list.get(i))) {
-                    check = -1; // 비밀번호가 맞았을 때 함수
-                    count = i;
-                    is.close();
-                    return true;
+                    if (Input_CurrentPw.getText().equals(edit_pw_list.get(i)) && Num.equals(id_list.get(i))) {
+                        check = -1; // 비밀번호가 맞았을 때 함수
+                        count = i;
+                        is.close();
+                        return true;
+                    }
                 }
             }
             if (check == 0) {
@@ -253,8 +242,6 @@ public class PasswordChangeS extends javax.swing.JFrame {
                 is.close();
                 return false;
             }
-            is.close();
-
         } catch (IOException ex) {
             System.out.println("Error");
             JOptionPane.showMessageDialog(null, "CurrentPasswordCompare에서 에러", "Error", JOptionPane.ERROR_MESSAGE);
@@ -264,19 +251,14 @@ public class PasswordChangeS extends javax.swing.JFrame {
 
     private void ReadFile() {
         try {
-            String str; // 메모장 안에 있는 데이터를 읽어와 저장
             String[] array = null;
 
             BufferedReader is = new BufferedReader(new FileReader(URL));
 
-            //파일 객체 생성
             Path path = Paths.get(URL);
-            // 캐릭터셋 지정
             Charset cs = StandardCharsets.UTF_8;
-            // 파일 내용을 담을 리스트
             ArrayList<String> list = new ArrayList<String>();
             list = (ArrayList<String>) Files.readAllLines(path, cs);
-            // 모든 파일 내용 읽어와서 저장
             ArrayList<String> list_temp = new ArrayList<String>(); // 임시 저장
             is.close();
 
@@ -284,8 +266,6 @@ public class PasswordChangeS extends javax.swing.JFrame {
                 array = i.split("\n");
                 list_temp.add(array[0]);
             }
-
-            //System.out.println(list_temp);
 
             for (String i : list_temp) {
                 String[] temp = i.split("/");
@@ -300,7 +280,6 @@ public class PasswordChangeS extends javax.swing.JFrame {
                     password_list.add("");
                 }
             }
-            //System.out.println(password_list);
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "ReadFile에서 에러", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -322,8 +301,6 @@ public class PasswordChangeS extends javax.swing.JFrame {
                 writer.write(s);
                 writer.write(name_list.get(i));
 
-                //System.out.printf(num_list + " " + jumin_list + major_list + name_list);
-
                 if (password_list.get(i) == null) {
                     writer.write("");
                 } else {
@@ -335,10 +312,6 @@ public class PasswordChangeS extends javax.swing.JFrame {
                 writer.flush();// 출력은 버퍼에 쌓여있기에 쌓인 버퍼를 목적지로 보내줌
             }
             writer.close();
-
-            //System.out.println(jumin_list);
-            //System.out.println(num_list);
-            //System.out.println(password_list);
 
             jumin_list.clear();
             num_list.clear();
@@ -353,8 +326,8 @@ public class PasswordChangeS extends javax.swing.JFrame {
     private void BUTT_BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_BackActionPerformed
         // TODO add your handling code here:
         StudentPage back = new StudentPage(URL, name, Num);
-            back.setVisible(true);
-            dispose();
+        back.setVisible(true);
+        dispose();
     }//GEN-LAST:event_BUTT_BackActionPerformed
 
     private void BUTT_CloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BUTT_CloseActionPerformed
@@ -381,14 +354,10 @@ public class PasswordChangeS extends javax.swing.JFrame {
             check = CurrentPasswordCompare(URL);
         }
         if (check) {
-            //System.out.println("Current password pass Success");
             ReadFile();
 
             for (int i = 0; i < name_list.size(); i++) {
                 password_list.set(i, edit_pw_list.get(i));
-                //System.out.println(name_list.size());
-                //System.out.println(Input_NewPw.getText());
-                //System.out.println(password_list.get(i));
             }
 
             password_list.set(count, Input_NewPw.getText());
@@ -400,9 +369,6 @@ public class PasswordChangeS extends javax.swing.JFrame {
             back.setVisible(true);
             dispose();
         } else {
-            if (check) {
-                //System.out.println("Current password pass fail");
-            }
             JOptionPane.showMessageDialog(null, "비밀번호 변경을 실패하였습니다.");
         }
     }//GEN-LAST:event_ButtChangeActionPerformed
