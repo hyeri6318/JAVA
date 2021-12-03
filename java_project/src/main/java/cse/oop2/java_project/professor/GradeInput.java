@@ -111,7 +111,7 @@ public class GradeInput extends javax.swing.JFrame {
         if (grade.equals("A") || grade.equals("B") || grade.equals("C") || grade.equals("D") || grade.equals("F")) {
             return true;
         } else {
-            JOptionPane.showMessageDialog(null, "학점은 A, B, C, D, E 중 하나가 입력되어야 합니다.");
+            JOptionPane.showMessageDialog(null, "학점은 A, B, C, D, F 중 하나가 입력되어야 합니다.");
             return false;
         }
     }
