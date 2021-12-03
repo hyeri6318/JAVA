@@ -185,6 +185,7 @@ public class Professor_Info_Delete extends javax.swing.JFrame {
                 FileWriter writer;
                 writer = new FileWriter(file, false);
                 for (int i = 0; i < num_list.size(); i++) {
+                    // 같은 정보가 있으면 안 쓰고 다른 정보들은 그대로 복사
                     if ((name.getText().equals(name_list.get(i))) && (jumin.getText().equals(jumin_list.get(i)))) {
                         continue;
                     } else {

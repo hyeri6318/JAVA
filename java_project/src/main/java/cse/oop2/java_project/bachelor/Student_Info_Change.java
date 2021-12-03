@@ -21,8 +21,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author 정민수 정보 수정할 때 학과 5개만으로 바꿀수 있게 유지보수하기 정보 수정할 때 학번이 겹치게 변경하는 경우를 어떻게 해결할
- * 지 생각하기
+ * @author 정민수
  */
 public class Student_Info_Change extends javax.swing.JFrame {
 
@@ -37,7 +36,7 @@ public class Student_Info_Change extends javax.swing.JFrame {
 
     public Student_Info_Change(String url) {
         initComponents();
-        setTitle("학사담당자 - 학생 정보 수정");        
+        setTitle("학사담당자 - 학생 정보 수정");
         URL = url;
     }
 
@@ -259,7 +258,6 @@ public class Student_Info_Change extends javax.swing.JFrame {
         }
     }
 
-    // 동명이인 해결 완료, 고민 : 학번은 변경되는 일이 없으니까 변경요소에 넣지말까?
     private void NewFileCreat() {
         try {
 

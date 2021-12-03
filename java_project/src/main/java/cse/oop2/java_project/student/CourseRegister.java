@@ -55,9 +55,6 @@ public class CourseRegister extends javax.swing.JFrame {
         this.URL_stcourse = URL + "\\stcourse.txt";
         this.name = name;
         this.num = num;
-
-        //Total_OUTPUT.setEnabled(false); // 신청 학점란 변경 못하게 막음        
-        //jTable2.setEnabled(false);
     }
 
     /**

@@ -36,7 +36,7 @@ public class Student_Info_Register extends javax.swing.JFrame {
 
     public Student_Info_Register(String url) {
         initComponents();
-        setTitle("학사담당자 - 학생 정보 등록");        
+        setTitle("학사담당자 - 학생 정보 등록");
         URL = url;
     }
 
@@ -202,7 +202,6 @@ public class Student_Info_Register extends javax.swing.JFrame {
 
     private boolean IdCompare(String url) {
         try {
-            
 
             String str; // 메모장 안에 있는 데이터를 읽어와 저장
             String[] array = null;
@@ -262,7 +261,7 @@ public class Student_Info_Register extends javax.swing.JFrame {
                 // 학번이 중복인지 확인하기 위함
                 boolean id_temp = IdCompare(URL);
                 if (id_temp) { // 학번이 중복이 아니면
-                    //구현 완료 후 URL 절대 경로 생성자로 입력 받아서 사용하기
+
                     File file = new File(URL);
                     FileWriter writer;
                     writer = new FileWriter(file, true);
@@ -277,9 +276,9 @@ public class Student_Info_Register extends javax.swing.JFrame {
                     writer.flush();// 출력은 버퍼에 쌓여있기에 쌓인 버퍼를 목적지로 보내줌
                     writer.close();
                     JOptionPane.showMessageDialog(null, "학생이 등록되었습니다.");
-                    
+
                     dispose();
-                    
+
                 } else {
                     JOptionPane.showMessageDialog(null, "같은 학번이 존재합니다. 다른 학번을 입력해주시기 바랍니다.");
                     student_ID.setText(null);

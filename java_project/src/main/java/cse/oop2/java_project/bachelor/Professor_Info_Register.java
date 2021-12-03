@@ -255,8 +255,7 @@ public class Professor_Info_Register extends javax.swing.JFrame {
 
                 // 교수 번호가 중복인지 확인하기 위함
                 boolean id_temp = IdCompare(URL);
-                if (id_temp) { // 교수 번호가 중복이 아니면
-                    //구현 완료 후 URL 절대 경로 생성자로 입력 받아서 사용하기
+                if (id_temp) { // 교수 번호가 중복이 아니면                    
                     File file = new File(URL);
                     FileWriter writer;
                     writer = new FileWriter(file, true);

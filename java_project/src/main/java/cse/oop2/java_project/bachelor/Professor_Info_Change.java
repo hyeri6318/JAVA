@@ -251,7 +251,6 @@ public class Professor_Info_Change extends javax.swing.JFrame {
         }
     }
 
-    // 동명이인 해결 완료, 고민 : 학번은 변경되는 일이 없으니까 변경요소에 넣지말까?
     private void NewFileCreat() {
         try {
 

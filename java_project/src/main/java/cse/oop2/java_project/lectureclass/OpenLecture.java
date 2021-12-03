@@ -236,7 +236,7 @@ public class OpenLecture extends javax.swing.JFrame {
     private boolean LectureScoreCompare() {
 
         String score = lecture_score.getText();
-        int num = Integer.parseInt(score); // 숫자가 아닌 것이 들어올 경우에 오류 생각해야함
+        int num = Integer.parseInt(score);
 
         if (num >= 1 && num <= 3) {
             return true;
